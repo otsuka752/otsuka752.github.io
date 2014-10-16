@@ -1,4 +1,4 @@
-appneta.github.io
+otsuka752.github.io
 =================
 
-GitHub Pages project site for <http://tcpreplay.appneta.com>
+GitHub Pages project site for <http://tcpreplay.jp>
