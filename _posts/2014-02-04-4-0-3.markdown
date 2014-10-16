@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Tcpreplay 4.0.3 announced"
+date:   2014-02-04 10:29:00
+categories: tcpreplay news
+type: news
+description: "News - Tcpreplay version 4.0.3"
+---
+
+Today we released build fixes to Tcpreplay. Version 4.0.2 would
+sometimes not build in some configurations.
+
+This is Tcpreplay suite version [4.0.3][downloads].
+
+Fixes include:
+
+- Fix build errors when ENABLE_VERBOSE is not set (#60)
+- Build error on host without tcpdump (#59)
+
+Visit our [downloads] page to get it.
+
+[downloads]:      {{ site.url }}/wiki/installation.html#downloads

@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Tcpreplay 4.0.5beta2 announced"
+date:   2014-07-30 12:50:00
+categories: tcpreplay news
+type: news
+description: "News - version 4.0.5beta2"
+---
+
+Today we are releasing Tcpreplay suite version [4.0.5 Beta 2][downloads]. Many thanks to
+the early support received from the Tcpreplay community to help identify and
+resolve some bugs. Here's what's new:
+
+- Proper error message when vale is unconfigured (#113)
+- Avoid a netmap module debug message (#110)
+- Add missing header to distribution (#108)
+- All fixes from 4.0.5 Beta 1
+    
+Visit our [release] page or [downloads][] page to get it.
+
+[downloads]:      {{ site.url }}/wiki/installation.html#downloads
+[release]:        https://github.com/appneta/tcpreplay/releases/tag/v4.0.5beta2

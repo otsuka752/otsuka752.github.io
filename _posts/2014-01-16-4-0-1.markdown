@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Tcpreplay 4.0.1 announced"
+date:   2014-01-16 13:29:00
+categories: tcpreplay news
+type: news
+description: "News - version 4.0.1"
+---
+
+Today we are releasing Tcpreplay suite version [4.0.1][downloads]. This version
+includes minor fixes and performance enhancements to the NetFlow features
+introduced in version 4.0.0.
+
+Fixes include:
+
+- Support for netmap version 10 API (#53)
+- Remove deprecated "absolute time" for OS X (#52)
+- Make dosleep() rentrant to support API concurrency (#51)  
+- Remove compiler warnings (#50)
+- Fix slow netmap in Intel GigE "igb" server NICS (#49)
+
+Visit our [downloads] page to get it.
+
+[downloads]:      {{ site.url }}/wiki/installation.html#downloads

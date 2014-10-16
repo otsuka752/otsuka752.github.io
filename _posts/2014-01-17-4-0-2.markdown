@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "Tcpreplay 4.0.2 announced"
+date:   2014-01-17 16:29:00
+categories: tcpreplay news
+type: news
+description: "News - Tcpreplay version 4.0.2"
+---
+
+Today we released a critical fix to Tcpreplay. Version 4.0.1 would
+hang with the `--mbps` command.
+
+This is Tcpreplay suite version [4.0.2][downloads].
+
+Fixes include:
+
+- Fix hangs with --mbps command (#54)
+
+Visit our [downloads] page to get it.
+
+[downloads]:      {{ site.url }}/wiki/installation.html#downloads

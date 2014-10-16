@@ -1,0 +1,45 @@
+---
+layout: content
+title: Tcpreplay  - Pcap editing and replaying utilities
+---
+
+<div id="post">
+	<p>
+	Tcpreplay is a suite of free Open Source utilities for editing and replaying 
+	previously captured network	traffic. Originally designed
+	to replay malicious traffic patterns to Intrusion Detection/Prevention Systems,
+	it has seen many evolutions including capabilities to replay to web servers.</p>
+	<p>
+	Version 4.0.0 introduces features and performance enhancements to support
+	switches, routers, and IP Flow/NetFlow appliances.
+	</p>
+	<h4>Example - 10GigE to IP Flow Appliance:</h4>
+	<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1">root@pw29:~#</span> <span class="no">tcpreplay -i eth7 -tK --loop 5000 --unique-ip smallFlows.pcap</span>
+<span class="n">File Cache is enabled
+Actual: 71305000 packets (46082655000 bytes) sent in 38.05 seconds.
+Rated: 1194330011.6 Bps, <span class="ss">9554.64 Mbps</span>, 1848020.72 pps
+Flows: 6045000 flows, <span class="ss">156669.03 fps</span>, 71215000 flow packets, 90000 non-flow
+Statistics for network device: eth7
+	Attempted packets:         71305000
+	Successful packets:        71305000
+	Failed packets:            0
+	Truncated packets:         0
+	Retried packets (ENOBUFS): 0
+	Retried packets (EAGAIN):  0</span></code></pre></div>	
+
+	<p>This is the official site for Tcpreplay
+	version 4.0 and newer. The 3.x wiki and legacy Tcpreplay content is available <a href="http://tcpreplay.synfin.net">here</a>.
+	</p>
+	
+	<ul class="posts">
+		<li>&raquo; <a href=wiki/overview.html>Tcpreplay Overview</a></li>
+		<li>&raquo; <a href=wiki/products.html>Products</a></li>
+		<li>&raquo; <a href=wiki/installation.html>Download and Installation</a></li>
+		<li>&raquo; <a href=wiki/faq.html>FAQ</a></li>
+		<li>&raquo; <a href=wiki/howto.html>How To...</a></li>
+		<li>&raquo; <a href=wiki/news.html>News</a></li>
+		<li>&raquo; <a href=wiki/support.html>Support</a></li>
+		<li>&raquo; <a href=wiki/contributions.html>Contributors</a></li>
+	 </ul>
+
+</div>
