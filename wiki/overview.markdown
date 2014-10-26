@@ -1,53 +1,54 @@
 ---
 layout: content
-title:  "Tcpreplay Overview"
+title:  "Tcpreplay 概要／Tcpreplay Overview"
 categories: tcpreplay wiki
 description: "Tcpreplay is a suite of utilities for editing and replaying network traffic which was previously captured by tools like tcpdump and Wireshark"
 ---
 
-- [Overview](#overview)
-- [Examples](#examples)
-- [Screencast Videos](#screencast-videos)
-- [Useful Links](#useful-links)
+- [概要／Overview](#overview)
+- [実行例／Examples](#examples)
+- [スクリーンショットのビデオ／Screencast Videos](#screencast-videos)
+- [役に立つリンク／Useful Links](#useful-links)
 
-<h2 id="Overview"><a name="overview"></a>Overview</h2>
-Tcpreplay is a suite of [GPLv3] licensed utilities for UNIX (and Win32 under
-[Cygwin]) operating systems for editing and replaying network traffic which
-was previously captured by tools like [tcpdump] and [Wireshark]. 
-It allows you to classify traffic as client or server, rewrite Layer 2, 3 and 4 
-packets and finally replay the traffic back onto the network and through other
-devices such as switches, routers, firewalls, NIDS and IPS's. Tcpreplay supports
-both single and dual NIC modes for testing both sniffing and in-line devices.
+<h2 id="Overview"><a name="overview"></a>概要／Overview</h2>
+Tcpreplay は [GPLv3] ライセンスの UNIX 用(Win32 は [Cygwin] 用)のユーティリティ群で、
+事前に [tcpdump] や [Wireshark] などでキャプチャされたネットワークトラフィックを
+編集したり再送信したりできます。
+また、クライアントやサーバで分類したり、Layer2/3/4 のパケットを書き換えたり、
+最終的にはネットワーク上にあるいはスイッチやルータやファイヤーウォールや NIDS/IPS などの
+別なデバイスにトラフィックを再送信することができます。 
+Tcprelay は sniffing(パケットキャプチャ)もインラインデバイスもテストできるよう、
+1枚の NIC でも 2枚以上の NIC でも動作します。
 
-Tcpreplay is used by numerous firewall, IDS, IPS, NetFlow and other networking
-vendors, enterprises, universities, labs and open source projects. If your
-organization uses Tcpreplay, please let us know who you are and what you use
-it for so that we can continue to add features which are useful.
+Tcprelay はたくさんの FireWall、IDS、IPS、NetFlow、その他ネットワークベンダーで、
+また、エンタープライズ、大学、研究所、オープンソースプロジェクトで利用されています。
+もしあなたの組織で Tcpreplay を使っていたら、有用な機能を追加し続けることができるよう、
+あなたがどんな人でどのように Tcpreplay を使っているかを教えてください。
 
-Tcpreplay is designed to work with network hardware and normally does not
-penetrate deeper than Layer 2. Yazan Siam with sponsorship from [Cisco] developed
-*tcpliveplay* to replay TCP pcap files directly to servers. Use this utility
-if you want to test the entire network stack and into the application.
+Tcpreplay は NIC と連動して動作するように設計されており、Layer2 より下の層は処理しません。
+TCP の pcapファイルを直接サーバに対して再送信できるよう、
+[Cisco] の協力の元で Yazan Siam が *tcpliveplay* を開発しています
+ネットワークスタック全体とアプリケーションまでテストしたい場合には、
+このユーティリティを使ってください。
 
-As of version 4.0, Tcpreplay has been enhanced to address the complexities of
-testing and tuning [IP Flow][flow]/[NetFlow] hardware. Enhancements include:
+version 4.0 では、[IP Flow][flow]/[NetFlow] の装置のテストや
+チューニングの複雑さに対応するために機能拡張されました。機能拡張は下記を含んでます:
 
-* Support for [netmap] modified network drivers for 10GigE wire-speed performance
-* Increased accuracy for playback speed
-* Increased accuracy of results reporting
-* Flow statistics including Flows Per Second (fps)
-* Flow analysis for analysis and fine tuning of flow expiry timeouts
-* Hundreds of thousands of flows per second (dependent on flow sizes in pcap file) 
+* 10GbE のワイヤースピード性能のために修正された [netmap] ネットワークドライバのサポート
+* 再送信速度の精度向上
+* 実行結果のレポーティング精度向上
+* Flows Per Second (fps)を含んだ Flow の統計情報
+* 分析やフローの有効期限切れタイムアウトのチューニングのためのフロー分析
+* 毎秒数十万フロー(pcapファイルのフローサイズに依存)
 
-Version 4.0 is the first version delivered by Fred Klassen and sponsored by 
-[AppNeta]. Many thanks to the author of Tcpreplay, Aaron Turner who has supplied
-the world with a a solid and full-featured test product this far. The new author
-strives to take Tcpreplay performance to levels normally only seen in commercial
-network test equipment.
+Version 4.0 は Fred Klassen により、そして [AppNeta] の支援の元でリリースされた
+最初のバージョンです。Tcpreplay を作った Aaron Turner に感謝します。
+新しいメンテナは、Tcpreplay が、通常は商用のネットワークテスト装置でしか
+得られないようなパフォーマンスレベルになるよう努力します。
 
-<h2 id="Examples"><a name="examples"></a>Examples</h2>
-The following are examples of *tcpreplay* being used to generated various
-patterns of traffic to a *IP Flow* appliance:
+<h2 id="Examples"><a name="examples"></a>実行例／Examples</h2>
+下記は、IP Flow アプライアンスに様々なパターンのトラフィックを生成するための
+*tcpreplay* の例です:
 
 <div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1">root@pw29:~#</span> <span class="no">tcpreplay -i eth7 -t -K --loop 5000 smallFlows.pcap</span> 
 <span class="n">File Cache is enabled
@@ -94,8 +95,9 @@ Statistics for network device: eth7
     Retried packets (EAGAIN):  0
 Switching network driver for eth7 to normal mode... done!</span></code></pre></div>
 
-## <a name="screencast-videos"></a>Screencast Videos
-A playlist of Tcpreplay screencasts is available [here][playlist], or you can watch all screencasts below.
+## <a name="screencast-videos"></a>スクリーンショットのビデオ／Screencast Videos
+Tcpreplay のスクリーンショットの動画の一覧は [ここ][playlist] にあります。
+また、下記で全ての動画を見ることもできます。
 
 <iframe width="620" height="460" 
      src="//www.youtube.com/embed/videoseries?list=PLFjjcN5EvTP0Hsxq1AEh7FhvaFH__Vd83" 
@@ -103,23 +105,23 @@ A playlist of Tcpreplay screencasts is available [here][playlist], or you can wa
      allowfullscreen>
 </iframe>
 
-## <a name="useful-links"></a>Useful Links
+## <a name="useful-links"></a>役に立つリンク／Useful Links
 
-* [Download and installation instructions][installation]
-* [Support]
-* [Tcpreplay Users Mailing List][maillist]
-* Tcpreplay on [Twitter]
-* [Live chat]
-* [FAQ]
-* [How To]
-* [Sample Captures]
-* [The history of Tcpreplay][history]
-* [Screencast Videos][playlist]
+* [ダウンロードとインストールの説明／Download and installation instructions][installation]
+* [サポート/Support][Support]
+* [Tcpreplay ユーザのメーリングリスト／Tcpreplay Users Mailing List][maillist]
+* Tcpreplay の [Twitter]／Tcpreplay on [Twitter]
+* [ライブチャット][Live chat]
+* [よくある質問と回答／FAQ][FAQ]
+* [...するには／How To][How To]
+* [サンプルキャプチャ／Sample Captures][Sample Captures]
+* [Tcpreplay の歴史／The history of Tcpreplay][history]
+* [スクリーンショットの動画／Screencast Videos][playlist]
 * Legacy
-    * [Version 3.x wiki][legacywiki]
-    * [Tcpreplay Blog][legacyblog]
-    * [RSS Feed][rss]
-    * [Podcasts]
+    * [Version 3.x の wiki／Version 3.x wiki][legacywiki]
+    * [Tcpreplay ブログ／Tcpreplay Blog][legacyblog]
+    * [RSS Feed／RSS Feed][rss]
+    * [ポッドキャスト／Podcasts][Podcasts]
     
 
 

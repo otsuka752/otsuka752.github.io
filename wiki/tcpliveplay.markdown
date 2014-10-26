@@ -5,151 +5,155 @@ categories: tcpreplay wiki
 description: "tcpliveplay - replay a TCP capture file in a fashion that a remote server will respond to"
 ---
 
-- [Overview](#overview)
-- [Design Overview](#design-overview)
-	- [Successful vs. Unsuccessful Replays?](#successful-vs-unsuccessful-replays)
-- [Usage](#usage)
-- [Supported OS's](#supported-os's)
-- [Fresh Install Guide](#fresh-install-guide)
-- [Examples of Successful Run](#examples-of-successful-run)
-- [Example of Unsuccessful Run](#example-of-unsuccessful-run)
-- [Credits & Thanks](#credits-&-thanks)
-- [Man pages](tcpliveplay-man.html)
+- [概要／Overview][Overview](#overview)
+- [設計概要／Design Overview][Design Overview](#design-overview)
+	- [再送信の成功と失敗／Successful vs. Unsuccessful Replays?][Successful vs. Unsuccessful Replays?](#successful-vs-unsuccessful-replays)
+- [使い方／Usage][Usage](#usage)
+- [サポートされる OS／Supported OS's][Supported OS's](#supported-os's)
+- [新規インストールガイド／Fresh Install Guide][Fresh Install Guide](#fresh-install-guide)
+- [成功時の例／Examples of Successful Run][Examples of Successful Run](#examples-of-successful-run)
+- [失敗時の例／Example of Unsuccessful Run][Example of Unsuccessful Run](#example-of-unsuccessful-run)
+- [Credits & Thanks／Credits & Thanks][Credits & Thanks](#credits-&-thanks)
+- [man ページ／Man pages][Man pages](tcpliveplay-man.html)
 
 *Author & Publisher: Yazan Siam*   
 *Email: tcpliveplay at gmail.com*    
 *Updated: Dec. 28, 2013*   
 
-<h2><a name="overview"></a>Overview</h2>
+<h2><a name="overview"></a>概要／Overview</h2>
+*tcpliveplay* は、現在の Tcpreplay ツール群を拡張するために、
+Cisco Systems がスポンサーとなりノースカロライナ州立大学
+(North Carolina State University)のプロジェクトとしてスタートしました。
+(tcplivplay の正式名称は 'New Conn' です。)
+事前にキャプチャされた TCP のパケットを使い、
+様々なデバイスにぜい弱性テストをしていく中で、
+ぜい弱なデバイスを保護する必要性を強く感じてました。
+ある特定の TCP パケットによって、
+ネットワークデバイスがクラッシュしてしまうことがあるからです。
+そこで、これらのぜい弱性からデバイスを守ろうとしている人達のソリューションとして、
+このツールを提供しています。
+ネットワークデバイスに対して新規に TCP コネクションを生成し、TCP 通信を再現できます。
 
-This tool, *tcpliveplay* formerly called ‘New Conn’, was initially started as a project
-for North Carolina State University sponsored by Cisco Systems in order to
-extend the functionality of the current Tcpreplay suite. I was very encouraged and
-inspired by the need of protecting vulnerable devices through doing live vulnerability
-testing against various devices using previously captured TCP packets.
-This is because a certain network device may experience a crash due to a
-specific TCP packet sequence. So I provide this tool as a solution for those
-who wish to protect their network against such vulnerabilities. It is able to replay
-TCP captured packets using new TCP connections against any device the user chooses.
+<h2><a name="design-overview"></a>設計概要／Design Overview</h2>
 
-<h2><a name="design-overview"></a>Design Overview</h2>
+*tcpliveplay* は、TCP のパケットを再送信できます。
+このツールは、1つの TCP コネクションだけを含んだキャプチャファイルを再送信できます。
+再送信する時は、ユーザの入力(pcap ファイル)をベースにして、
+Layer2 と Layer 3 の情報だけが書き換わります。
+例えば、キャプチャファイルに HTTP 通信のパケットが記録されている場合、
+そのまま何も変更せずにリモートホストに送信されます。
+ローカルホストのキャプチャファイルにキャプチャされている挙動や、
+パケットが再送信された後の最後のアクションが、
+リモートホストの期待通りの挙動だった場合のみ成功します。
 
-*tcpliveplay* is able to replay only TCP packets. The tool is only able to replay 
-packet captures that contain one TCP connection. Based on the user input, only 
-layer 2 & Layer 3 of the packets will be modified during the replay process. For example, 
-if there is HTTP in the capture, it will be pushed to the remote host ‘as is’. The replay 
-will only proceed if the remote host meets the expectations of the local host which are 
-based on the captured packets and the last action from the station the packets are being replayed.
+TCP パケットの再送出プロセスを始める前に、
+pcap ファイル(TCP のフローが 1つだけ保存されている)を読み込み、
+キャプチャファイル全体の SEQ 番号と ACK 番号を把握します。
+SEQ 番号と ACK 番号をベースに、再送出プロセスのイベントをスケジューリングします。
+最初のパケット(SYN パケット)を送出するために、ランダムな番号を生成します。
+そして、そのパケットをリモートホストに送出することで再送信プロセスを開始します。
+リモートホストから正常なレスポンス(正常な SYN+ACK パケット)を受信すると、
+TCP 3-way handshake は完了することになります。
+TCP 3-way handshake 完了後は、すぐにパケットの再送信プロセスに遷移します。
+tcpliveplay ツールが想定した範囲外の SEQ 番号と ACK 番号が戻ってくる場合には、
+再送出プロセスは停止してしまいます。
+ローカルホストの挙動と与えられた pcap ファイルを元にして、
+tcpliveplay ツールは SEQ 番号や ACK 番号を想定しています。
 
-Before starting the replay process of the TCP packets, the tool reads in the provided pcap 
-file that contains one TCP flow, and takes the SEQ & ACK #s of the entire capture. 
-Based on the SEQ & ACK numbers read in, the schedule of events is setup for the replay process. 
-The tool generates a random number for the first local packet, SYN packet, and then 
-starts the replay process by sending this packet to the remote host. Once the local host 
-receives the correct response from the remote host, it will complete the TCP 3-Way handshake and 
-starts the replay process by replaying the packet immediately after the handshake (if any). \
-The local host will only proceed in the replay process if the SEQ & ACK numbers meet t
-he expectations of the tool based on the last action of the local host and the original 
-captured packets provided to the tool.
+<h3><a name="successful-vs-unsuccessful-replays"></a>再送信の成功と失敗／Successful vs. Unsuccessful Replays?</h3>
 
-<h3><a name="successful-vs-unsuccessful-replays"></a>Successful vs. Unsuccessful Replays?</h3>
+パケットの再送出は、リモートホストの挙動に依って失敗することもあるので注意してください。
+tcpliveplay ツールは、事前にリモートホストの挙動を予想することしかできません。
+リモートホストの挙動が tcpliveplay ツールの予想と異なる場合、
+何度かパケットを再送信します。何度か試しても失敗する場合には、
+tcpliveplay ツールは再送出できない理由を表示して停止します。
+このような場合には、最初からパケット全体を再送出してみると良いです。
+最後まで処理できるようになるかもしれません。
+長い間通信していると、リモートホストの挙動が変わってしまい失敗することがあります。
 
-Note that the packet replays will not always complete to the end due to possible change 
-in behavior of the remote host. The tool can only expect so much of the remote host ahead 
-of time. So if the remote host behaves differently than the expectation of the tool, the 
-tool will re-attempt replaying several times. Then if the replay does not proceed, the tool 
-will error out to the user with possible reasons of why the replay did not complete. 
-In this case, re-attempting to replay the entire packet capture from the beginning is your best 
-option because it may lead to completing the replay successfully. Note that the longer 
-the packet captures are, the more likely there will be a possibility of changed behavior 
-from the remote host.
+<h2><a name="usage"></a>使い方／Usage</h2>
 
-<h2><a name="usage"></a>Usage</h2>
-
-Use the following specific syntax to replay a TCP capture:
+下記の書式でキャプチャした TCP 通信を再送出してください:
 
 ```
 # tcpliveplay <device> <file.pcap> <Destination IP > <Destination MAC> <Source Port>
 ```
 
-*Device*: The device the packets will be sent out on, such as eth0 or eth1.
+*Device*: eth0 や eth1 などの送出するデバイス
 
-*file.pcap*: The “*.pcap” packet capture you desire to replay. Note that all non-TCP 
-packets will be filtered out and ignored. Only replay captures that contain one TCP flow.
+*file.pcap*: 再送出したい pcap ファイル。TCP 以外の全てのパケットはフィルタで削除してください。
+1つの TCP フローだけを含む pcap ファイル以外は再送出できません。
 
-*Destination IP*: The destination IP string of the remote host you wish to replay 
-the captures against.
+*Destination IP*: 通信先リモートホストの IPアドレス
 
-*Destination MAC*: The destination MAC address of NIC directly connected to your replay station.
+*Destination MAC*: 再送信するホストに直接接続された通信先の MACアドレス
 
-*Source Port*: The TCP source port. If the user does not desire a specific port, then may 
-instead type “random” which will determine a random number at runtime and use that for the 
-source port. The generated numbers will be in the private ports range of 49152 to 65535.
+*Source Port*: TCP の Srcポート番号。
+特定のポートを使わない場合 "random" を指定すると、49152 から 65535 の間から自動的に決定されます。
 
-Due to the nature of the replay, you must suppress the kernel RST flags because the 
-replay is injecting packets into the replay station’s NIC. Issue the following:
+再送信の性質上、カーネルの RST パケット送信機能を止める必要があります。
+再送信はホストの NIC の前に割り込んでパケットを生成するためです。
+下記を実行してください:
 
 ```
 # sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s <your ip> -d <dst ip> --dport <dst port, example 80 or 23 etc.> -j DROP
 ```
 
-Example of suppress command:
+実行例:
 
 ```
 # sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s 10.0.2.15 -d 192.168.1.10 --dport 80 -j DROP
 ```
 
-Here are examples of running tcpliveplay:
+tcplivereplay の実行例:
 
 ```
 # tcpliveplay eth0 sample1.pcap 192.168.1.5 52:51:01:12:38:02 random
 # tcpliveplay eth0 sample2.pcap 192.168.1.5 52:51:01:12:38:02 52178
 ```
 
-Types of Packet Captures
+pcap ファイルの種類
 
-This tool can only replay TCP packet captures that contain one TCP flow. Future 
-improvements will allow users to replay captures that contain multiple TCP connections 
-at the same time.
+tcpliveplay ツールは、1つの TCP フローだけが保存された pcap ファイルしか再送信できません。
+将来的には、複数の TCP フローを同時に再送出できるようになる予定です。
 
-<h2><a name="supported-os's"></a>Supported OS's</h2>
 
-The current state of the tool is only supported on Linux environments. 
-The tool will soon be improved to support the other platforms which the
-Tcpreplay suite supports.
+<h2><a name="supported-os's"></a>サポートされる OS／Supported OS's</h2>
 
-<h2><a name="fresh-install-guide"></a>Fresh Install Guide</h2>
+現在は Linux 環境だけがサポートされています。
+Tcpreplay ツール群がサポートされる(Linux 以外の)プラットフォームでも実行できるようになる予定です。
 
-If you experience problems installing the Tcpreplay suite with this tool, 
-then do the following. On a fresh Linux system, here are some points
-that may help you install it successfully:
+<h2><a name="fresh-install-guide"></a>新規インストールガイド／Fresh Install Guide</h2>
+
+Tcpreplay ツール群のインストールで問題がある場合、下記を試してみてください。
+インストールしたばかりの Linux システムでの注意事項をまとめておきます:
 
 1. `sudo apt-get remove libpcap0.8 tcpdump`
 2. `sudo apt-get install libtool libc6 bison flex`
-3. Downloaded libpcap-1.2.1 and tcpdump-4.2.1 from [http://www.tcpdump.org/][tcpdump]
-4. "untarred" them in /usr/local
+3. libpcap-1.2.1 と tcpdump-4.2.1 を [http://www.tcpdump.org/][tcpdump] からダウンロード
+4. /usr/local 以下に展開
     * `sudo ./configure --prefix=/usr && sudo make && sudo make install`
     * `tar -C /usr/local -zxvf libpcap-1.2.1.tar.gz`
     * `tar -C /usr/local -zxvf tcpdump-4.2.1.tar.gz`
-5.Navigate to each of the above extracted directories and do
+5.それぞれのディレクトリに移動(cd)して
     * `sudo ./configure`
     * `sudo make && sudo make install`
-6. Remove the default autogen: `sudo apt-get remove autogen`
-7. Install [autogen 5.16.2][autogen]
-8. Navigate to the directory do:
+6. 標準の autogen を削除し: `sudo apt-get remove autogen`
+7. [autogen 5.16.2][autogen] をインストール
+8. 展開したディレクトリに移動(cd)し
     * `./configure`
     * `sudo make && sudo make install`
-9. Then install the following packages:
+9. 下記のパッケージをインストール
 10 `sudo apt-get install guile-1.8-libs libc6 libopts25 libopts25-dev libxml2 guile-1.8 guile-1.8-dev`
 11. Issue: `mv /usr/lib/libopts.so.25 /usr/lib/~libopts.so.25`
 12. Issue: `ln -s /usr/local/lib/libopts.so.25 /usr/lib/libopts.so.25`
-13 Checkout the code: 'git clone git@github.com:appneta/tcpreplay.git'
-14. Navigate to the directory then do:
+13 code: 'git clone git@github.com:appneta/tcpreplay.git' をチェックアウトし
+14. ディレクトリを移動(cd)し:
     * `./autogen.sh`
     * `./configure`
     * make && sudo make install
 
-<h2><a name="examples-of-successful-run"></a>Examples of Successful Run</h2>
+<h2><a name="examples-of-successful-run"></a>成功時の例／Examples of Successful Run</h2>
 
 ```
 yhsiam:~$ sudo tcpliveplay eth0 sample1.pcap 192.168.1.5 52:51:01:12:38:02 random
@@ -204,7 +208,7 @@ Sending Local Packet...............	[11]
 ----------------------------------------------------------
 ```
 
-<h2><a name="example-of-unsuccessful-run"></a>Example of Unsuccessful Run</h2>
+<h2><a name="example-of-unsuccessful-run"></a>失敗時の例／Example of Unsuccessful Run</h2>
 
 ```
 yhsiam:~$ sudo tcpliveplay eth0 sample2.pcap 192.168.1.5 52:51:01:12:38:02 52139

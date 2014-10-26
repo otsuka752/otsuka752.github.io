@@ -1,34 +1,36 @@
 ---
 layout: content
-title:  "History of Tcpreplay"
+title:  "Tcpreplay の歴史／History of Tcpreplay"
 categories: tcpreplay wiki
 description: "History of Tcpreplay"
 ---
 
 
-Tcpreplay has a bit of a different history than most open source/free software tools 
-available today. Different because, *tcpreplay* has had multiple authors, some of whom 
-have never even communicated over email.
+Tcpreplay は最近のオープンソース／フリーソフトウェアとはちょっと異なる歴史があります。
+*tcpreplay* には複数の著者がいて、互いに電子メールでしかやりとりしていない人達もいます。
 
-Tcpreplay has had quite a few authors since it was first released back in 1999. One of 
-the advantages of the BSD and GPL licenses is that if someone becomes unable or unwilling 
-to continue development, anyone else can take over.
+Tcpreplay は最初にリリースされたのが 1999年であるため、とてもたくさんの著者がいます。
+BSD ライセンスや GPL ライセンスのアドバンテージの 1つには、
+誰かが開発を続けられなくなったり続けたくなくなったとしても、
+他の誰かが変わりに開発を続けることができます。
 
-Originally, Matt Undy of Anzen Computing wrote *tcpreplay*. Matt released version 1.0.1 
-as part of the [nidsbench toolkit][nidsbench] sometime in 1999. Sometime after that, 
-Anzen Computing was (at least partially) purchased by NFR and development ceased.
+一番最初は、Matt Undy の Anzen Computing が tcpreplay を作りました。
+Matt は 1999年に [nidsbench toolkit][nidsbench] の一部として
+バージョン 1.0.1 をリリースしました。
+その後 Anzen Computing 社は(少なくとも一部の部門は) NFR に買収され、
+開発は終了してしまいました。
 
-Then in 2001, two people independently started work on *tcpreplay*: Matt Bing of [NFR] 
-and [Aaron Turner][aaron] of OneSecure. After developing a series of patches 
-(the -adt branch), Aaron attempted to send the patches in to be included in the 
-main development tree.
+2001年にある 2人の人物によって、それぞれ個別に *tcpreplay* の開発が続けられました。
+[NFR][NFR] の Matt Bing と、OneSecure の [Aaron Turner][aaron] です。
+たくさんのパッチ(-adt ブランチ)を作った後、
+Aaron は開発のメインラインにパッチを送るようになりました。
 
-After some discussion between Aaron and Matt Bing, they decided to continue development 
-together. Since then, two major rewrites have occured, and more then thirty new features 
-have been added, including the addition of a number of accessory tools.
+Aaron と Matt Bing の話し合いで、彼らは一緒に開発を進めることになりました。
+それ以来、2回の大きな変更が発生し、30種類以上の新機能が追加され、
+たくさんのツール群が含まれるようになりました。
 
-Aaron continued development until [Fred Klassen][fklassen], with sponsorship from
-[AppNeta], took over the maintainer role in 2013. Version 4.0.0 is Fred's first major release.
+2013年に [AppNeta][AppNeta] が資金援助し [Fred Klassen][fklassen] がメンテナになるまで、
+Aaron は開発を続けていました。 Version 4.0.0 は、Fred の最初のメジャーリリースです。
 
 [nidsbench]:      http://dl.packetstormsecurity.net/UNIX/IDS/nidsbench/nidsbench.html
 [NFR]:            http://www.nfr.com

@@ -1,46 +1,46 @@
 ---
 layout: content
-title:  "Support"
+title:  "サポート／Support"
 categories: tcpreplay wiki
 description: "Tcpreplay support page"
 ---
 
-<h2 id="Support">How To Get Help</h2>
-Having problems? Try asking for help on the 
-tcpreplay-users [tcpreplay-users mail list][maillist]. But first, you are strongly encouraged 
-to read the extensive documentation (man
-pages, FAQ, documents in /docs and email list archives) BEFORE posting.
+<h2 id="Support">ヘルプを受けるには／How To Get Help</h2>
+トラブルですか？ [tcpreplay-users メーリングリスト][maillist] に質問してみてください。
+ただし、メーリングリストに投稿する前にドキュメント
+(man ページ、FAQ、/doc 配下の文章、メーリングリストのアーカイブ)
+を読むことを強くお勧めします。
 
-If you think you are experiencing a bug, 
-you may consider submitting a bug report [here][issues].
-It is important that you provide enough information for us to help you.
+もしバグがあると思われるなら
+[このページ][issues] からバグレポートを出せます。
+私達があなたを助けるためにも、十分な情報を出すことが重要です
 
-If your problem has to do with COMPILING tcpreplay, include the following:
+もし tcpreplay のコンパイルに関する問題であれば，下記の情報を出してください:
 
-* Version of tcpreplay you are trying to compile
-* Platform (Red Hat Linux 9 on x86, Solaris 7 on SPARC, OS X on PPC, etc)
-* Contents of config.status
-* Output from **configure** and **make**
-* Any additional information that you think would be useful.
+* コンパイルしようとしている tcpreplay のバージョン
+* プラットフォーム(Red Hat Linux 9 on x86, Solaris 7 on SPARC, OS X on PPC, など)
+* config.status の内容
+* **configure** と **make** の実行結果
+* 他に有用だと思われる追加情報
 
-If your problem has to do with RUNNING tcpreplay or one of the sub-tools include the following:
+もし tcpreplay や他のツールを実行する場合の問題であれば、下記の情報を出してください:
 
-* Version information (output of -V)
-* Command line used (options and arguments)
-* Platform (Red Hat Linux 9 on Intel, Solaris 7 on SPARC, etc)
-* Make and model of the network card(s) and driver(s) version
-* Error message (if available) and/or description of problem
-* If possible, attach the pcap file used (compressed with bzip2 or gzip preferred)
-* The core dump or backtrace if available
-* Detailed description of your problem or what you are trying to accomplish
+* バージョン情報('コマンド -V' (例えば 'tcpreplay -V') の結果)
+* コマンドの実行方法(オプションと引数)
+* プラットフォーム (Red Hat Linux 9 on Intel, Solaris 7 on SPARC, など)
+* ネットワークカード(NIC)のベンダーと型名とドライバーとバージョン
+* エラーメッセージと，可能であれば問題の概要
+* 可能であれば使用している pcap ファイルを添付してください(gzip2 や gzip で圧縮するのが望ましいです)
+* 可能であれば，コアダンプやバックとレースファイル
+* 問題やあなたが実行しようとしていることの詳細
 
-Note: The maintainers of tcpreplay primarily use OS X and Linux; hence, if you're reporting
-an issue on another platform, it is important that you give very detailed
-information as we may not be able to reproduce your issue.
+注意：tcpreplay のメンテナは主に OS X と Linux を利用しています。
+従って、別のプラットフォームに関するレポートは、
+メンテナが再現できるように詳細な情報を出すことが重要です。
 
-Lastly, please don't email the maintainers directly with your questions.  Doing so
-prevents others from potentially helping you and your question/answer from
-showing up in the list archives.
+最後に、メンテナに直接メールで質問しないでください。
+メーリングリストに表示されないため、
+他のメンバーがあなたをヘルプできなくなります。
 
 [maillist]: maillist.html
 [issues]:   https://github.com/appneta/tcpreplay/issues

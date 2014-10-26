@@ -5,24 +5,27 @@ categories: tcpreplay wiki
 description: "tcpreplay-edit - replay a PCAP packet capture file while actively modifying packets"
 ---
 
-- [Overview](#overview)
-- [Man pages](tcpreplay-edit-man.html)
+- [概要／Overview][Overview](#overview)
+- [man ページ／Man pages][Man pages](tcpreplay-edit-man.html)
 
-<h2><a name="overview"></a>Overview</h2>
-[tcpreplay] has evolved quite a bit over the years. In the 1.x days, it merely read packets and 
-sent then back on the wire. In 2.x, *tcpreplay* was enhanced significantly to add various 
-rewriting functionality but at the cost of complexity, performance and bloat. 
-In 3.x, *tcpreplay* has returned to its roots to be a lean packet sending machine and
-the editing functions have moved to [tcprewrite] and a powerful *tcpreplay-edit* which
-combines the two. In 4.0 some editing capabilities where added back into *tcpreplay* but only
-in the case where performance was not affected (`--unique-ip).
+<h2><a name="overview"></a>概要／Overview</h2>
+[tcpreplay] は長い年月をかけて開発されてきました。
+1.x の頃は、単にパケットを読み込みネットワークに再送信するだけでした。
+2.x では、*tcpreplay* に非常に多くの書き換え機能が実装されましたが、
+複雑さやパフォーマンスやコードの肥大化を犠牲にしていました。
+3.x では、*tcpreplay* はパケットを送信するマシンになるという根本に立ち戻り、
+パケットの書き換え機能は *tcprewrite* と、
+送信と書き換えの両方の機能を持った強力な *tcpreplay-edit* の 2つに移行されました。
+4.0 では、いくつかの書き換えの機能は *tcpreplay* に戻されましたが、
+(`--unique-ip` のように) パフォーマンスに影響を与えないものだけに限られています。
 
-Since *tcpreplay-edit includes all the functionality of both *tcpreplay* and *tcprewrite*,
-please see those wiki pages for how to use *tcpreplay-edit*.
+*tcpreplay-edit* は、*tcpreplay* と *tcprewrite* の両方の機能を持っているので、
+*tcpreplay-edit* の使い方は、これらのページを参照してください。
 
-Lastly, please remember that the packet editing code has some overhead- even when not in use.
-Hence, for the highest performance I always recommend using *tcprewrite* and *tcpreplay*
-separately.
+最後になりますが、パケットの書き換え機能のための (tcpreplay-edit の) コードは、
+たとえパケットを書き換えなかったとしてもオーバーヘッドになることを忘れないでください。
+従って、パフォーマンスが必要な場合は *tcprewrite* と *tcpreplay* を分けて使う
+(事前に tcprewrite した pcap ファイルを tcpreplay で送信する) ことを勧めます。
 
 [tcprewrite]:          tcprewrite.html
 [tcpreplay]:           tcpreplay.html

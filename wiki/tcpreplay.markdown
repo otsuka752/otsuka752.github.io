@@ -5,43 +5,47 @@ categories: tcpreplay wiki
 description: "tcpreplay - replay a PCAP packet capture file"
 ---
 
-- [Overview](#overview)
-- [Basic usage](#basic-usage)
-- [Examples](#examples)
-- [Advanced Usage](#advanced-usage)
-	- [Testing Routers or Switches](#testing-routers-or-switches)
-- [Man pages](tcpreplay-man.html)
+- [概要／Overview][Overview](#overview)
+- [基本的な使い方／Basic usage][Basic usage](#basic-usage)
+- [実行例／Examples][Examples](#examples)
+- [高度な使い方／Advanced Usage][Advanced Usage](#advanced-usage)
+	- [ルータやスイッチのテスト／Testing Routers or Switches][Testing Routers or Switches](#testing-routers-or-switches)
+- [Man pages][Man pages](tcpreplay-man.html)
 
-<h2><a name="overview"></a>Overview</h2>
+<h2><a name="overview"></a>概要／Overview</h2>
+*tcpreplay* は長い年月をかけて開発されてきました。
+1.x の頃は、単にパケットを読み込みネットワークに再送信するだけでした。
+2.x では、非常に多くの書き換え機能が実装されましたが、
+複雑さやパフォーマンスやコードの肥大化を犠牲にしていました。
+3.x では、パケットを送信するマシンになるという根本に立ち戻り、
+パケットの書き換え機能は [tcprewrite][] と、
+送信と書き換えの両方の機能を持った強力な [tcpreplay-edit][]
+の 2つに移行されました。
 
-*tcpreplay* has evolved quite a bit over the years. In the 1.x days, it merely read packets and sent 
-then back on the wire. In 2.x, tcpreplay was enhanced significantly to add various rewriting 
-functionality but at the cost of complexity, performance and bloat. 
-In 3.x, tcpreplay has returned to its roots to be a lean packet sending machine 
-and the editing functions have moved to [tcprewrite][] and a powerful [tcpreplay-edit][] 
-which combines the two.
+4.x では [IP Flow][flow] と [netmap][nm] 機能が追加されました。
+若干のパケット編集機能も追加されましたが、パフォーマンスを犠牲にはしていません。
+本質的に、tcpreplay は高速であるべきで、
+全てのオプションはワイヤーレートで動作するように設計されています。
+パケットを編集しながら送信するようなパフォーマンスに影響を与えかねないオプションは、
+[tcpreplay-edit][] に移行されてます。
 
-In 4.x [IP FLow][flow] and [netmap][nm] features where added. Minor edit capabilities 
-were added, but not at the cost of 
-performance. Essentially tcpreplay is intended to be fast, and all options are designed to 
-work at wire rates. Options that may affect performance such as run-time packet editing have
-been moved to [tcpreplay-edit][].
+<h2><a name="basic-usage"></a>基本的な使い方／Basic usage</h2>
 
-<h2><a name="basic-usage"></a>Basic usage</h2>
-
-To replay a given pcap as it was captured all you need to do is specify the
-pcap file and the interface to send the traffic out interface `eth0`:
+与えられた pcap ファイルがキャプチャされたのと同様に再送信するには、
+pcap ファイルとトラフィックを送信するインターフェイスを指定するだけです。
+sample.pcap ファイルを `eth0` から送信するには:
 
 ```
 # tcpreplay -i eth0 sample.pcap
 ```
 
-<h2><a name="examples"></a>Examples</h2>
-The following examples use one of provided [sample captures][captures] on an i7 processors with
-multi-port Intel 82599 10GigE adapters.
+<h2><a name="examples"></a>実行例／Examples</h2>
+下記の例では、i7 プロセッサとマルチポートの Intel 82599 の 10GbE NIC を
+取り付けたマシンで、[サンプルキャプチャファイル／sample captures][captures]
+のファイルの 1つを使用しています。
 
-By default the pcap file is played back at the same rate that it was captured at.
-If you prefer to play back at a specific speed, add the `--mbps` option.
+デフォルトでは、pcap ファイルはキャプチャされた時と同じ速度で再送信されます。
+特定の速度で再送信したい場合は、`--mbps` オプションを追加します。
 
 ```
 # tcpreplay -i eth0 --mbps=510.5 smallFlows.pcap 
@@ -57,7 +61,7 @@ Statistics for network device: eth0
 	Retried packets (EAGAIN):  0
 ```
 
-To replay as with zero time between packets:
+パケットの送信間隔を 0 で再送信するには:
 
 ```
 # tcpreplay -i eth0 --topspeed smallFlows.pcap 
@@ -73,9 +77,9 @@ Statistics for network device: eth0
 	Retried packets (EAGAIN):  0
 ```
 
-Now notice that you can substitute `-t` for `--topspeed`. You could also
-get the same result with `--mbps=0`.  Repeat the sending of the pcap file 
-with the `--loop` option and notice that performance increases somewhat.
+`-t` オプションは `--topspeed` と同じ意味です。`--mbps=0` でも同様です。
+pcap ファイルを連続して送信するには `--loop` オプションを使い、
+この時はパフォーマンスが多少向上します。
 
 ```
 # tcpreplay -i eth0 -t --loop=1000 smallFlows.pcap 
@@ -91,10 +95,10 @@ Statistics for network device: eth0
 	Retried packets (EAGAIN):  0
 ```
 
-Now let's see a performance boost with the -K option, which will
-cause packets to be read from memory instead of disk. You may want
-to consider using this option whenever there is enough memory
-available for the pcap file.
+ここで、-K オプションによりパフォーマンスが向上したことが分かります。
+-K オプションは disk でなく memory からキャプチャファイルを読み込みます。
+pcap ファイルに対して十分なメモリがある時には、
+このオプションの利用を検討したくなるでしょう。
 
 ```
 # tcpreplay -i eth0 -t -K --loop=1000 smallFlows.pcap 
@@ -111,13 +115,14 @@ Statistics for network device: eth0
 	Retried packets (EAGAIN):  0
 ```
 
-<h2><a name="advanced-usage"></a>Advanced Usage</h2>
+<h2><a name="advanced-usage"></a>高度な使い方／Advanced Usage</h2>
 
-To obtain near wire rate you need to compile and install [netmap]nm]
-network drivers. This will bypass the network driver for the duration 
-of the test and allow *tcpreplay* to write to the network hardware directly.
-Note that the network stack will not be operational on the selected interface
-while the test is running.
+ワイヤーレートに近い速度を得るためには、[netmap][nm]
+ネットワークドライバをコンパイルしてインストールする必要があります。
+netmap はテストのための duration のネットワークドライバをバイパスし、
+*tcpreplay* がネットワークカードに直接書き込むことを許可します。
+テストの間は、選択されたネットワークカードでネットワークスタックが
+動作しないことに注意してください。
 
 ```
 # tcpreplay -i eth0 -tK -l1000 --netmap smallFlows.pcap 
@@ -136,9 +141,9 @@ Statistics for network device: eth0
 Switching network driver for eth0 to normal mode... done!
 ```
 
-To increase the *flows per second (fps)* you need to ensure that
-the IP addreses are unique for every loop iteration by specifying the
-`--unique-ip` option.
+*flows per second (fps)* を増やすには、
+`--unique-ip` オプションを指定して
+ループごとの IPアドレスを固定する必要があります。
 
 ```
 # tcpreplay -i eth0 -tK -l1000 --netmap --unique-ip smallFlows.pcap  
@@ -157,8 +162,8 @@ Statistics for network device: eth0
 Switching network driver for eth0 to normal mode... done!
 ```
 
-If you need to control the flows per second you can do so by
-trying different values of `--mbps` (or `-M`) option:
+flows per second を制御するには
+`--mbps` (or `-M`) オプションの値を変更して試します:
 
 ```
 # tcpreplay -i eth0 -K -l1000 -M9000 --netmap --unique-ip smallFlows.pcap 
@@ -177,22 +182,24 @@ Statistics for network device: eth0
 Switching network driver for eth0 to normal mode... done!
 ```
 
-<h3><a name="testing-routers-or-switches"></a>Testing Routers or Switches</h3>
-On your *tcpreplay* device you will need to use two network adapters attached
-to input and output ports of the device under test (DUT). See [tcpprep][] help 
-for examples that illustrate how to classify traffic. For example you can classify packets inside
-a pcap file as either client or server. Or you could classify private vs. public.
+<h3><a name="testing-routers-or-switches"></a>ルータやスイッチのテスト／Testing Routers or Switches</h3>
+*tcpreplay* を動作させるデバイスでは、
+device under test (DUT) の入力と出力のそれぞれに接続する 2つのネットワークカードが必要です。
+トラフィックをどう分類するかは、[tcpprep][] のヘルプを見てください。
+例えば、pcap ファイルの中のパケットをクライアントまたはサーバに分類することができます。
+あるいは，プライベートとパブリックに分類できます
 
-The result of *tcprep* is a cache file which allows *tcpreplay* to send traffic through 
-a device in two directions through a device, and thereby maintaining state. 
+*tcpprep* の出力はキャッシュファイルです。このキャッシュファイルにより、
+*tcpreplay* がデバイスを経由して 2つの方向にトラフィックを送信できます。
+また、(pcap ファイルの中のパケットの)ステートを保持できるようになります。
 
 ```
 # tcpreplay --cachefile=sample.prep --intf1=eth0 --intf2=eth1 sample.pcap
 ```
 
-Alternatively, if you have already split your traffic into two files, as in the case 
-of capturing traffic using a network tap, then tcpreplay can read two files at the 
-same time, one for each interface:
+上記とは反対に、すでにトラフィックが 2つのファイルに分離されているなら、
+つまりネットワークタップを使ってトラフィックをキャプチャしてえるような場合、
+tcpreplay は同時に 2つのファイルをそれぞれのインターフェイスに対して読み込めます:
 
 ```
 # tcpreplay --dualfile --intf1=eth0 --intf2=eth1 side-a.pcap side-b.pcap
@@ -202,5 +209,6 @@ same time, one for each interface:
 [tcprewrite]:          tcprewrite.html
 [tcpreplay-edit]:      tcpreplay-edit.html
 [tcpprep]:             tcpprep.html
+[flow]:                http://en.wikipedia.org/wiki/Traffic_flow_%28computer_networking%29
 [nm]:                  http://info.iet.unipi.it/~luigi/netmap/
 [captures]:            captures.html
