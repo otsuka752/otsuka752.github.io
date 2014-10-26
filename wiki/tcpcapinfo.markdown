@@ -5,30 +5,33 @@ categories: tcpreplay wiki
 description: "tcpcapinfo - display information about a PCAP capture file"
 ---
 
-- [Overview](#overview)
-- [Basic Usage](#basic-usage)
-- [Example](#example)
-- [Man pages](tcpcapinfo-man.html)
+- [概要／Overview][Overview](#overview)
+- [一般的な使い方／Basic Usage][Basic Usage](#basic-usage)
+- [実行例／Example][Example](#example)
+- [man ページ／Man pages][Man pages](tcpcapinfo-man.html)
 
-<h2><a name="overview"></a>Overview</h2>
-*tcpcapinfo was born out of a need for me to diagnose tcprewrite bugs and broken pcap files. 
-Honestly, it's usefulness is probably limited only to people who code applications which 
-read/write pcap files, but I include it with the Tcpreplay Suite for completeness. 
-*tcpcapinfo* was first released in version 3.4.5.
+<h2><a name="overview"></a>概要／Overview</h2>
+*tcpcapinfo* は、
+tcprewrite の問題で pcap ファイルを壊してしまう時の診断ツールとして登場しました。
+正直に言って、pcap ファイルを読み書きするようなアプリケーションを作る人達だけに役立ちます。
+しかし、Tcpreplay のコマンド群を完全なものにするために tcpcapinfo もリリースしました。
+tcpcapinfo は，3.4.5 が最初のリリースでした。
 
-<h2><a name="basic-usage"></a>Basic Usage</h2>
+<h2><a name="basic-usage"></a>一般的な使い方／Basic Usage</h2>
 
 ```
 $ tcpcapinfo file.pcap
 ```
 
-Will process file.pcap and report information about the libpcap packet/file headers, 
-a packet checksum and some basic sanity checks such as if the packet is too 
-large given the pcap file's snaplen header value or if the timestamp goes backwards in time. 
-Note that the "packet checksum" is not the same thing as the IP checksum, 
-and is intended to provide a means if two Ethernet frames are the same.
+file.pcap ファイルを処理して、libpcap のパケット／ファイルのヘッダ情報を出力します。
+パケットのチェックサムや、もし pcap ファイルの snaplen ヘッダも大きいパケットだったり、
+タイムスタンプが過去に戻ってしまっている場合などは、
+基本的なサニタイズチェックを実施します。
+「パケットのチェックサム」は IP ヘッダのチェックサムでなく、
+2つの Ethernet フレームが同じでないかどうかのチェックする、
+ということなので注意してください。
 
-<h2><a name="example"></a>Example</h2>
+<h2><a name="example"></a>実行例／Example</h2>
 
 ```
 $ tcpcapinfo smallFlows.pcap | head -n 30

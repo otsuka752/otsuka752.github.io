@@ -36,10 +36,10 @@ description: "Frequently Asked Questions"
 	- [パケットを送出するための方法が見つかりません。libpcap をバージョンアップするか libdnet を有効化してください／Unable to find a supported method to send packets.  Please upgrade your libpcap or enable libdnet  ](#unable-to-find-a-supported-method-to-send-packets--please-upgrade-your-libpcap-or-enable-libdnet)
 	- [tcpedit_stub.def: Command not found   ](#tcpedit_stubdef-command-not-found)
 	- [tcpreplay_opts.h:72:3: error: #error option template version mismatches autoopts/options.h header](#tcpreplay_optsh723-error-#error-option-template-version-mismatches-autooptsoptionsh-header)
-	- [Issues with autogen/libopts](#issues-with-autogenlibopts)
-	- [Problems with linking under recent Fedora Core/RedHat](#problems-with-linking-under-recent-fedora-coreredhat)
-- Common Errors
-	- [Unable to send packet: Error with pcap_inject(packet #10): send: Message too long](#unable-to-send-packet-error-with-pcap_injectpacket-#10-send-message-too-long)
+	- [autogen や libopts に関する話題／Issues with autogen/libopts][Issues with autogen/libopts](#issues-with-autogenlibopts)
+	- [Fedora Core/RedHat で発生するリンクできない問題／Problems with linking under recent Fedora Core/RedHat][Problems with linking under recent Fedora Core/RedHat](#problems-with-linking-under-recent-fedora-coreredhat)
+- 一般的なエラー／Common Errors
+	- [][Unable to send packet: Error with pcap_inject(packet #10): send: Message too long](#unable-to-send-packet-error-with-pcap_injectpacket-#10-send-message-too-long)
 	- [Can't open eth0: libnet\_select\_device(): Can't find interface eth0](#can't-open-eth0-libnet_select_device-can't-find-interface-eth0)
 	- [Can't open eth0: UID != 0](#can't-open-eth0-uid-0)
 	- [100000 write attempts failed from full buffers and were repeated](#100000-write-attempts-failed-from-full-buffers-and-were-repeated)
@@ -53,60 +53,63 @@ description: "Frequently Asked Questions"
 	- [Other Documents](#other-documents)
 
 
-General Questions
+一般的な質問／General Questions
 =================
 
-<h2 id="FAQ"><a name="how-should-tcpreplay-be-capitalized">Q:</a> How should Tcpreplay be capitalized?</h2>
-When refering to the Tcpreplay suite of tools (tcpreplay, tcpprep, tcprewrite, etc)
-then the 'T' is capitalized. When only referring to the tcpreplay standalone utility,
-then it's not. There is no such thing as 'TCPreplay' or 'TCP replay'.
+<h2 id="FAQ"><a name="how-should-tcpreplay-be-capitalized">Q:</a>どうして大文字の Tcpreplay なの？／How should Tcpreplay be capitalized?</h2>
+大文字の 'T' の場合は、
+Tcpreplay のツール群(tcpreplay, tcpprep, tcprewrite, など)を示します。
+個別のユーティリティの tcpreplay を示す場合は小文字 't' になります。
+'TCPreplay' や 'TCP replay' などと記述することはありません。
 
 
-<h2><a name="where-do-i-get-tcpreplay">Q:</a> Where do I get Tcpreplay?</h2>
-Visit our [Download and Installation][installation] page.
+<h2><a name="where-do-i-get-tcpreplay">Q:</a>Tcpreplay の入手方法／Where do I get Tcpreplay?</h2>
+[(ダウンロードとインストール) Download and Installation][installation] にアクセスしてください。
 
 
-<h2><a name="how-do-i-install-tcpreplay">Q:</a> How do I install Tcpreplay?</h2>
-You must compile. Refer to [Download and Installation][installation] page.
+<h2><a name="how-do-i-install-tcpreplay">Q:</a>Tcpreplay のインストール方法／How do I install Tcpreplay?</h2>
+コンパイルする必要があります。
+[(ダウンロードとインストール) Download and Installation][installation] にアクセスしてください。
 
-<h2><a name="is-there-a-microsoft-windows-port">Q:</a> Is there a Microsoft Windows port?</h2>  
-Windows 2000 and better are supported under Cygwin. 
-In the near future expect native support for Windows (volunteers please). For more information, 
-please read the Win32Readme.txt file.
+<h2><a name="is-there-a-microsoft-windows-port">Q:</a>Windows バージョンはありますか？／Is there a Microsoft Windows port?</h2>  
+Windows 2000 以降なら Cygwin を使って動作します。
+近い将来、Windows 上で (Cygwin を使わず)直接実行できるようになるかもしれません。
+(ボランティアを募集してます。)
+詳細情報は(Tcpreplay に含まれる) Win32Readme.txt ファイルを見てください。
+
+<h2><a name="how-is-tcpreplay-licensed">Q:</a>Tcpreplay のライセンスは？／How is Tcpreplay licensed?</h2>
+Tcpreplay のライセンスは [GPLv3][gplv3]。
+詳細情報は(Tcpreplay に含まれる) docs/LICENSE ファイルを見てください。
 
 
-<h2><a name="how-is-tcpreplay-licensed">Q:</a> How is Tcpreplay licensed?</h2>
-Tcpreplay is licensed under [GPLv3][gplv3]. For details see the docs/LICENSE file included 
-with the source code.
-
-Running Tcpreplay
+Tcpreplay の実行／Running Tcpreplay
 =================
 
-<h2><a name="does-tcpreplay-support-sending-traffic-to-a-server">Q:</a> Does tcpreplay support sending traffic to a server?</h2>  
-If by server you mean a daemon (Unix) or service (Windows) which listens on a port
-(a web or mail server would be common examples), then try *tcpliveplay*.
-Other Tcpreplay products don't understand the state of 
-common protocols like TCP. This means it is unable to synchronize Syn/Ack's to 
-create valid TCP sessions. *tcpliveplay* will read a single TCP stream pcap file,
-establish a connection to a server then play the contents of the pcap file to
-the server.
+<h2><a name="does-tcpreplay-support-sending-traffic-to-a-server">Q:</a>tcpreplay はサーバにトラフィックを送信できますか？／Does tcpreplay support sending traffic to a server?</h2>  
+(ウェブサーバやメールサーバなどのように)ポートを LISTEN する、
+Unix の daemon(デーモン)や Windows の service(サービス)との通信であれば、
+*tcpliveplay* を試してみてください。
+Tcpreplay に含まれる *tcpliveplay* 以外の他のツール・コマンドは、
+TCP プロトコルで使われるようなステートを理解しません。
+つまり、正常な TCP セッションを作るための SYN/ACK の同期ができません。
+*tcpliveplay* は pcap ファイルに含まれる 1つの TCP ストリームを読み込み、
+サーバとコネクションを確立し、pcap ファイルに含まれる内容をサーバに送出します。
 
-For ICMP and UDP based protocols *tcpliveplay* will not work, 
-however other replay products should work fine
-as long as the MAC and IP addresses are set correctly. 
-You can edit them using *tcprewrite* or *tcpreplay-edit*.
-Be aware that some ICMP and UDP based protocols also carry Layer 3/4 protocol 
-information in the protocol itself (SIP is one example), so if you change the 
-IP addresses, it may not be a valid SIP packet anymore. In such cases, 
-you may want to try using *NetDude* to edit the payload of the packets.
+*tcpliveplay* は ICMP や UDP では動作しませんが、
+*tcpliveplay* 以外の再送信ツールでは、
+MAC アドレスや IP アドレスが正しくセットされていれば動作します。
+*tcprewrite* や *tcpreplay-edit* を使うと pcap ファイルを書き換えることができます。
+プロトコルによっては ICMP や UDP のペイロードに Layer 3/4 の情報を含める場合があります。
+(SIP はその 1つの例になります。) 従って、IP アドレスを書き換えた場合、
+正しい SIP のパケットにならないことに注意してください。
+このような場合は *NetDude* を使ってパケットのペイロードを書き換えてください。
 
+<h2><a name="why-doesnt-tcpreplay-send-traffic-as-fast-as-i-told-it-to">Q:</a>なぜ Tcpreplay は指定した速度でトラフィックを送信できないのですか？／Why doesn't Tcpreplay send traffic as fast as I told it to?</h2>
+[netmap][nm] ドライバを使って `--netmap` オプションを指定してください。
 
-<h2><a name="why-doesnt-tcpreplay-send-traffic-as-fast-as-i-told-it-to">Q:</a> Why doesn't Tcpreplay send traffic as fast as I told it to?</h2>
-Try using [netmap][nm] drivers and the `--netmap` option.
-
-Usually this occurs when trying a pcap of small packets.
-For example, let's look at a pcap file with an average of 646 byte packets and
-we attempt to send at 9 Gbps...
+(指定した速度でトラフィックを流せないような症状は)
+小さなパケットを再送出しようとする時に発生することが多いです。
+例えば、平均 646 バイトのパケットを 9Gbps で再送出しようとする場合...
 
 <div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># </span><span class="no">tcpreplay -i eth7 -K --loop 5000 <span class="ss">-M 9000</span> --unique-ip <span class="ss">smallFlows.pcap</span></span>
 File Cache is enabled
@@ -121,8 +124,7 @@ Statistics for network device: eth7
     Retried packets (ENOBUFS): 0
     Retried packets (EAGAIN):  0</span></code></pre></div>
 
-... and compare that with a similar test using a 77 byte average packet size.
-
+... そして、平均 77バイトの(小さな)パケットを再送出しようとする場合と比較してください。
 
 <div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># </span><span class="no">tcpreplay -i eth7 -K --loop 50000 <span class="ss">-M 9000</span> --unique-ip tiny-packets.pcap</span> 
 File Cache is enabled
@@ -137,45 +139,50 @@ Statistics for network device: eth7
     Retried packets (ENOBUFS): 0
     Retried packets (EAGAIN):  0</span></code></pre></div>
 
-Notice that with smaller packet *pcap* files the *packets per second (pps)* and the 
-*flows per second (fps)* rates are much higher which in turn affects the total *Mbps* rate. 
+*pcap ファイル* の中身が小さいパケットの(後者の 77バイト)の方が、
+単位時間あたりのパケット数 (*pps*) も単位時間あたりのフロー数 (*fps*) も大きいですが、
+単位時間あたりの送信 bit 数 (*bps*) には影響されません(速度は大きくなりません)。
 
-Here are some tricks/ideas you can use to make *tcpreplay* send traffic as fast as you wanted:
-   
-* Make sure you're running the latest stable release of Tcpreplay.  
-* Try installing [netmap][nm] network drivers and using the `--netmap` option   
-* Use `--preload-pcap` to load the pcap file into RAM before sending.   
-* Try a different timing mechanism. `--timer=gtod` or `--timer=nano` for example. OS X users should always use `--timer=abstime`   
-* Use `--mbps` in favor of `--pps` option.   
-* If you use `--pps` also use `--pps-multi=X*` to cause *tcpreplay* send multiple packets each sleep cycle   
-* Use `--topspeed` or `--mbps=0`. This is always the fastest way to send packets.   
-* Make sure your network connection is fast enough. Don't try sending 50Mbps over a 10Mbps link for example.   
-* Often using a combination of the above options will allow you to reach the speeds you're trying to hit.   
+tcpreplay でなるべく速くトラフィックを送信するための工夫・アイディアがあります:
 
+* Tcpreplay の最新の安定版バージョンを使ってください
+* [netmap][nm] を使って `--netmap` オプションを指定してください
+* `--preload-pcap` オプションを使って pcap ファイルを事前にメモリに読み込んでください
+* 異なる時間間隔指定オプションを使ってみてください。`--timer=gtod` や `--timer=nano` などを指定できます。OS X の環境では `--timer=abstime` を使用すべきです
+* `--pps` オプションでなく `--mbps` オプションを使ってください
+* もし `--pps` オプションを指定する場合は `--pps-multi=X*` も併用してください。*tcpreplay* がスリープ時間中にも複数のパケットを送出できるようにするためです。
+* `--topspeed` や `--mbps=0` オプションを使ってください。常に最大速でパケットを送出しようとします。
+* 十分に速いネットワークに接続してください。10Mbps のリンクで 50Mbps のトラフィックは送出できません。
+* 上記のオプションを組み合わせて試してみてください。送出しようとする速度に届くかもしれません。
 
-<h2><a name="can-i-send-packets-on-the-same-computer-running-tcpreplay">Q:</a> Can I send packets on the same computer running tcpreplay?</h2>
-Generally speaking no. When *tcpreplay* sends packets, it injects 
-them between the TCP/IP stack of the system and the device driver of the network card. 
-The result is the TCP/IP stack system running *tcpreplay* never sees the packets.
+<h2><a name="can-i-send-packets-on-the-same-computer-running-tcpreplay">Q:</a>tcpreplay を実行しているマシンでパケットを送出できますか？／Can I send packets on the same computer running tcpreplay?</h2>
+一般的にはできません。*tcpreplay* がパケットを送出する時は、
+システムの TCP/IP スタックと (NIC の)ドライバの間に割り込みます。
+その結果、*tcpreplay* を動作させてるシステムの TCP/IP スタックは、
+パケットが見えなくなってしまいます。
 
-One suggestion that has been made is using something like VMWare, Parallels or Xen. 
-Running *tcpreplay* in the virtual machine (guest) would allow packets to be seen by 
-the host operating system.
-
-
-<h2><a name="older-versions-of-tcpreplay-allowed-me-to-edit-packets-what-happened">Q:</a> Older versions of tcpreplay allowed me to edit packets. What happened?</h2>
-Use *tcpreplay-edit* or *tcprewrite*.
+この問題の解決策として、VMWare や Parallels や Xen など(の仮想化機能)があります。
+*tcpreplay* を仮想マシン(GuestOS) 上で動作させれば、
+ホストマシン(HostOS) では送出したパケットを見れます。
 
 
-<h2><a name="why-do-i-need-to-use-tcpprep-to-create-cache-files-can't-this-be-done-in-tcprewrite">Q:</a> Why do I need to use tcpprep to create cache files? Can't this be done in tcprewrite?</h2>
-Most of the *tcpprep* modes take a holistic view of a pcap and look at all the packets 
-before deciding which IP's are servers and which are clients. This requires the pcap file 
-to be processed fully, sometimes twice. This for all practicality disallows including the 
-*tcpprep* logic in *tcpreplay*.
+<h2><a name="older-versions-of-tcpreplay-allowed-me-to-edit-packets-what-happened">Q:</a>古いバージョンの tcpreplay はパケットを書き換えできたのに(今はできません)／Older versions of tcpreplay allowed me to edit packets. What happened?</h2>
+*tcpreplay-edit* や *tcprewrite* を使ってください。
 
-Secondly, since *tcpreplay*, *tcpreplay-edit* and *tcprewrite* all use *tcpprep* cache file data, 
-it made sense to separate it into a standalone utility so that the processing can 
-be leveraged across multiple rewrites and the actual packet sending.
+
+<h2><a name="why-do-i-need-to-use-tcpprep-to-create-cache-files-can't-this-be-done-in-tcprewrite">Q:</a>tcpprep でキャッシュファイルを作る必要性は？ tcprewrite だけでは動かない？／Why do I need to use tcpprep to create cache files? Can't this be done in tcprewrite?</h2>
+*tcpprep* のほとんどのモードでは、pcap ファイル全体を確認します。
+どのパケットがサーバのものでどのパケットがクライアントのものであるかを決める前に、
+(pcap ファイル中の)全てのパケットを確認します。
+pcap ファイル全体を見る必要がありますし、2回読み込まれることもあります。
+(高速な動作を求められる) *tcpreplay* に、
+このような *tcpprep* のロジックを組み込むことは事実上許されません。
+
+2つ目の理由として、*tcpreplay* も *tcpreplay-edit* も *tcprewrite* も
+*tcpprep* のキャッシュファイルを利用できるので、
+(*tcpprep* を)個別のユーティリティとして分離することは有効です。
+そして、複数回にわたって pcap ファイルを書き換えたり、
+実際にパケットを送出する時にも機能させることが可能になります。
 
 
 <h2><a name="why-is-tcpreplay-not-sending-all-the-packets">Q:</a> Why is tcpreplay not sending all the packets?</h2>

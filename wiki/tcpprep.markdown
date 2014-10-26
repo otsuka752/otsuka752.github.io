@@ -5,57 +5,60 @@ categories: tcpreplay wiki
 description: "tcpprep - create a cache file which is used to 'split' traffic into two sides"
 ---
 
-- [Overview](#overview)
-- [Details](#details)
-- [Basic Usage](#basic-usage)
-	- [Auto/Bridge](#autobridge)
-- [Auto/Router](#autorouter)
-	- [Auto/Client](#autoclient)
-	- [Auto/Server](#autoserver)
-	- [CIDR](#cidr)
-	- [Regex](#regex)
-	- [Port](#port)
-	- [MAC](#mac)
-	- [Skip Packets](#skip-packets)
-	- [Include](#include)
-		- [Source IP Match](#source-ip-match)
-		- [Destination IP Match](#destination-ip-match)
-		- [Both IP Match](#both-ip-match)
-		- [Either IP Match](#either-ip-match)
-		- [Packet Number Match](#packet-number-match)
-		- [BPF Filter Match](#bpf-filter-match)
-	- [Exclude](#exclude)
-		- [Source IP Negative Match](#source-ip-negative-match)
-		- [Destination IP Negative Match](#destination-ip-negative-match)
-		- [Both IP Negative Match](#both-ip-negative-match)
-		- [Either IP Negative Match](#either-ip-negative-match)
-		- [Packet Number Negative Match](#packet-number-negative-match)
-- [Other Options](#other-options)
-	- [Comments](#comments)
-	- [Detailed Info](#detailed-info)
-- [Non-IP Traffic](#non-ip-traffic)
-- [Man pages](tcpprep-man.html)
+- [概要／Overview][Overview](#overview)
+- [詳細／Details][Details](#details)
+- [一般的な使い方／][Basic Usage](#basic-usage)
+	- [自動判別/Bridge][Auto/Bridge](#autobridge)
+- [自動判別/Router][Auto/Router](#autorouter)
+	- [自動判別/Client][Auto/Client](#autoclient)
+	- [自動判別/Server][Auto/Server](#autoserver)
+	- [CIDR 表記で判別][CIDR](#cidr)
+	- [正規表現で判別／Regex][Regex](#regex)
+	- [Port 番号で判別／][Port](#port)
+	- [MAC アドレスで判別／][MAC](#mac)
+	- [判別のスキップ処理／][Skip Packets](#skip-packets)
+	- [・・・を含む／][Include](#include)
+		- [送信元 IP アドレス／Source IP Match][Source IP Match](#source-ip-match)
+		- [送信先 IP アドレス／Destination IP Match][Destination IP Match](#destination-ip-match)
+		- [送信元と送信先の両方の IP アドレス／][Both IP Match](#both-ip-match)
+		- [送信元または送信先どちらかの IP アドレス／Either IP Match][Either IP Match](#either-ip-match)
+		- [パケットの番号指定／Packet Number Match][Packet Number Match](#packet-number-match)
+		- [BPF フィルタ指定／BPF Filter Match][BPF Filter Match](#bpf-filter-match)
+	- [・・・を含まない／Exclude][Exclude](#exclude)
+		- [送信元 IP アドレスを含まない／Source IP Negative Match][Source IP Negative Match](#source-ip-negative-match)
+		- [送信先 IP アドレスを含まない／Destination IP Negative Match][Destination IP Negative Match](#destination-ip-negative-match)
+		- [送信元と送信先の両方の IP アドレスを含まない／Both IP Negative Match][Both IP Negative Match](#both-ip-negative-match)
+		- [送信元または送信先どちらかの IP アドレスを含まない／Either IP Negative Match][Either IP Negative Match](#either-ip-negative-match)
+		- [パケット番号を含まない指定／Packet Number Negative Match][Packet Number Negative Match](#packet-number-negative-match)
+- [その他のオプション／Other Options][Other Options](#other-options)
+	- [コメントの挿入／Comments][Comments](#comments)
+	- [詳細情報の挿入／Detailed Info][Detailed Info](#detailed-info)
+- [IP(Internet Protocol) 以外のトラフィック／Non-IP Traffic][Non-IP Traffic](#non-ip-traffic)
+- [マニュアルページ／Man pages][Man pages](tcpprep-man.html)
 
-<h2><a name="overview"></a>Overview</h2>
-*tcpprep* is the pcap pre-processor for [tcpreplay] and [tcprewrite]. 
-The purpose of *tcpprep* is to create a cache file which is used to "split" traffic
-into two sides (often called primary/secondary or client/server). If you are intending to 
-use tcpreplay with two NIC's, then tcpprep is what decides which interface each packet will use. 
-By using a separate process to generate cache files, tcpreplay can send packets at a much higher 
-rate then if it had to do the calculations to split traffic itself.
+<h2><a name="overview"></a>概要／Overview</h2>
+*tcpprep* は [tcpreplay] と [tcprewrite] で使う pcap ファイルのプリプロセッサーです。
+*tcpprep* の目的は、トラフィックを 2方向に分割するためのキャッシュファイルを作成することです。
+ここでの 2方向とは、プライマリ／セカンダリだったり、クライアント／サーバと呼ばれたりします。
+2つの NIC を持つホストで tcpreplay を実行しようとする場合、
+どちらの NIC にパケットを送信するかを決定します。
+事前にキャッシュファイルを生成してからパケットを送出する方法を取ることで、
+tcpreplay はトラフィックを分離しながら送信する時よりも高速に送信できます。
 
-<h2><a name="details"></a>Details</h2>
-Depending on the contents of the pcap and where you are replaying, you will want to 
-split traffic differently. The most important thing to remember, is that you want to 
-make sure that the device(s) under test (DUT) between the two NIC's see the traffic 
-so that a client connecting to a server will go through the DUT one way, and the responses 
-will go through the DUT the other way.
+<h2><a name="details"></a>詳細／Details</h2>
+pcap ファイルの中身や、どこでパケットを再送出するかによって、
+トラフィックを(NIC ごとに)分離したくなります。
+ここで重要なのは、
+測定対象の機器 (DUT/Device Under Test) が 2つの NIC の間に接続されていることを認識することです。
+つまり、クライアントからサーバへのパケットは DUT のとある方向に流れ、
+また、そのレスポンスのパケットは反対の方向に流れます。
 
-<h2><a name="basic-usage"></a>Basic Usage</h2>
-*tcpprep* supports multiple "modes" of operation. Each mode uses different logic to split 
-traffic differently. For example, if you want to pass traffic through a router, then router 
-mode is probably best, if you're testing a bridge or other Layer 2 device then bridge mode 
-may work better. The following modes are currently available:
+<h2><a name="basic-usage"></a>一般的な使い方／Basic Usage</h2>
+*tcpprep* は複数の「モード」をサポートしています。
+それぞれの「モード」は異なるロジックでトラフィックを分離します。
+例えば、ルータを経由させてトラフィックを送出する場合は「ルータモード」が適切だと思われます。
+ブリッジや Layer 2 の機器を経由させる場合は「ブリッジモード」が適切だと思われます。
+現時点では、下記のモードがサポートされています:
 
 * Auto/Bridge
 * Auto/Router

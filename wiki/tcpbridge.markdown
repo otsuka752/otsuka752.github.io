@@ -9,19 +9,18 @@ description: "tcpbridge - emulate a learing bridge"
 - [Notes](#notes)
 - [Man pages](tcpbridge-man.html)
 
-<h2><a name="overview"></a>Overview</h2>
-*tcpbridge* allows you to connect two network segments and bridge them. *tcpbridge* emulates 
-a learning bridge (it learns which MAC addresses are on each side in order to prevent 
-broadcast storms) and allows a variety of packet editing features in the same way as [tcprewrite].
+<h2><a name="overview"></a>概要／Overview</h2>
+*tcpbridge* を使うことで、2つのネットワークをブリッジ接続できます。
+*tcpbridge* はブリッジ装置をエミュレートし、
+[tcprewrite] と同じ方法で 様々なパケットを編集することができます。
+(ブリッジ装置は、どの MACアドレスがどちらがわのネットワークに存在するかを学習します。)
 
-<h2><a name="notes"></a>Notes</h2>
-1. *tcpbridge* works pretty well joining two Ethernet segments.
-2. I haven't had much luck spanning wireless segments, 
-but this tends to be very OS/hardware/driver dependent
-3. In general, don't expect great performance
-4. Linux performance should be better then under Windows, OS X, etc
-5. I really haven't done much testing of tcpbridge under Windows, so bug reports are welcome
-6. Using the packet editing functionality with tcpbridge is possible, but lets face it, 
-it isn't likely to work out very well because tcpbridge isn't stateful.
+<h2><a name="notes"></a>注意事項／Notes</h2>
+1. *tcpbridge* は、2つの Ethernet セグメントをうまく接続します。
+2. 無線のセグメントを接続する実績はあまりありませんが、動作するかどうかは OS／ハードウェア／ドライバに依存します。
+3. 一般的に、あまりよいパフォーマンスは期待できません。
+4. Linux は Windows や OS X などよりはパフォーマンスが良いです。
+5. Windows ではあまり tcpbridge の試験ができていないので、バグレポートは歓迎します。
+6. tcpbridge でパケットを編集・書き換えできますが、率直に言うと、tcpbridge は stateful でないのできちんと動作しないかもしれません。
 
 [tcprewrite]:          tcprewrite.html
