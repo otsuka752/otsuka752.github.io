@@ -1,8 +1,8 @@
 ---
 layout: content
-title:  "Twitter ã‚Å‚Ì Tcpreplay^Tcpreplay on Twitter"
+title:  "Twitter ä¸Šã§ã® Tcpreplayï¼Tcpreplay on Twitter"
 categories: tcpreplay wiki
-description: "Twitter ‚Å #Tcpreplay ‚ÌƒtƒB[ƒh‚ğŒ©‚é^View Twitter feed regarding #Tcpreplay"
+description: "Twitter ã§ #Tcpreplay ã®ãƒ•ã‚£ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹ï¼View Twitter feed regarding #Tcpreplay"
 ---
 
 <a class="twitter-timeline" href="https://twitter.com/search?q=Tcpreplay" data-widget-id="420774810755407872">Tweets about "Tcpreplay"</a>
