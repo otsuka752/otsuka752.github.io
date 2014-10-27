@@ -2,7 +2,7 @@
 layout: content
 title:  "tcpcapinfo man page"
 categories: tcpreplay wiki
-description: "tcpcapinfo �̃}�j���A���^tcpcapinfo manual"
+description: "tcpcapinfo のマニュアル／tcpcapinfo manual"
 ---
 
 <!-- Creator     : groff version 1.20.1 -->
@@ -27,28 +27,28 @@ description: "tcpcapinfo �̃}�j���A���^tcpcapinfo manual"
 
 <h1 align="center">tcpcapinfo</h1>
 
-<a href="#NAME">���O�^NAME</a><br>
-<a href="#SYNOPSIS">�����^SYNOPSIS</a><br>
-<a href="#DESCRIPTION">�T�v�^DESCRIPTION</a><br>
-<a href="#OPTIONS">�I�v�V�����^OPTIONS</a><br>
-<a href="#EXIT STATUS">exit �R�[�h�^EXIT STATUS</a><br>
-<a href="#AUTHORS">AUTHORS�^AUTHORS</a><br>
-<a href="#COPYRIGHT">COPYRIGHT�^COPYRIGHT</a><br>
-<a href="#BUGS">�o�O�^BUGS</a><br>
-<a href="#NOTES">���Ӂ^NOTES</a><br>
+<a href="#NAME">名前／NAME</a><br>
+<a href="#SYNOPSIS">書式／SYNOPSIS</a><br>
+<a href="#DESCRIPTION">概要／DESCRIPTION</a><br>
+<a href="#OPTIONS">オプション／OPTIONS</a><br>
+<a href="#EXIT STATUS">exit コード／EXIT STATUS</a><br>
+<a href="#AUTHORS">AUTHORS／AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT／COPYRIGHT</a><br>
+<a href="#BUGS">バグ／BUGS</a><br>
+<a href="#NOTES">注意／NOTES</a><br>
 
 <hr>
 
 
-<h2>���O�^NAME
+<h2>名前／NAME
 <a name="NAME"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">tcpcapinfo
-&minus; �j������ pcap �t�@�C���̒������邽�߂� pcap �t�@�C����̓R�}���h</p>
+&minus; 破損した pcap ファイルの調査するための pcap ファイル解析コマンド</p>
 
-<h2>�����^SYNOPSIS
+<h2>書式／SYNOPSIS
 <a name="SYNOPSIS"></a>
 </h2>
 
@@ -60,24 +60,24 @@ description: "tcpcapinfo �̃}�j���A���^tcpcapinfo manual"
 ]<i>value</i>]]...<b>&lt;pcap_file(s)&gt;</b></p>
 
 <p style="margin-left:11%; margin-top: 1em">
-tcpcapinfo �́Apcap(3) �`���̃t�@�C�����f�R�[�h����c�[���ł��B
-�j������ pcap �t�@�C������������A
-����� 2�� pcap �t�@�C�����ǂ��قȂ�̂��A
-�������邱�ƂɃt�H�[�J�X���Ă��܂��B</p>
+tcpcapinfo は、pcap(3) 形式のファイルをデコードするツールです。
+破損した pcap ファイルを見つけたり、
+特定の 2つの pcap ファイルがどう異なるのか、
+を見つけることにフォーカスしています。</p>
 
-<h2>�T�v�^DESCRIPTION
+<h2>概要／DESCRIPTION
 <a name="DESCRIPTION"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">
-tcpcapinfo �́A
-pcap_pkthdr_t ���܂߃p�P�b�g���Ƃ̃T�}���[�̌�ɁA
-�l�Ԃ��ǂ݂₷���`���� pcap_file_header_t ���o�͂��܂��B
-�܂��A�p�P�b�g�̊ȒP�ȃ`�F�b�N�T�����\�����܂��B</p>
+tcpcapinfo は、
+pcap_pkthdr_t も含めパケットごとのサマリーの後に、
+人間が読みやすい形式で pcap_file_header_t を出力します。
+また、パケットの簡単なチェックサムも表示します。</p>
 
 
-<h2>�I�v�V�����^OPTIONS
+<h2>オプション／OPTIONS
 <a name="OPTIONS"></a>
 </h2>
 
@@ -87,52 +87,52 @@ pcap_pkthdr_t ���܂߃p�P�b�g���Ƃ̃T�}���[�̌�ɁA
 <i>number</i>, <b>&minus;&minus;dbug</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-�f�o�b�O�o�͂�\�����܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B
-<i>number</i> �͉��L�͈̔͂ɐ�������܂�:</p>
+デバッグ出力を表示します。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。
+<i>number</i> は下記の範囲に制限されます:</p>
 
-<p style="margin-left:28%;">0 ���� 5 �܂ł̒l</p>
+<p style="margin-left:28%;">0 から 5 までの値</p>
 
-<p style="margin-left:22%;"><i>number</i> �̃f�t�H���g�l��:<br>
+<p style="margin-left:22%;"><i>number</i> のデフォルト値は:<br>
 0</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-&minus;-enable-debug �I�v�V���������� configure ���ꂽ�ꍇ�́A
-�f�o�b�O�o�͂̃��x�����w��ł��܂��B
-���l���傫���Ȃ�Ƃ�������̏����o�͂��܂��B</p>
+&minus;-enable-debug オプションをつけて configure された場合は、
+デバッグ出力のレベルを指定できます。
+数値が大きくなるとたくさんの情報を出力します。</p>
 
 <p style="margin-left:11%;"><b>&minus;V</b>,
 <b>-&minus;version</b></p>
 
-<p style="margin-left:22%;">�o�[�W��������\�����܂��B</p>
+<p style="margin-left:22%;">バージョン情報を表示します。</p>
 
 <p style="margin-left:11%;"><b>&minus;H</b>,
 <b>&minus;&minus;help</b></p>
 
-<p style="margin-left:22%;">�g�p���@��\�����ďI�����܂��B</p>
+<p style="margin-left:22%;">使用方法を表示して終了します。</p>
 
 <p style="margin-left:11%;"><b>&minus;!</b>,
 <b>&minus;&minus;more-help</b></p>
 
-<p style="margin-left:22%;">�y�[�W���[�Ŋg���g�p���@��\�����܂��B</p>
+<p style="margin-left:22%;">ページャーで拡張使用方法を表示します。</p>
 
-<h2>exit �R�[�h�^EXIT STATUS
+<h2>exit コード／EXIT STATUS
 <a name="EXIT STATUS"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">
-���L�� 1���Ԃ�܂�:<b><br>
+下記の 1つが返ります:<b><br>
 0</b> (EXIT_SUCCESS)</p>
 
-<p style="margin-left:22%;">���s����</p>
+<p style="margin-left:22%;">実行成功</p>
 
 <p style="margin-left:11%;"><b>1</b> (EXIT_FAILURE)</p>
 
-<p style="margin-left:22%;">���s���s�܂��͕��@�G���[</p>
+<p style="margin-left:22%;">実行失敗または文法エラー</p>
 
-<h2>AUTHORS�^AUTHORS
+<h2>AUTHORS／AUTHORS
 <a name="AUTHORS"></a>
 </h2>
 
@@ -154,13 +154,13 @@ http://tcpreplay.appneta.com/</p>
 This program is released under the terms of the GNU General
 Public License, version 3 or later.</p>
 
-<h2>�o�O�^BUGS
+<h2>バグ／BUGS
 <a name="BUGS"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">
-�o�O���� tcpreplay-users@lists.sourceforge.net �ɕ񍐂��Ă��������B</p>
+バグ情報は tcpreplay-users@lists.sourceforge.net に報告してください。</p>
 
 <h2>NOTES
 <a name="NOTES"></a>
