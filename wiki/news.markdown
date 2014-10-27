@@ -1,8 +1,8 @@
 ---
 layout: content
-title:  "ƒjƒ…[ƒX^News"
+title:  "ãƒ‹ãƒ¥ãƒ¼ã‚¹ï¼News"
 categories: tcpreplay wiki
-description: "Tcpreplay ƒjƒ…[ƒX^Tcpreplay news"
+description: "Tcpreplay ãƒ‹ãƒ¥ãƒ¼ã‚¹ï¼Tcpreplay news"
 ---
 
 <div id="home">
