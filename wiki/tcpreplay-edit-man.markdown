@@ -2,7 +2,7 @@
 layout: content
 title:  "tcpreplay-edit man page"
 categories: tcpreplay wiki
-description: "tcpreplay-edit �̃}�j���A���^tcpreplay-edit manual"
+description: "tcpreplay-edit のマニュアル／tcpreplay-edit manual"
 ---
 
 <!-- Creator     : groff version 1.20.1 -->
@@ -43,15 +43,15 @@ description: "tcpreplay-edit �̃}�j���A���^tcpreplay-edit manual"
 <hr>
 
 
-<h2>���O�^NAME
+<h2>名前／NAME
 <a name="NAME"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">tcpreplay-edit
-&minus; pcap �t�@�C���ɕۑ����ꂽ�l�b�g���[�N�g���t�B�b�N���đ��M����</p>
+&minus; pcap ファイルに保存されたネットワークトラフィックを再送信する</p>
 
-<h2>�����^SYNOPSIS
+<h2>書式／SYNOPSIS
 <a name="SYNOPSIS"></a>
 </h2>
 
@@ -63,26 +63,26 @@ description: "tcpreplay-edit �̃}�j���A���^tcpreplay-edit manual"
 ]<i>value</i>]]...<b>&lt;pcap_file(s)&gt;</b></p>
 
 <p style="margin-left:11%; margin-top: 1em">
-tcpreplay �� tcpdump �⑼�� pcap(3) �t�@�C���ɕۑ����ꂽ
-�l�b�g���[�N�g���t�B�b�N���đ��M����c�[���ł��B</p>
+tcpreplay は tcpdump や他の pcap(3) ファイルに保存された
+ネットワークトラフィックを再送信するツールです。</p>
 
-<h2>�T�v�^DESCRIPTION
+<h2>概要／DESCRIPTION
 <a name="DESCRIPTION"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">
-tcpreplay �̊�{�I�Ȏg�����́A�w�肳�ꂽ�t�@�C���Q��
-�L���v�`�����ꂽ���Ɠ������x�ōđ��M������A
-���邢�́A�n�[�h�E�F�A����������̑��x�͈͓̔��ł���΁A
-�w�肵���f�[�^���x�ōđ��M���܂��B
-�I�v�V�����Ƃ��āA2�� NIC �Ƀg���t�B�b�N�𕪊�������A
-�t�@�C���ɕۑ�������A�l�X�ȕ��@�Ńt�B���^������ҏW������A
-FireWall �� NIDS �⑼�̃l�b�g���[�N�f�o�C�X�̃e�X�g����񋟂��܂��B
-Tcpreplay Manual http://tcpreplay.appneta.com �̃y�[�W�ɁA
-�����Əڍׂȏ�񂪋L�ڂ���Ă��܂��B</p>
+tcpreplay の基本的な使い方は、指定されたファイル群を
+キャプチャされた時と同じ速度で再送信したり、
+あるいは、ハードウェアが許す限りの速度の範囲内であれば、
+指定したデータ速度で再送信します。
+オプションとして、2つの NIC にトラフィックを分割したり、
+ファイルに保存したり、様々な方法でフィルタしたり編集したり、
+FireWall や NIDS や他のネットワークデバイスのテスト環境を提供します。
+Tcpreplay Manual http://tcpreplay.appneta.com のページに、
+もっと詳細な情報が記載されています。</p>
 
-<h2>�I�v�V�����^OPTIONS
+<h2>オプション／OPTIONS
 <a name="OPTIONS"></a>
 </h2>
 
@@ -93,58 +93,58 @@ Tcpreplay Manual http://tcpreplay.appneta.com �̃y�[�W�ɁA
 <b>&minus;&minus;portmap</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-TCP/UDP �|�[�g�ԍ���ҏW����B
-���̃I�v�V������ -1��܂Ŏw��ł��܂��B</p>
+TCP/UDP ポート番号を編集する。
+このオプションは -1回まで指定できます。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-�R����(:) ��؂�̃|�[�g�̃}�b�s���O���A
-�J���}(,) ��؂�̃��X�g���w�肵�܂��B
-�R����(:) �ŋ�؂�ꂽ�|�[�g�̃y�A���A���������̃y�A�ɂȂ�܂��B
-�Ⴆ��:<br>
+コロン(:) 区切りのポートのマッピングを、
+カンマ(,) 区切りのリストを指定します。
+コロン(:) で区切られたポートのペアが、書き換えのペアになります。
+例えば:<br>
 
 &minus;-portmap=80:8000 &minus;-portmap=8080:80
-# 80 �� 8000 �ɁA8080 �� 80 �ɂȂ�܂�<br>
+# 80 は 8000 に、8080 は 80 になります<br>
 &minus;-portmap=8000,8080,88888:80
-# 3 �̃|�[�g(8000 �� 8080 �� 88888)�� 80 �ɂȂ�܂�<br>
+# 3 つのポート(8000 と 8080 と 88888)が 80 になります<br>
 &minus;-portmap=8000-8999:80
-# 8000 ���� 8999 �܂ł̃|�[�g�� 80 �ɂȂ�܂�</p>
+# 8000 から 8999 までのポートが 80 になります</p>
 
 <p style="margin-left:11%;"><b>&minus;s</b> <i>number</i>,
 <b>&minus;&minus;seed</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-�^����ꂽ seed ���g���āA
-���M���^���M��� IPv4/v6 �A�h���X�������_���ɏ��������܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B</p>
+与えられた seed を使って、
+送信元／送信先の IPv4/v6 アドレスをランダムに書き換えます。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-���M���^���M��� IPv4/v6 �A�h���X�͋[���I�Ƀ����_���ɏ��������܂����A
-�N���C�A���g�̃T�[�o�̊֌W��(�ʐM�̃y�A)�͕ۂ��ꂽ�܂܂ɂȂ�܂��B
-seed ���x�[�X�Ƀ����_���ɏ��������̂ŁC
-���� seed ���w�肷��ƁA
-�O��Ɠ��l�Ƀ����_�}�C�Y���ꂽ�ʐM���Č����邱�Ƃ��ł��܂��B</p>
+送信元／送信先の IPv4/v6 アドレスは擬似的にランダムに書き換わりますが、
+クライアントのサーバの関係性(通信のペア)は保たれたままになります。
+seed をベースにランダムに書き換わるので，
+同じ seed を指定すると、
+前回と同様にランダマイズされた通信を再現することができます。</p>
 
 <p style="margin-left:11%;"><b>&minus;N</b> <i>string</i>,
 <b>&minus;&minus;pnat</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-�[�� NAT �@�\���g���� IPv4/v6 �A�h���X�����������܂��B
-���̃I�v�V������ 2��܂Ŏw��ł��܂��B
-���̃I�v�V�����͉��L�̃I�v�V�����ƈꏏ�ɂ͎g�p�ł��܂���: srcipmap</p>
+擬似 NAT 機能を使って IPv4/v6 アドレスを書き換えます。
+このオプションは 2回まで指定できます。
+このオプションは下記のオプションと一緒には使用できません: srcipmap</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-�R����(:) ��؂�� CIDR �\�L�̃l�b�g���[�N�u���b�N�̃y�A���A
-�J���}(,) �ŋ�؂��ĕ����w��ł��܂��B
-���ꂼ��̃l�b�g���[�N�u���b�N�̃y�A�́A
-�w�肳�ꂽ IP�A�h���X�̏��Ԃŏ�������܂��B
-�����A�p�P�b�g���ŏ��̃l�b�g���[�N�u���b�N�Ƀ}�b�`�����ꍇ�A
-2�Ԗڂ̃l�b�g���[�N�u���b�N�ɏ����������܂��B
-����ɏ�ʂ̃r�b�g�͎Q�Ƃ���܂���BIPv4 �̎��s��:<br>
+コロン(:) 区切りの CIDR 表記のネットワークブロックのペアを、
+カンマ(,) で区切って複数指定できます。
+それぞれのネットワークブロックのペアは、
+指定された IPアドレスの順番で処理されます。
+もし、パケットが最初のネットワークブロックにマッチした場合、
+2番目のネットワークブロックに書き換えられます。
+さらに上位のビットは参照されません。IPv4 の実行例:<br>
 
 &minus;-pnat=192.168.0.0/16:10.77.0.0/16,172.16.0.0/12:10.1.0.0/24
 <br>
-IPv6 �̎��s��:<br>
+IPv6 の実行例:<br>
 
 &minus;-pnat=[2001:db8::/32]:[dead::/16],[2001:db8::/32]:[::ffff:0:0/96]</p>
 
@@ -152,40 +152,40 @@ IPv6 �̎��s��:<br>
 <b>&minus;&minus;srcipmap</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-�[�� NAT �@�\���g���đ��M�� IPv4/v6 �A�h���X�����������܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-���̃I�v�V�����͉��L�̃I�v�V�����ƈꏏ�ɂ͎g�p�ł��܂���: pnat</p>
+擬似 NAT 機能を使って送信元 IPv4/v6 アドレスを書き換えます。
+このオプションは 1回だけ指定できます。
+このオプションは下記のオプションと一緒には使用できません: pnat</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-&minus;-pnat �I�v�V�����Ɠ��l�ɓ����܂����A
-IPv4/v6 �w�b�_�̑��M���� IP�A�h���X�����ɋ@�\���܂��B</p>
+&minus;-pnat オプションと同様に動きますが、
+IPv4/v6 ヘッダの送信元の IPアドレスだけに機能します。</p>
 
 <p style="margin-left:11%;"><b>&minus;D</b> <i>string</i>,
 <b>&minus;&minus;dstipmap</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-�[�� NAT �@�\���g���đ��M�� IPv4/v6 �A�h���X�����������܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-���̃I�v�V�����͉��L�̃I�v�V�����ƈꏏ�ɂ͎g�p�ł��܂���: pnat</p>
+擬似 NAT 機能を使って送信先 IPv4/v6 アドレスを書き換えます。
+このオプションは 1回だけ指定できます。
+このオプションは下記のオプションと一緒には使用できません: pnat</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-&minus;-pnat �I�v�V�����Ɠ��l�ɓ����܂����A
-IPv4/v6 �w�b�_�̑��M��� IP�A�h���X�����ɋ@�\���܂��B</p>
+&minus;-pnat オプションと同様に動きますが、
+IPv4/v6 ヘッダの送信先の IPアドレスだけに機能します。</p>
 
 <p style="margin-left:11%;"><b>&minus;e</b> <i>string</i>,
 <b>&minus;&minus;endpoints</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-2�̃G���h�|�C���g�� IP�A�h���X�����������܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-���̃I�v�V�����́A���L�̃I�v�V�����ƈꏏ�Ɏg�p����K�v������܂�: cachefile</p>
+2つのエンドポイントの IPアドレスを書き換えます。
+このオプションは 1回だけ指定できます。
+このオプションは、下記のオプションと一緒に使用する必要があります: cachefile</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-�S�Ẵg���t�B�b�N���A
-�R����(:) ��؂�� IPv4/v6 �A�h���X�̃y�A�ɏ��������܂��B
-IPv4 �̎��s��:<br>
+全てのトラフィックを、
+コロン(:) 区切りの IPv4/v6 アドレスのペアに書き換えます。
+IPv4 の実行例:<br>
 &minus;-endpoints=172.16.0.1:172.16.0.2 <br>
-IPv6 �̎��s��:<br>
+IPv6 の実行例:<br>
 
 &minus;-endpoints=[2001:db8::dead:beef]:[::ffff:0:0:ac:f:0:2]</p>
 
@@ -193,77 +193,77 @@ IPv6 �̎��s��:<br>
 <b>-&minus;skipbroadcast</b></p>
 
 <p style="margin-left:22%;">
-broadcast/multicast �� IPv4/v6 �A�h���X�̏����������X�L�b�v���܂��B</p>
+broadcast/multicast の IPv4/v6 アドレスの書き換えをスキップします。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-�f�t�H���g�ł́A
-&minus;-seed, &minus;-pnat and &minus;-endpoints ���w�肷��ƁA
-�u���[�h�L���X�g�ƃ}���`�L���X�g��
-IPv4/v6 �A�h���X�� MAC �A�h���X�����������܂��B
-���̃t���O���w�肷��ƁA�u���[�h�L���X�g�ƃ}���`�L���X�g��
-IPv4/v6 �A�h���X�� MAC �A�h���X�����������܂���B</p>
+デフォルトでは、
+&minus;-seed, &minus;-pnat and &minus;-endpoints を指定すると、
+ブロードキャストとマルチキャストの
+IPv4/v6 アドレスと MAC アドレスを書き換えます。
+このフラグを指定すると、ブロードキャストとマルチキャストの
+IPv4/v6 アドレスと MAC アドレスを書き換えません。</p>
 
 <p style="margin-left:11%;"><b>&minus;C</b>,
 <b>-&minus;fixcsum</b></p>
 
 <p style="margin-left:22%;">
-IPv4 �� TCP/UDP �w�b�_�̃`�F�b�N�T���������I�ɍČv�Z���܂��B</p>
+IPv4 の TCP/UDP ヘッダのチェックサムを強制的に再計算します。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-IPv4/v6 �̃w�b�_�̃`�F�b�N�T�����Čv�Z���܂��B
-���L�̃I�v�V�������w�肵���ꍇ�́A�����I�ɍČv�Z����܂��B
+IPv4/v6 のヘッダのチェックサムを再計算します。
+下記のオプションを指定した場合は、自動的に再計算されます。
 <b>--seed</b>, <b>--pnat</b>, <b>--endpoints</b> <b>--fixlen</b></p>
 
 <p style="margin-left:11%;"><b>&minus;m</b> <i>number</i>,
 <b>&minus;&minus;mtu</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-�f�t�H���g�� MTU �T�C�Y(1500�o�C�g)���㏑�����܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B</p>
-<i>number</i> �̒l�͉��L���z�肳��Ă��܂�:</p>
+デフォルトの MTU サイズ(1500バイト)を上書きします。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。</p>
+<i>number</i> の値は下記が想定されています:</p>
 
 <p style="margin-left:28%;">
-1 ���� MAXPACKET �܂ł̒l���w�肵�܂��B</p>
+1 から MAXPACKET までの値を指定します。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-padding �ł���ő�T�C�Y (--fixlen=pad)�A���邢�́A
-truncate ����(�؂�l�߂�)�T�C�Y(--mtu-trunc) �����肷�邽�߂ɁA
-�f�t�H���g�� 1500�o�C�g�� MTU �T�C�Y���㏑�����܂��B</p>
+padding できる最大サイズ (--fixlen=pad)、あるいは、
+truncate する(切り詰める)サイズ(--mtu-trunc) を決定するために、
+デフォルトの 1500バイトの MTU サイズを上書きします。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;mtu&minus;trunc</b></p>
 
 <p style="margin-left:22%;">
-�w�肳�ꂽ MTU ���傫���p�P�b�g�� truncate ���܂�(�؂�l�߂܂�)�B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B</p>
+指定された MTU より大きいパケットを truncate します(切り詰めます)。
+このオプションは 1回だけ指定できます。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-&minus;-fixlen �Ɠ��l�ɁA
-Layer 3 �ȏ�̃p�P�b�g�� MTU �����傫���Ȃ�Ȃ��悤��
-truncate ���܂�(�؂�l�߂܂�)�B</p>
+&minus;-fixlen と同様に、
+Layer 3 以上のパケットを MTU よりも大きくならないように
+truncate します(切り詰めます)。</p>
 
 <p style="margin-left:11%;"><b>&minus;E</b>,
 <b>-&minus;efcs</b></p>
 
-<p style="margin-left:22%;">Ethrenet �t���[���̍Ō�ɕt�^����� FCS
-(Frame Check Sequence)����菜���܂��B</p>
+<p style="margin-left:22%;">Ethrenet フレームの最後に付与される FCS
+(Frame Check Sequence)を取り除きます。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-���̃I�v�V�����͂��Ȃ�댯�ł�!
-(tcpreplay-edit ��) FCS �����ۂɕt�^����Ă��邩�ǂ����͊m�F�����A
-�����P�Ƀt���[���̍Ō�� 4�o�C�g���폜���邾���ł��B
-�]���āA�g�p���Ă��� OS �� raw �p�P�b�g���������鎞�ɁA
-FCS ��t�^���Ă��鎞�������̃I�v�V�������w�肷�ׂ��ł��B</p>
+このオプションはかなり危険です!
+(tcpreplay-edit は) FCS が実際に付与されているかどうかは確認せず、
+ただ単にフレームの最後の 4バイトを削除するだけです。
+従って、使用している OS が raw パケットを処理する時に、
+FCS を付与している時だけこのオプションを指定すべきです。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;ttl</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-IPv4/v6 �� TTL/Hop Limit �����������܂��B</p>
+IPv4/v6 の TTL/Hop Limit を書き換えます。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-�S�Ă� IPv4/v6 �p�P�b�g�� TTL/Hop Limit �����������܂��B
-�l�𒼐ڎw�肷�邩�A(1�`255 �̊Ԃ�) ����������l���w�肵�܂��B
-���s��:
+全ての IPv4/v6 パケットの TTL/Hop Limit を書き換えます。
+値を直接指定するか、(1～255 の間で) 増減させる値を指定します。
+実行例:
 <br>
 &minus;-ttl=10 <br>
 &minus;-ttl=+7 <br>
@@ -273,55 +273,55 @@ IPv4/v6 �� TTL/Hop Limit �����������܂��B</p>
 <p style="margin-left:11%;"><b>&minus;&minus;tos</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-IPv4 �� TOS/DiffServ/ECN �̒l��ݒ肵�܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B</p>
-<i>number</i> �̒l�͉��L���z�肳��Ă��܂�:</p>
+IPv4 の TOS/DiffServ/ECN の値を設定します。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。</p>
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">0 ���� 255 �܂ł̒l</p>
+<p style="margin-left:28%;">0 から 255 までの値</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-IPv4 �� (DiffServ/ECN �Ƃ��Ă��m���Ă���) TOS �̒l���㏑�����܂��B</p>
+IPv4 の (DiffServ/ECN としても知られている) TOS の値を上書きします。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;tclass</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-IPv6 Traffic Class �̒l��ݒ肵�܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B</p>
-<i>number</i> �̒l�͉��L���z�肳��Ă��܂�:</p>
+IPv6 Traffic Class の値を設定します。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。</p>
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">0 ���� 255 �܂ł̒l</p>
+<p style="margin-left:28%;">0 から 255 までの値</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-IPv6 �� Traffic Class �̒l���㏑�����܂��B</p>
+IPv6 の Traffic Class の値を上書きします。</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;flowlabel</b>=<i>number</i></p>
 
 <p style="margin-left:22%;">
-IPv6 �� Flow Label ��ݒ肵�܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B
-�I�v�V�����ɂ͐������w�肵�܂��B</p>
-<i>number</i> �̒l�͉��L���z�肳��Ă��܂�:</p>
+IPv6 の Flow Label を設定します。
+このオプションは 1回だけ指定できます。
+オプションには整数を指定します。</p>
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">0 ���� 1048575 �܂ł̒l</p>
+<p style="margin-left:28%;">0 から 1048575 までの値</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-IPv6 �� Flow Label �� 20bit �̒l���㏑�����܂��B
-IPv4 �̃p�P�b�g�͉����������܂���B</p>
+IPv6 の Flow Label の 20bit の値を上書きします。
+IPv4 のパケットは何も処理しません。</p>
 
 <p style="margin-left:11%;"><b>&minus;F</b> <i>string</i>,
 <b>&minus;&minus;fixlen</b>=<i>string</i></p>
 
 <p style="margin-left:22%;">
-�w�b�_���ɍ��v����悤�ɁA
-�p�P�b�g�� padding (�ǉ�)������ truncate (�؂�l��)�����肵�܂��B
-���̃I�v�V������ 1�񂾂��w��ł��܂��B</p>
+ヘッダ長に合致するように、
+パケットに padding (追加)したり truncate (切り詰め)したりします。
+このオプションは 1回だけ指定できます。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
-snaplen ���p�P�b�g�̃T�C�Y���������������ꍇ�A
-�p�P�b�g�� truncate ����܂�(�؂�l�߂��܂�)�B
+snaplen がパケットのサイズよりも小さかった場合、
+パケットは truncate されます(切り詰められます)。
 
 
 Packets may be
