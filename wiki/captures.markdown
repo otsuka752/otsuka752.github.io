@@ -2,32 +2,32 @@
 layout: content
 title:  "Sample Captures"
 categories: tcpreplay wiki
-description: "Tcpreplay �c�[���Q�Ŏg���T���v���L���v�`���t�@�C���^List of sample network capture files for use with Tcpreplay suite"
+description: "Tcpreplay ツール群で使うサンプルキャプチャファイル／List of sample network capture files for use with Tcpreplay suite"
 ---
 
-- [�T�v�^Overview][Overview](#overview)
-    - [������ flow�^smallFlows.pcap][smallFlows.pcap](#smallflows-pcap)
-    - [�傫�� flow�^bigFlows.pcap][bigFlows.pcap](#bigflows-pcap)
-    - [�e�X�g�^test.pcap][test.pcap](#test-pcap)
+- [概要／Overview][Overview](#overview)
+    - [小さな flow／smallFlows.pcap][smallFlows.pcap](#smallflows-pcap)
+    - [大きな flow／bigFlows.pcap][bigFlows.pcap](#bigflows-pcap)
+    - [テスト／test.pcap][test.pcap](#test-pcap)
 - [Contributions][Contributions](#contributions "Project Contributions")
 
 
-<h2 id="Sample Captures"><a name="overview"></a>�T�v�^Overview</h2>
-Tcpreplay �c�[���Q�͂����Ă��̃L���v�`���t�@�C����ǂݍ��߂܂��B
-�ȒP�Ɏ����Ă݂邽�߂ɁA�T���v���̃L���v�`���t�@�C����p�ӂ��܂����B
-[IP Flow][flow]/[NetFlow][NetFlow] ���e�X�g���邽�߂ɏ������ꂽ���̂ł����A
-�X�C�b�`��l�b�g���[�N�@��̃p�t�H�[�}���X����������̂ɂ��g���܂��B
+<h2 id="Sample Captures"><a name="overview"></a>概要／Overview</h2>
+Tcpreplay ツール群はたいていのキャプチャファイルを読み込めます。
+簡単に試してみるために、サンプルのキャプチャファイルを用意しました。
+[IP Flow][flow]/[NetFlow][NetFlow] をテストするために準備されたものですが、
+スイッチやネットワーク機器のパフォーマンスを試験するのにも使えます。
 
-pcap �t�@�C���� [������^here][pcaps] �ɂ���܂��B
+pcap ファイルは [こちら／here][pcaps] にあります。
 
-### <a name="smallflows-pcap"></a>[������ flow�^smallFlows.pcap][small]
-���̃L���v�`���t�@�C���́A
-�������̈قȂ�A�v���P�[�V�����̃L���v�`���t�@�C��������܂����B
-��r�I�l�b�g���[�N�g���t�B�b�N�����Ȃ����ɂ����āA
-�l�X�ȃv���g�R���ł�������� flow �����悤�ɍl�����Ă��܂��B
-�����ȃT�C�Y�̃t�@�C���ł�������� flow ���g�������ꍇ��A
-flow �̑g�ݍ��킹�̍Č����ɔz�����Ȃ��ėǂ��ꍇ�Ȃǂ́A
-���̃L���v�`���t�@�C�����g���Ă݂Ă��������B
+### <a name="smallflows-pcap"></a>[小さな flow／smallFlows.pcap][small]
+このキャプチャファイルは、
+いくつかの異なるアプリケーションのキャプチャファイルから作りました。
+比較的ネットワークトラフィックが少ない環境において、
+様々なプロトコルでたくさんの flow を作るように考えられています。
+小さなサイズのファイルでたくさんの flow を使いたい場合や、
+flow の組み合わせの再現性に配慮しなくて良い場合などは、
+このキャプチャファイルを使ってみてください。
 
 Size:			9.4 MB   
 Packets:		14261   
@@ -37,15 +37,15 @@ Duration:		5 minutes
 Number Applications:	28
 
 
-### <a name="bigflows-pcap"></a>[�傫�� flow�^bigFlows.pcap][big]
-���̃L���v�`���t�@�C���́A
-���G�����v���C�x�[�g�l�b�g���[�N�̃C���^�[�l�b�g�ւ̏o���ɂ�����A
-���ۂ̃l�b�g���[�N�g���t�B�b�N���L���v�`���������̂ł��B
-�O�̃L���v�`���t�@�C��([������ flow�^smallFlows.pcap][small])�Ɣ�ׂ�ƁA
-�t�@�C���T�C�Y�͂��Ȃ�傫���A�p�P�b�g�̕��σT�C�Y�͏������ł��B
-�قȂ�A�v���P�[�V�����̂�������� flow ���܂܂�Ă��܂��B
-�傫�ȃT�C�Y�̃t�@�C������舵����̂ł���΁A
-���̃t�@�C���Ńe�X�g���Ă��������B
+### <a name="bigflows-pcap"></a>[大きな flow／bigFlows.pcap][big]
+このキャプチャファイルは、
+混雑したプライベートネットワークのインターネットへの出口における、
+実際のネットワークトラフィックをキャプチャしたものです。
+前のキャプチャファイル([小さな flow／smallFlows.pcap][small])と比べると、
+ファイルサイズはかなり大きく、パケットの平均サイズは小さいです。
+異なるアプリケーションのたくさんの flow が含まれています。
+大きなサイズのファイルを取り扱えるのであれば、
+このファイルでテストしてください。
 
 Size:			368 MB   
 Packets:		791615    
@@ -54,10 +54,10 @@ Average packet size:	449 bytes
 Duration:		5 minutes   
 Number Applications:	132
 
-### <a name="test-pcap"></a>[�e�X�g�^test.pcap][test]
-�\�[�X�R�[�h�� tar.gz �ɓ�������Ă��鏬���ȃL���v�`���t�@�C���ł��B
-`sudo make test` �̎��� *tcpreplay* �̐��x���e�X�g����̂ɂ��g���܂��B
-*tcpprep* �̐��\���f������̂ɂ��g���܂��B
+### <a name="test-pcap"></a>[テスト／test.pcap][test]
+ソースコードの tar.gz に同梱されている小さなキャプチャファイルです。
+`sudo make test` の時に *tcpreplay* の精度をテストするのにも使われます。
+*tcpprep* の性能をデモするのにも使えます。
 
 Size:           0.07 MB   
 Packets:        141    
@@ -67,9 +67,9 @@ Duration:       3 seconds
 Number Applications:    1
 
 
-## <a name="contributions"></a>Contributions�^Contributions
-Tcpreplay �œ������̂ɗǂ��T���v���� pcap �t�@�C��������Ȃ�A
-���Ѓ����e�i�ɘA�����Ă��������B
+## <a name="contributions"></a>Contributions／Contributions
+Tcpreplay で動かすのに良いサンプルの pcap ファイルがあるなら、
+ぜひメンテナに連絡してください。
 
 [flow]:     https://ietf.org/wg/ipfix/
 [NetFlow]:  http://www.cisco.com/go/netflow
