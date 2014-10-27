@@ -1,22 +1,25 @@
 ---
 layout: content
-title:  "Mailing List"
+title:  "Mailing List／Mailing List"
 categories: tcpreplay wiki
-description: "How to join the Tcpreplay mailing list"
+description: "Tcpreplay ML への参加方法／How to join the Tcpreplay mailing list"
 ---
 
 
-Tcpreplay has a mailing list for it's users. However, before posting a question, 
-please read the short [README] included with the latest source. It explains what
-information is needed to answer many tcpreplay related questions. You'd be amazed
-how many people don't even say which version of Tcpreplay they are using!
+Tcpreplay にはユーザのための Mailing List があります。
+質問を投稿する前に、最新版の source コードに付属する
+[README] を読んでください。tcpreplay に関する質問に答えるには、
+どんな情報が必要なのかが記載されています。
+使用している Tcpreplay のバージョンすら書かずに投稿する人がいるか、
+びっくりすることでしょう。
 
-So now that you've read the README (you did read it right?) feel free to 
-[sign up][signup] or [read the list archives][archives].
+README を読み終えたら(読みましたよね？)
+[ログイン／sign up][signup] したり
+[アーカイブ／read the list archives][archives] を読みましょう。
 
-There is also a mailing list for people interested in [Tcpreplay development][devlist].
+[Tcpreplay の開発者用の ML／Tcpreplay development][devlist] もあります。
 
-If you are reporting a bug please submit it on [GitHub Issues][bugs].
+バグを報告していただけるなら [GitHub Issues][bugs] を投げてください。
 
 [README]:    https://github.com/appneta/tcpreplay/blob/master/README.md
 [signup]:    https://lists.sourceforge.net/lists/listinfo/tcpreplay-users

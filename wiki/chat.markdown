@@ -2,24 +2,24 @@
 layout: content
 title:  "Live Chat"
 categories: tcpreplay wiki
-descriptions: "How to chat to a live person about Tcpreplay"
+descriptions: "Tcpreplay に関してライブチャットする方法／How to chat to a live person about Tcpreplay"
 ---
 
-There are two methods of possibly finding a live person to talk to:   
+ライブチャットの方法は 2つあります:
 
-* IRC channel on [freenode]: #tcpreplay - popular with Open Source community
-* [HipChat] - popular with maintainer
+* IRC channel on [freenode][freenode]: #tcpreplay - オープンソースのコミュニティではよく使われてます
+* [HipChat][HipChat] - Tcpreplay のメンテナがよく使っています
 
-Everyone is invited to hang out on theses channel or just drop on by to ask for help.
-If you'd like some help with Tcpreplay, please keep the following in mind:
+これらのチャネルには誰でも参加できますし、ヘルプを依頼できます。
+もし Tcpreplay に関して質問するなら、下記を覚えておいてください:
 
-* It's better to just ask your question then say, "Can anyone answer a question for me?"
-* We're not mind-readers, so please tell us what version of tcpreplay you're using.
-* Try to explain your problem and what you are trying to accomplish as clearly as possible.
-* We'll try to answer your question as soon as possible, but remember we all have a life/day jobs which can get in the way of a quick reply.
+* 単に質問するだけではなく "Can anyone answer a question for me?"(どなたか回答いただけますか？)などと書き込むと良いです
+* 私達はエスパーではないので Tcpreplay のバージョンなどを教えてください
+* 何が問題なのか、どんなことをしたいのか、をできるだけ明確に説明してください
+* なるべく早く回答しようと思ってますが、私達にも日常生活や仕事があることを忘れないでください
 
-If nobody is able to answer your question, feel free to ask on the 
-[tcpreplay-users mailing list][maillist].
+誰も質問に回答できないような場合は、
+[tcpreplay-users mailing list][maillist] に投稿してみてください。
 
 Thanks,
 Fred Klassen

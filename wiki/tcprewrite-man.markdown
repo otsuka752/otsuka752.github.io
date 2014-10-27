@@ -2,7 +2,7 @@
 layout: content
 title:  "tcprewrite man page"
 categories: tcpreplay wiki
-description: "tcprewrite manual"
+description: "tcprewrite のマニュアル／tcprewrite manual"
 ---
 
 <!-- Creator     : groff version 1.20.1 -->
@@ -28,30 +28,30 @@ description: "tcprewrite manual"
 
 <h1 align="center">tcprewrite</h1>
 
-<a href="#NAME">NAME</a><br>
-<a href="#SYNOPSIS">SYNOPSIS</a><br>
-<a href="#DESCRIPTION">DESCRIPTION</a><br>
-<a href="#OPTIONS">OPTIONS</a><br>
-<a href="#OPTION PRESETS">OPTION PRESETS</a><br>
-<a href="#FILES">FILES</a><br>
-<a href="#EXIT STATUS">EXIT STATUS</a><br>
-<a href="#AUTHORS">AUTHORS</a><br>
-<a href="#COPYRIGHT">COPYRIGHT</a><br>
-<a href="#BUGS">BUGS</a><br>
-<a href="#NOTES">NOTES</a><br>
+<a href="#NAME">名前／NAME</a><br>
+<a href="#SYNOPSIS">書式／SYNOPSIS</a><br>
+<a href="#DESCRIPTION">概要／DESCRIPTION</a><br>
+<a href="#OPTIONS">オプション／OPTIONS</a><br>
+<a href="#OPTION PRESETS">オプションの事前設定／OPTION PRESETS</a><br>
+<a href="#FILES">ファイル／FILES</a><br>
+<a href="#EXIT STATUS">exit コード／EXIT STATUS</a><br>
+<a href="#AUTHORS">AUTHORS／AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT／COPYRIGHT</a><br>
+<a href="#BUGS">バグ／BUGS</a><br>
+<a href="#NOTES">注意／NOTES</a><br>
 
 <hr>
 
 
-<h2>NAME
+<h2>名前／NAME
 <a name="NAME"></a>
 </h2>
 
 
 <p style="margin-left:11%; margin-top: 1em">tcprewrite
-&minus; Rewrite the packets in a pcap file.</p>
+&minus; pcap ファイルに保存されたパケットの編集</p>
 
-<h2>SYNOPSIS
+<h2>書式／SYNOPSIS
 <a name="SYNOPSIS"></a>
 </h2>
 
@@ -62,10 +62,10 @@ description: "tcprewrite manual"
 [<b>&minus;&minus;</b><i>opt&minus;name</i> [[=|
 ]<i>value</i>]]...</p>
 
-<p style="margin-left:11%; margin-top: 1em">All arguments
-must be options.</p>
+<p style="margin-left:11%; margin-top: 1em">
+全ての引数はオプションです。</p>
 
-<h2>DESCRIPTION
+<h2>概要／DESCRIPTION
 <a name="DESCRIPTION"></a>
 </h2>
 

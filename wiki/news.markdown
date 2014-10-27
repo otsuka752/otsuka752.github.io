@@ -1,8 +1,8 @@
 ---
 layout: content
-title:  "News"
+title:  "ニュース／News"
 categories: tcpreplay wiki
-description: "Tcpreplay news"
+description: "Tcpreplay ニュース／Tcpreplay news"
 ---
 
 <div id="home">

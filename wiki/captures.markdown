@@ -2,29 +2,32 @@
 layout: content
 title:  "Sample Captures"
 categories: tcpreplay wiki
-description: "List of sample network capture files for use with Tcpreplay suite"
+description: "Tcpreplay ツール群で使うサンプルキャプチャファイル／List of sample network capture files for use with Tcpreplay suite"
 ---
 
-- [Overview](#overview)
-    - [smallFlows.pcap](#smallflows-pcap)
-    - [bigFlows.pcap](#bigflows-pcap)
-    - [test.pcap](#test-pcap)
-- [Contributions](#contributions "Project Contributions")
+- [概要／Overview][Overview](#overview)
+    - [小さな flow／smallFlows.pcap][smallFlows.pcap](#smallflows-pcap)
+    - [大きな flow／bigFlows.pcap][bigFlows.pcap](#bigflows-pcap)
+    - [テスト／test.pcap][test.pcap](#test-pcap)
+- [Contributions][Contributions](#contributions "Project Contributions")
 
 
-<h2 id="Sample Captures"><a name="overview"></a>Overview</h2>
-Tcpreplay Suite can read nearly any packet capture file. If you prefer to get up and
-running quickly, we have provided some sample captures. They are specially
-designed to test [IP Flow][flow]/[NetFlow], but they are also useful for
-testing performance of switches and network adapters.
+<h2 id="Sample Captures"><a name="overview"></a>概要／Overview</h2>
+Tcpreplay ツール群はたいていのキャプチャファイルを読み込めます。
+簡単に試してみるために、サンプルのキャプチャファイルを用意しました。
+[IP Flow][flow]/[NetFlow][NetFlow] をテストするために準備されたものですが、
+スイッチやネットワーク機器のパフォーマンスを試験するのにも使えます。
 
-Pcap files are available [here][pcaps].
+pcap ファイルは [こちら／here][pcaps] にあります。
 
-### <a name="smallflows-pcap"></a>[smallFlows.pcap][small]
-This is a synthetic capture which is a combination of several captures containing a few different applications.
- It is designed to create large number of flows utilizing various protocols at relatively low network traffic rate.
-If you want to have many flows in a small file and are not concerned about how realistic
-the combination of flows is, select this capture
+### <a name="smallflows-pcap"></a>[小さな flow／smallFlows.pcap][small]
+このキャプチャファイルは、
+いくつかの異なるアプリケーションのキャプチャファイルから作りました。
+比較的ネットワークトラフィックが少ない環境において、
+様々なプロトコルでたくさんの flow を作るように考えられています。
+小さなサイズのファイルでたくさんの flow を使いたい場合や、
+flow の組み合わせの再現性に配慮しなくて良い場合などは、
+このキャプチャファイルを使ってみてください。
 
 Size:			9.4 MB   
 Packets:		14261   
@@ -34,12 +37,15 @@ Duration:		5 minutes
 Number Applications:	28
 
 
-### <a name="bigflows-pcap"></a>[bigFlows.pcap][big]
-This is a capture of real network traffic on a busy private network's access point to the Internet.
-The capture is much larger and has a smaller average packet size than the previous capture.
-It also has many more flows and different applications. If the large size
-of this file isn't a problem, you may want to select it for your tests.   
-
+### <a name="bigflows-pcap"></a>[大きな flow／bigFlows.pcap][big]
+このキャプチャファイルは、
+混雑したプライベートネットワークのインターネットへの出口における、
+実際のネットワークトラフィックをキャプチャしたものです。
+前のキャプチャファイル([小さな flow／smallFlows.pcap][small])と比べると、
+ファイルサイズはかなり大きく、パケットの平均サイズは小さいです。
+異なるアプリケーションのたくさんの flow が含まれています。
+大きなサイズのファイルを取り扱えるのであれば、
+このファイルでテストしてください。
 
 Size:			368 MB   
 Packets:		791615    
@@ -48,10 +54,10 @@ Average packet size:	449 bytes
 Duration:		5 minutes   
 Number Applications:	132
 
-### <a name="test-pcap"></a>[test.pcap][test]
-This is a small capture that is included in the source tarball and is used to test
-accuracy of *tcpreplay* results during `sudo make test`. It is also good for demonstrating
-*tcpprep* capbablilites
+### <a name="test-pcap"></a>[テスト／test.pcap][test]
+ソースコードの tar.gz に同梱されている小さなキャプチャファイルです。
+`sudo make test` の時に *tcpreplay* の精度をテストするのにも使われます。
+*tcpprep* の性能をデモするのにも使えます。
 
 Size:           0.07 MB   
 Packets:        141    
@@ -61,9 +67,9 @@ Duration:       3 seconds
 Number Applications:    1
 
 
-## <a name="contributions"></a>Contributions
-If you have other good examples of pcap files that work well with Tcpreplay please contact the
-maintainer.
+## <a name="contributions"></a>Contributions／Contributions
+Tcpreplay で動かすのに良いサンプルの pcap ファイルがあるなら、
+ぜひメンテナに連絡してください。
 
 [flow]:     https://ietf.org/wg/ipfix/
 [NetFlow]:  http://www.cisco.com/go/netflow
