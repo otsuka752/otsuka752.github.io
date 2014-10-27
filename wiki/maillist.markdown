@@ -1,25 +1,25 @@
 ---
 layout: content
-title:  "Mailing List^Mailing List"
+title:  "Mailing Listï¼Mailing List"
 categories: tcpreplay wiki
-description: "Tcpreplay ML ‚Ö‚ÌQ‰Á•û–@^How to join the Tcpreplay mailing list"
+description: "Tcpreplay ML ã¸ã®å‚åŠ æ–¹æ³•ï¼How to join the Tcpreplay mailing list"
 ---
 
 
-Tcpreplay ‚É‚Íƒ†[ƒU‚Ì‚½‚ß‚Ì Mailing List ‚ª‚ ‚è‚Ü‚·B
-¿–â‚ğ“Še‚·‚é‘O‚ÉAÅV”Å‚Ì source ƒR[ƒh‚É•t‘®‚·‚é
-[README] ‚ğ“Ç‚ñ‚Å‚­‚¾‚³‚¢Btcpreplay ‚ÉŠÖ‚·‚é¿–â‚É“š‚¦‚é‚É‚ÍA
-‚Ç‚ñ‚Èî•ñ‚ª•K—v‚È‚Ì‚©‚ª‹LÚ‚³‚ê‚Ä‚¢‚Ü‚·B
-g—p‚µ‚Ä‚¢‚é Tcpreplay ‚Ìƒo[ƒWƒ‡ƒ“‚·‚ç‘‚©‚¸‚É“Še‚·‚él‚ª‚¢‚é‚©A
-‚Ñ‚Á‚­‚è‚·‚é‚±‚Æ‚Å‚µ‚å‚¤B
+Tcpreplay ã«ã¯ãƒ¦ãƒ¼ã‚¶ã®ãŸã‚ã® Mailing List ãŒã‚ã‚Šã¾ã™ã€‚
+è³ªå•ã‚’æŠ•ç¨¿ã™ã‚‹å‰ã«ã€æœ€æ–°ç‰ˆã® source ã‚³ãƒ¼ãƒ‰ã«ä»˜å±ã™ã‚‹
+[README] ã‚’èª­ã‚“ã§ãã ã•ã„ã€‚tcpreplay ã«é–¢ã™ã‚‹è³ªå•ã«ç­”ãˆã‚‹ã«ã¯ã€
+ã©ã‚“ãªæƒ…å ±ãŒå¿…è¦ãªã®ã‹ãŒè¨˜è¼‰ã•ã‚Œã¦ã„ã¾ã™ã€‚
+ä½¿ç”¨ã—ã¦ã„ã‚‹ Tcpreplay ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã™ã‚‰æ›¸ã‹ãšã«æŠ•ç¨¿ã™ã‚‹äººãŒã„ã‚‹ã‹ã€
+ã³ã£ãã‚Šã™ã‚‹ã“ã¨ã§ã—ã‚‡ã†ã€‚
 
-README ‚ğ“Ç‚İI‚¦‚½‚ç(“Ç‚İ‚Ü‚µ‚½‚æ‚ËH)
-[ƒƒOƒCƒ“^sign up][signup] ‚µ‚½‚è
-[ƒA[ƒJƒCƒu^read the list archives][archives] ‚ğ“Ç‚İ‚Ü‚µ‚å‚¤B
+README ã‚’èª­ã¿çµ‚ãˆãŸã‚‰(èª­ã¿ã¾ã—ãŸã‚ˆã­ï¼Ÿ)
+[ãƒ­ã‚°ã‚¤ãƒ³ï¼sign up][signup] ã—ãŸã‚Š
+[ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ï¼read the list archives][archives] ã‚’èª­ã¿ã¾ã—ã‚‡ã†ã€‚
 
-[Tcpreplay ‚ÌŠJ”­Ò—p‚Ì ML^Tcpreplay development][devlist] ‚à‚ ‚è‚Ü‚·B
+[Tcpreplay ã®é–‹ç™ºè€…ç”¨ã® MLï¼Tcpreplay development][devlist] ã‚‚ã‚ã‚Šã¾ã™ã€‚
 
-ƒoƒO‚ğ•ñ‚µ‚Ä‚¢‚½‚¾‚¯‚é‚È‚ç [GitHub Issues][bugs] ‚ğ“Š‚°‚Ä‚­‚¾‚³‚¢B
+ãƒã‚°ã‚’å ±å‘Šã—ã¦ã„ãŸã ã‘ã‚‹ãªã‚‰ [GitHub Issues][bugs] ã‚’æŠ•ã’ã¦ãã ã•ã„ã€‚
 
 [README]:    https://github.com/appneta/tcpreplay/blob/master/README.md
 [signup]:    https://lists.sourceforge.net/lists/listinfo/tcpreplay-users
