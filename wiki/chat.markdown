@@ -2,24 +2,24 @@
 layout: content
 title:  "Live Chat"
 categories: tcpreplay wiki
-descriptions: "Tcpreplay �Ɋւ��ă��C�u�`���b�g������@�^How to chat to a live person about Tcpreplay"
+descriptions: "Tcpreplay に関してライブチャットする方法／How to chat to a live person about Tcpreplay"
 ---
 
-���C�u�`���b�g�̕��@�� 2����܂�:
+ライブチャットの方法は 2つあります:
 
-* IRC channel on [freenode][freenode]: #tcpreplay - �I�[�v���\�[�X�̃R�~���j�e�B�ł͂悭�g���Ă܂�
-* [HipChat][HipChat] - Tcpreplay �̃����e�i���悭�g���Ă��܂�
+* IRC channel on [freenode][freenode]: #tcpreplay - オープンソースのコミュニティではよく使われてます
+* [HipChat][HipChat] - Tcpreplay のメンテナがよく使っています
 
-�����̃`���l���ɂ͒N�ł��Q���ł��܂����A�w���v���˗��ł��܂��B
-���� Tcpreplay �Ɋւ��Ď��₷��Ȃ�A���L���o���Ă����Ă�������:
+これらのチャネルには誰でも参加できますし、ヘルプを依頼できます。
+もし Tcpreplay に関して質問するなら、下記を覚えておいてください:
 
-* �P�Ɏ��₷�邾���ł͂Ȃ� "Can anyone answer a question for me?"(�ǂȂ����񓚂��������܂����H)�ȂǂƏ������ނƗǂ��ł�
-* ���B�̓G�X�p�[�ł͂Ȃ��̂� Tcpreplay �̃o�[�W�����Ȃǂ������Ă�������
-* �������Ȃ̂��A�ǂ�Ȃ��Ƃ��������̂��A���ł��邾�����m�ɐ������Ă�������
-* �Ȃ�ׂ������񓚂��悤�Ǝv���Ă܂����A���B�ɂ����퐶����d�������邱�Ƃ�Y��Ȃ��ł�������
+* 単に質問するだけではなく "Can anyone answer a question for me?"(どなたか回答いただけますか？)などと書き込むと良いです
+* 私達はエスパーではないので Tcpreplay のバージョンなどを教えてください
+* 何が問題なのか、どんなことをしたいのか、をできるだけ明確に説明してください
+* なるべく早く回答しようと思ってますが、私達にも日常生活や仕事があることを忘れないでください
 
-�N������ɉ񓚂ł��Ȃ��悤�ȏꍇ�́A
-[tcpreplay-users mailing list][maillist] �ɓ��e���Ă݂Ă��������B
+誰も質問に回答できないような場合は、
+[tcpreplay-users mailing list][maillist] に投稿してみてください。
 
 Thanks,
 Fred Klassen
