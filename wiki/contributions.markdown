@@ -5,56 +5,62 @@ categories: tcpreplay wiki
 description: "Information regarding authors, contributors and history of Tcpreplay. Also contains information on how to contribute to the project."
 ---
 
-Tcpreplay is authored by Aaron Turner(@synfinatic). In 2013 Fred Klassen (@fklassen),
-Co-founder and VP Advanced Technology, [AppNeta Inc.](http://appneta.com) added performance 
-features and enhancements, and ultimately took over the maintenance of Tcpreplay. For more
-information see [the history of Tcpreplay][history].
+Tcpreplay は Aaron Turner(@synfinatic) によって作られました。
+2013 年に、[AppNeta Inc.](http://appneta.com) の創業者の 1人で
+VP Advanced Technology である Fred Klassen (@fklassen)
+がパフォーマンスを向上させ、
+その後 Tcpreplay のメンテナとして引き継ぎました。
+[the history of Tcpreplay][history] に詳細情報が記載されています。
 
-The source code repository has moved to GitHub. You can get a working copy of the repository by 
-installing **git** and executing:
+ソースコードのレポジトリは GitHub に移動しました。
+**git** をインストールし下記を実行することで
+開発中のレポジトリをコピーできます:
 
 ```
 git clone git@github.com:appneta/tcpreplay.git
 ```
 
-## How To Contribute
+## コントリビュートする方法／How To Contribute
 
-It's easy. Basically you...
+簡単です。単に...
 
 * [Set up git][git]
 * [Fork]
-* Edit (we that you create a branch per issue)
+* 編集 (issue ごとに branch を切ります)
 * [Send a PR][pr]
 
-### Details:
+### 詳細／Details:
 
-You will find that you will not be able to contribute to the Tcpreplay project directly if you
-use clone the appneta/tcpreplay repo. If you believe that you may someday contribute to the
-repository, GitHub provides an innovative approach. Forking the @appneta/tcpreplay repository
-allows you to work on your own copy of the repository and submit code changes without first
-asking permission from the authors. Forking is also considered to be a compliment so fork away:
-   
-* if you haven't already done so, get yourself a free [GitHub](https://github.com) ID and visit @appneta/tcpreplay
-* click the **Fork** button to get your own private copy of the repository
-* on your build system clone your private repository:
+appneta/tcpreplay のレポジトリをクローンしても、
+Tcpreplay プロジェクトに直接はコントリビュートできないことに気付くでしょう。
+レポジトリにコントリビュートすることを考えている場合には、
+GitHub は革新的なアプローチを提供してくれています。
+@appneta/tcpreplay レポジトリを fork することで、
+開発者にソースコードを commit して良いかなどを質問することなしに、
+あなた自身のレポジトリを作りコミットすることができるのです。
+レポジトリを fork することは、賛辞を送ったともみなされます:
+
+* もしまだアカウントを持っていないなら、フリーの [GitHub](https://github.com) アカウントを作成し @appneta/tcpreplay にアクセスしてください
+* **Fork** ボタンをクリックしレポジトリを手元にコピーしてください
+* あなたの環境でレポジトリを clone してください:
 
 ```
 git clone git@github.com:<your ID>/tcpreplay.git
 ```
 
-* we like to keep the **master** branch available for projection ready code so we recommend that you make a branch for
-each feature or bug fix
-* when you are happy with your work, push it to your GitHub repository
-* on your GitHub repository select your new branch and submit a **Pull Request** to **master**
-* optionally monitor the status of your submission [here](https://github.com/appneta/tcpreplay/network)
+* **master** branch はいつでもリリースできるように保っておきたいので、機能ごとあるいは修正する bug ごとに branch を作ることをお勧めします
+* うまく修正できたらあなたの GitHub レポジトリに push してください
+* あなたの GitHub レポジトリで新しい branch を選択し **master** に *Pull Request** してください
+* PR の状態は [ここ／here](https://github.com/appneta/tcpreplay/network) で確認できます
 
-We will review and possibly discuss the changes with you through GitHub services. 
-If we accept the submission, it will instantly be applied to the production **master** branch.
+開発者達は、GitHub のサービス上であなたのコードをレビューし議論します。
+提案を受け入れる場合には、プロダクションブランチの **master** にすぐに取り込まれます。
 
-## Additional Information
-Please visit our [wiki](http://tcpreplay.appneta.com).
+## 追加情報／Additional Information
+[ユーザ向けの wiki／wiki](http://tcpreplay.appneta.com) を見てください。
 
-or visit our [developers wiki](https://github.com/appneta/tcpreplay/wiki)
+あるいは [開発者向けの wiki／developers wiki](https://github.com/appneta/tcpreplay/wiki)
+にアクセスしてください。
 
 [Fork]:   https://help.github.com/articles/fork-a-repo
 [pr]:     https://help.github.com/articles/using-pull-requests
