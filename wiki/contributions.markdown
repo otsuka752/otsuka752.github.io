@@ -5,62 +5,62 @@ categories: tcpreplay wiki
 description: "Information regarding authors, contributors and history of Tcpreplay. Also contains information on how to contribute to the project."
 ---
 
-Tcpreplay �� Aaron Turner(@synfinatic) �ɂ���č���܂����B
-2013 �N�ɁA[AppNeta Inc.](http://appneta.com) �̑n�Ǝ҂� 1�l��
-VP Advanced Technology �ł��� Fred Klassen (@fklassen)
-���p�t�H�[�}���X�����コ���A
-���̌� Tcpreplay �̃����e�i�Ƃ��Ĉ����p���܂����B
-[the history of Tcpreplay][history] �ɏڍ׏�񂪋L�ڂ���Ă��܂��B
+Tcpreplay は Aaron Turner(@synfinatic) によって作られました。
+2013 年に、[AppNeta Inc.](http://appneta.com) の創業者の 1人で
+VP Advanced Technology である Fred Klassen (@fklassen)
+がパフォーマンスを向上させ、
+その後 Tcpreplay のメンテナとして引き継ぎました。
+[the history of Tcpreplay][history] に詳細情報が記載されています。
 
-�\�[�X�R�[�h�̃��|�W�g���� GitHub �Ɉړ����܂����B
-**git** ���C���X�g�[�������L�����s���邱�Ƃ�
-�J�����̃��|�W�g�����R�s�[�ł��܂�:
+ソースコードのレポジトリは GitHub に移動しました。
+**git** をインストールし下記を実行することで
+開発中のレポジトリをコピーできます:
 
 ```
 git clone git@github.com:appneta/tcpreplay.git
 ```
 
-## �R���g���r���[�g������@�^How To Contribute
+## コントリビュートする方法／How To Contribute
 
-�ȒP�ł��B�P��...
+簡単です。単に...
 
 * [Set up git][git]
 * [Fork]
-* �ҏW (issue ���Ƃ� branch ��؂�܂�)
+* 編集 (issue ごとに branch を切ります)
 * [Send a PR][pr]
 
-### �ڍׁ^Details:
+### 詳細／Details:
 
-appneta/tcpreplay �̃��|�W�g�����N���[�����Ă��A
-Tcpreplay �v���W�F�N�g�ɒ��ڂ̓R���g���r���[�g�ł��Ȃ����ƂɋC�t���ł��傤�B
-���|�W�g���ɃR���g���r���[�g���邱�Ƃ��l���Ă���ꍇ�ɂ́A
-GitHub �͊v�V�I�ȃA�v���[�`��񋟂��Ă���Ă��܂��B
-@appneta/tcpreplay ���|�W�g���� fork ���邱�ƂŁA
-�J���҂Ƀ\�[�X�R�[�h�� commit ���ėǂ����Ȃǂ����₷�邱�ƂȂ��ɁA
-���Ȃ����g�̃��|�W�g�������R�~�b�g���邱�Ƃ��ł���̂ł��B
-���|�W�g���� fork ���邱�Ƃ́A�^���𑗂����Ƃ��݂Ȃ���܂�:
+appneta/tcpreplay のレポジトリをクローンしても、
+Tcpreplay プロジェクトに直接はコントリビュートできないことに気付くでしょう。
+レポジトリにコントリビュートすることを考えている場合には、
+GitHub は革新的なアプローチを提供してくれています。
+@appneta/tcpreplay レポジトリを fork することで、
+開発者にソースコードを commit して良いかなどを質問することなしに、
+あなた自身のレポジトリを作りコミットすることができるのです。
+レポジトリを fork することは、賛辞を送ったともみなされます:
 
-* �����܂��A�J�E���g�������Ă��Ȃ��Ȃ�A�t���[�� [GitHub](https://github.com) �A�J�E���g���쐬�� @appneta/tcpreplay �ɃA�N�Z�X���Ă�������
-* **Fork** �{�^�����N���b�N�����|�W�g�����茳�ɃR�s�[���Ă�������
-* ���Ȃ��̊��Ń��|�W�g���� clone ���Ă�������:
+* もしまだアカウントを持っていないなら、フリーの [GitHub](https://github.com) アカウントを作成し @appneta/tcpreplay にアクセスしてください
+* **Fork** ボタンをクリックしレポジトリを手元にコピーしてください
+* あなたの環境でレポジトリを clone してください:
 
 ```
 git clone git@github.com:<your ID>/tcpreplay.git
 ```
 
-* **master** branch �͂��ł������[�X�ł���悤�ɕۂ��Ă��������̂ŁA�@�\���Ƃ��邢�͏C������ bug ���Ƃ� branch ����邱�Ƃ������߂��܂�
-* ���܂��C���ł����炠�Ȃ��� GitHub ���|�W�g���� push ���Ă�������
-* ���Ȃ��� GitHub ���|�W�g���ŐV���� branch ��I���� **master** �� *Pull Request** ���Ă�������
-* PR �̏�Ԃ� [�����^here](https://github.com/appneta/tcpreplay/network) �Ŋm�F�ł��܂�
+* **master** branch はいつでもリリースできるように保っておきたいので、機能ごとあるいは修正する bug ごとに branch を作ることをお勧めします
+* うまく修正できたらあなたの GitHub レポジトリに push してください
+* あなたの GitHub レポジトリで新しい branch を選択し **master** に *Pull Request** してください
+* PR の状態は [ここ／here](https://github.com/appneta/tcpreplay/network) で確認できます
 
-�J���ҒB�́AGitHub �̃T�[�r�X��ł��Ȃ��̃R�[�h�����r���[���c�_���܂��B
-��Ă��󂯓����ꍇ�ɂ́A�v���_�N�V�����u�����`�� **master** �ɂ����Ɏ�荞�܂�܂��B
+開発者達は、GitHub のサービス上であなたのコードをレビューし議論します。
+提案を受け入れる場合には、プロダクションブランチの **master** にすぐに取り込まれます。
 
-## �ǉ����^Additional Information
-[���[�U������ wiki�^wiki](http://tcpreplay.appneta.com) �����Ă��������B
+## 追加情報／Additional Information
+[ユーザ向けの wiki／wiki](http://tcpreplay.appneta.com) を見てください。
 
-���邢�� [�J���Ҍ����� wiki�^developers wiki](https://github.com/appneta/tcpreplay/wiki)
-�ɃA�N�Z�X���Ă��������B
+あるいは [開発者向けの wiki／developers wiki](https://github.com/appneta/tcpreplay/wiki)
+にアクセスしてください。
 
 [Fork]:   https://help.github.com/articles/fork-a-repo
 [pr]:     https://help.github.com/articles/using-pull-requests
