@@ -2,55 +2,55 @@
 layout: content
 title:  "FAQ"
 categories: tcpreplay wiki
-description: "Frequently Asked Questions"
+description: "よくある質問とその回答／Frequently Asked Questions"
 ---
 
 
 - 一般的な質問／General Questions
-	- [どうして大文字の Tcpreplay なの？／How should Tcpreplay be capitalized?](#how-should-tcpreplay-be-capitalized)
-	- [Tcpreplay の入手方法／Where do I get Tcpreplay?](#where-do-i-get-tcpreplay)
-	- [Tcpreplay のインストール方法／How do I install Tcpreplay?](#how-do-i-install-tcpreplay)
-	- [Windows 版はありますか？／Is there a Microsoft Windows port?  ](#is-there-a-microsoft-windows-port)
-	- [Tcpreplay のライセンスは？／How is Tcpreplay licensed?](#how-is-tcpreplay-licensed)
-- Tcpreplay の実行／Running Tcpreplay
-	- [tcpreplay はサーバにトラフィックを送信できますか？／Does tcpreplay support sending traffic to a server?  ](#does-tcpreplay-support-sending-traffic-to-a-server)
-	- [なぜ Tcpreplay は指定した速度でトラフィックを送信できないのですか？／Why doesn't Tcpreplay send traffic as fast as I told it to?](#why-doesnt-tcpreplay-send-traffic-as-fast-as-i-told-it-to)
-	- [tcpreplay を実行しているマシンでパケットを送出できますか？／Can I send packets on the same computer running tcpreplay?](#can-i-send-packets-on-the-same-computer-running-tcpreplay)
-	- [古いバージョンの tcpreplay はパケットを書き換えできたのに(今はできません)／Older versions of tcpreplay allowed me to edit packets. What happened?](#older-versions-of-tcpreplay-allowed-me-to-edit-packets-what-happened)
-	- [tcpprep でキャッシュファイルを作る必要性は？ tcprewrite だけでは動かない？／Why do I need to use tcpprep to create cache files? Can't this be done in tcprewrite?](#why-do-i-need-to-use-tcpprep-to-create-cache-files-can't-this-be-done-in-tcprewrite)
-	- [tcpreplay が全てのパケットを送出しない理由は？／Why is tcpreplay not sending all the packets?](#why-is-tcpreplay-not-sending-all-the-packets)
-	- [tcpreplay の送信タイミングがめちゃくちゃなのはなぜ？／Why are tcpreplay timings all messed up?](#why-are-tcpreplay-timings-all-messed-up)
-	- [tcpreplay は複数のネットワークカード(NIC)で使えますか？(Tomahawk (というアプリケーション)のように)／Does tcpreplay support dual NIC's like Tomahawk?](#does-tcpreplay-support-dual-nic's-like-tomahawk)
-	- [tcpreplay は gzip/bzip2 圧縮されたファイルを読み込めますか？／Can tcpreplay read gzip/bzip2 compressed files?](#can-tcpreplay-read-gzipbzip2-compressed-files)
-	- [tcpreplay はどのくらいの速度でパケットを送出できますか？／How fast can tcpreplay send packets?](#how-fast-can-tcpreplay-send-packets)
-	- [どうやったらもっと速くパケットを送出できますか？／How can I make tcpreplay run even faster?](#how-can-i-make-tcpreplay-run-even-faster)
-	- [tcpreplay は Endace DAG カードで使えますか？／Does tcpreplay support Endace DAG cards?](#does-tcpreplay-support-endace-dag-cards)
-	- [pcap ファイル以外のキャプチャファイルを使えますか？／Can I use non-pcap capture files?](#can-i-use-non-pcap-capture-files)
-	- [Tcpreplay は Pcap-Ng/NTAR ファイルを読み込めますか？／Does Tcpreplay support Pcap-Ng/NTAR files?](#does-tcpreplay-support-pcap-ngntar-files)
-	- [tcpreplay は Wi-Fi からパケットを送出できますか？／Can tcpreplay send packets over WiFi?](#can-tcpreplay-send-packets-over-wifi)
-	- [loopback インターフェイスから送出したパケットが見えないのはなぜ？／Why doesn't my application see packets replayed over loopback?](#why-doesnt-my-application-see-packets-replayed-over-loopback)
-	- [iptables などでトラフィックコントロールできますか？／Can I use IPTables/Traffic Control with tcpreplay?](#can-i-use-iptablestraffic-control-with-tcpreplay)
-- Tcpreplay のコンパイル／Compiling Tcpreplay
-	- [XXX 用のバイナリファイルはありますか？／Are there binaries available for XXX operating system?](#are-there-binaries-available-for-xxx-operating-system)
-	- [お願いしたらバイナリを作ってくれますか？／What if I ask you really nicely to build a binary for me?](#what-if-i-ask-you-really-nicely-to-build-a-binary-for-me)
-	- [パケットを送出するための方法が見つかりません。libpcap をバージョンアップするか libdnet を有効化してください／Unable to find a supported method to send packets.  Please upgrade your libpcap or enable libdnet  ](#unable-to-find-a-supported-method-to-send-packets--please-upgrade-your-libpcap-or-enable-libdnet)
-	- [tcpedit_stub.def: Command not found   ](#tcpedit_stubdef-command-not-found)
+	- [どうして大文字の Tcpreplay なの？](#how-should-tcpreplay-be-capitalized)
+	- [Tcpreplay の入手方法](#where-do-i-get-tcpreplay)
+	- [Tcpreplay のインストール方法](#how-do-i-install-tcpreplay)
+	- [Windows 版はありますか？](#is-there-a-microsoft-windows-port)
+	- [Tcpreplay のライセンスは？](#how-is-tcpreplay-licensed)
+- Tcpreplay の実行
+	- [tcpreplay はサーバにトラフィックを送信できますか？](#does-tcpreplay-support-sending-traffic-to-a-server)
+	- [なぜ Tcpreplay は指定した速度でトラフィックを送信できないのですか？](#why-doesnt-tcpreplay-send-traffic-as-fast-as-i-told-it-to)
+	- [tcpreplay を実行しているマシンでパケットを送出できますか？](#can-i-send-packets-on-the-same-computer-running-tcpreplay)
+	- [古いバージョンの tcpreplay はパケットを書き換えできたのに(今はできません)](#older-versions-of-tcpreplay-allowed-me-to-edit-packets-what-happened)
+	- [tcpprep でキャッシュファイルを作る必要性は？ tcprewrite だけでは動かない？](#why-do-i-need-to-use-tcpprep-to-create-cache-files-can't-this-be-done-in-tcprewrite)
+	- [tcpreplay が全てのパケットを送出しない理由は？](#why-is-tcpreplay-not-sending-all-the-packets)
+	- [tcpreplay の送信タイミングがデタラメなのはなぜ？](#why-are-tcpreplay-timings-all-messed-up)
+	- [tcpreplay は複数のネットワークカード(NIC)で使えますか？(Tomahawk (というアプリケーション)のように)](#does-tcpreplay-support-dual-nic's-like-tomahawk)
+	- [tcpreplay は gzip/bzip2 圧縮されたファイルを読み込めますか？](#can-tcpreplay-read-gzipbzip2-compressed-files)
+	- [tcpreplay はどのくらいの速度でパケットを送出できますか？](#how-fast-can-tcpreplay-send-packets)
+	- [どうやったらもっと速くパケットを送出できますか？](#how-can-i-make-tcpreplay-run-even-faster)
+	- [tcpreplay は Endace DAG カードで使えますか？](#does-tcpreplay-support-endace-dag-cards)
+	- [pcap ファイル以外のキャプチャファイルを使えますか？](#can-i-use-non-pcap-capture-files)
+	- [Tcpreplay は Pcap-Ng/NTAR ファイルを読み込めますか？](#does-tcpreplay-support-pcap-ngntar-files)
+	- [tcpreplay は Wi-Fi からパケットを送出できますか？](#can-tcpreplay-send-packets-over-wifi)
+	- [loopback インターフェイスから送出したパケットが見えないのはなぜ？](#why-doesnt-my-application-see-packets-replayed-over-loopback)
+	- [iptables などでトラフィックコントロールできますか？](#can-i-use-iptablestraffic-control-with-tcpreplay)
+- Tcpreplay のコンパイル
+	- [XXX 用のバイナリファイルはありますか？](#are-there-binaries-available-for-xxx-operating-system)
+	- [お願いしたらバイナリを作ってくれますか？](#what-if-i-ask-you-really-nicely-to-build-a-binary-for-me)
+	- [パケットを送出するための方法が見つかりません。libpcap をバージョンアップするか libdnet を有効化してください](#unable-to-find-a-supported-method-to-send-packets--please-upgrade-your-libpcap-or-enable-libdnet)
+	- [tcpedit_stub.def: Command not found](#tcpedit_stubdef-command-not-found)
 	- [tcpreplay_opts.h:72:3: error: #error option template version mismatches autoopts/options.h header](#tcpreplay_optsh723-error-#error-option-template-version-mismatches-autooptsoptionsh-header)
-	- [autogen や libopts に関する話題／Issues with autogen/libopts][Issues with autogen/libopts](#issues-with-autogenlibopts)
-	- [Fedora Core/RedHat で発生するリンクできない問題／Problems with linking under recent Fedora Core/RedHat][Problems with linking under recent Fedora Core/RedHat](#problems-with-linking-under-recent-fedora-coreredhat)
-- 一般的なエラー／Common Errors
+	- [autogen や libopts に関する話題][Issues with autogen/libopts](#issues-with-autogenlibopts)
+	- [Fedora Core/RedHat で発生するリンクできない問題][Problems with linking under recent Fedora Core/RedHat](#problems-with-linking-under-recent-fedora-coreredhat)
+- 一般的なエラー
 	- [][Unable to send packet: Error with pcap_inject(packet #10): send: Message too long](#unable-to-send-packet-error-with-pcap_injectpacket-#10-send-message-too-long)
 	- [Can't open eth0: libnet\_select\_device(): Can't find interface eth0](#can't-open-eth0-libnet_select_device-can't-find-interface-eth0)
 	- [Can't open eth0: UID != 0](#can't-open-eth0-uid-0)
 	- [100000 write attempts failed from full buffers and were repeated](#100000-write-attempts-failed-from-full-buffers-and-were-repeated)
-	- [Unable to process test.cache: cache file version mismatch](#unable-to-process-testcache-cache-file-version-mismatch)
-	- [Skipping SLL loopback packet](#skipping-sll-loopback-packet)
-	- [Packet length (8892) is greater then MTU; skipping packet](#packet-length-8892-is-greater-then-mtu-skipping-packet)
-	- [tcpreplay doesn't send entire packet/tcprewrite truncates packets](#tcpreplay-doesn't-send-entire-packettcprewrite-truncates-packets)
-	- [tcpreplay is sending packets out of order](#tcpreplay-is-sending-packets-out-of-order)
-- Use Cases for Tcpreplay
-	- [External Use Cases](#external-use-cases)
-	- [Other Documents](#other-documents)
+	- [test.cache を処理できない／cache ファイルのバージョンミスマッチ](#unable-to-process-testcache-cache-file-version-mismatch)
+	- [SLL loopback パケットがスキップされる](#skipping-sll-loopback-packet)
+	- [8892 バイトのパケットが MTU より大きいくてスキップされる](#packet-length-8892-is-greater-then-mtu-skipping-packet)
+	- [tcpreplay がパケットの一部しか送信しない／tcprewrite がパケットをトランケートする](#tcpreplay-doesn't-send-entire-packettcprewrite-truncates-packets)
+	- [tcpreplay が順番通りにパケットを送信しない](#tcpreplay-is-sending-packets-out-of-order)
+- Tcpreplay のユースケース
+	- [ユースケース(外部サイト)](#external-use-cases)
+	- [他のドキュメント](#other-documents)
 
 
 一般的な質問／General Questions
@@ -185,77 +185,101 @@ pcap ファイル全体を見る必要がありますし、2回読み込まれ�
 実際にパケットを送出する時にも機能させることが可能になります。
 
 
-<h2><a name="why-is-tcpreplay-not-sending-all-the-packets">Q:</a> Why is tcpreplay not sending all the packets?</h2>
-Every now and then, someone emails the tcpreplay-users list, asking if there is a bug in tcpreplay 
-which causes it not to send all the packets. This usually happens when the using the `-t` 
-option, which may send packets faster than the system can handle. In this case, the network adapter 
-receives the packet but is unable to send it. This problem is highly hardware dependent.
+<h2><a name="why-is-tcpreplay-not-sending-all-the-packets">Q:</a>tcpreplay が全てのパケットを送出しない理由は？</h2>
+時折、(pcap ファイルの中の)全てのパケットが送信されない bug があるのではないか、
+というメールが tcpreplay-users のメーリングリストに投稿されます。
+`-t` オプションを使った場合に、全てのパケットが送信されない症状が発生しがちです。
+このような場合は、NIC は(Tcpreplay から)パケットを受け取ったのですが、
+(ネットワーク上に)送信できないのです。
+この問題は、ハードウェアに大きく依存しています。
 
-It is important to understand that if the network socket is indicating that it is congested, tcpreplay will wait
-until its buffers become available before moving on to the next packet. If packets are lost, it happens after
-the network has accepted the packet.
+ネットワークソケットが混雑しているかどうかを表示させるのは重要です。
+tcpreplay は、(pcap ファイルの)次のパケットの処理に移行する前に、
+(NIC の)バッファが書き込める状態になるまで待ちます。
+もしパケットが欠落する現象が発生した場合、
+NIC がパケットを受け取った後に問題が発生したことになります。
 
-The longer version goes something like this:
+以前のバージョンでは以下のような症状がありました:
 
-If you are running tcpreplay multiple times and are using *tcpdump* or other packet 
-sniffer to count the number of packets sent and are getting different numbers, it's not *tcpreplay's* fault. Try investigating:
+tcpreplay を何度も実行し、かつ、
+パケットを何発送信したかを数えるために *tcpdump* や他のスニファーツールを使っている場合、
+(tcpreplay と tcpdump で)パケットの送信数が異なる場合があります。
+これは *tcprepaly* の問題ではありません。下記を調査してください:
 
-1. It is well known that *tcpdump* and other sniffers have a problem keeping up with high-speed traffic. 
-Furthermore, the OS in many cases lies about how many packets were dropped. *Tcpdump* will repeat this lie to you. In other words, 
-*tcpdump* isn't seeing all the packets. Usually this is a problem with the network card, driver or OS kernel 
-which may or may not be fixable. Try another network card/driver.   
-2. When *tcpreplay* sends a packet, it actually gets copied to a send buffer in the kernel. 
-If this buffer is full, the kernel is supposed to tell tcpreplay that it didn't copy the packet to this buffer. 
-If the kernel has a bug which squelches this error, tcpreplay will not keep retrying to send the packet and will 
-move on to the next one. Currently we are not aware of any OS kernels with this bug, but it is possible that 
-it exists. If you find out that your OS has this problem, please let us know so we can list it here.   
-3. Tcpreplay can't send packets which are larger than the MTU of the interface. Generally, you 
-can increase Ethernet MTU beyond the default 1500 bytes by using the ifconfig utility, but it is not recommended
-that you do so in production. MTU mismatch bugs are very illusive, and make networks run about 1/6th normal speeds.   
-4. We've been informed by one user that having NIC hardware checksum enabled causes tools like *tcpdump* to drop packets 
-even at very low rates (1Mbps). 
-Disabling this feature caused the NIC to stop dropping packets. This is not a bug in *tcpreplay*.
+1. *tcpdump* や他のスニファーツールでは高速通信時に問題があることがよく知られています。
+さらにその上、OS は多くの場合、どの位のパケットが欠落したかを間違って報告します。
+*Tcpdump* はこれ(OS)が言うままに間違って報告します。言い換えるなら、
+*tcpdump* は全てのパケットを見ている訳ではないのです。
+たいていの場合、これは NIC やドライバや OS のカーネルの問題で、
+問題を解決できるかできないかは不明です。NIC や NIC のドライバを変更してみてください。
 
+2. *tcpreplay* がパケットを送信するのは、カーネルの送信バッファにコピーすることになります。
+この祖バッファが一杯になっている場合、カーネルは tcpreplay に対して、
+バッファにコピーしないよう伝えます。
+カーネルがこのエラーを表示しないようなバグを持っている場合、
+tcpreplay はパケットを再送信することもなく次のパケットの処理に進んでします。
+現時点で、このようなバグを持つカーネルは見つかっていませんが、現実にはありえます。
+もしこのような問題を持つ OS を見つけた場合は、ぜひ私達に報告してください。
 
-<h2><a name="why-are-tcpreplay-timings-all-messed-up">Q:</a> Why are tcpreplay timings all messed up?</h2>
-Occasionally someone complains about timings to be "messed up". Usually this seems to
-be caused by a pcap which contains packets with non-sensical timestamps. 
-More specifically, we have seen cases where a packet has a timestamp before 
-the previous packet in the capture file. This usually happens on network adapters that timestamp 
-in hardware, but then split traffic into multiple queues. They are presented to the capture software
-in a different order than they arrived.
+3. Tcpreplay は、インターフェイスの MTU よりも大きなパケットは送信できません。
+一般的には、
+ifconfig ツールなどを使って Ethernet の MTU をデフォルトの 1500バイトよりも大きくしますが、
+商用利用の環境において(MTU を大きくすること)は勧められません。
+MTU の不一致の問題は非常に分かりづらいです。
+そして、ネットワークのスピードは六分の一程度になってしまいます。
 
+4. NIC のハードウェアで checksum を計算するような場合に、
+(1Mbps のような)低レートな環境下でも
+*tcpdump* のようなツールがパケットロスを発生するような報告があります。
+NIC でこのような(ハードウェアで checksum を計算する)設定を無効にすることで、
+パケットロスは発生しなくなります。これは *tcpreplay* の問題ではありません。
 
-<h2><a name="does-tcpreplay-support-dual-nic's-like-tomahawk">Q:</a> Does tcpreplay support dual NIC's like Tomahawk?</h2>
-Yes! *tcpreplay* has for many years supported high-speed playback using two interfaces
-(long before [Tomahawk][tomahawk] existed). For more information about how traffic is split between
-the two interfaces, see the *tcpprep* manpage.
+<h2><a name="why-are-tcpreplay-timings-all-messed-up">Q:</a>tcpreplay の送信タイミングがデタラメなのはなぜ？</h2>
+時折、パケットの送信タイミングがデタラメだと文句を言います。
+たいていの場合は、正しくないタイムスタンプを含んだ pcap ファイルが原因です。
+もっと具体的に言うと、キャプチャファイルの中のとあるパケットが、
+それ以前のパケットのタイムスタンプよりも古い時刻を持つなどです。
+NIC のハードウェアでタイムスタンプが付与された後に、
+(ソフトウェア的に)複数のキューに分割されてしまう場合に発生します。
+このような場合には、
+パケットが到着した順序とは異なる順序で(pcap ファイルに)保存されてしまいます。
 
+<h2><a name="does-tcpreplay-support-dual-nic's-like-tomahawk">Q:</a>tcpreplay は複数のネットワークカード(NIC)で使えますか？(Tomahawk (というアプリケーション)のように)</h2>
+使えます!
+*tcpreplay* はずっと前から 2つのインターフェイスを使って高速で再送信する機能を持っています。
+([Tomahawk][tomahawk] が登場するずっと前からです)
+トラフィックを 2つのインタフェイスでどう分離するかについては、
+*tcpprep* の man ページに詳細が記述されています。
 
-<h2><a name="can-tcpreplay-read-gzipbzip2-compressed-files">Q:</a> Can tcpreplay read gzip/bzip2 compressed files?</h2>
-Yes, but not directly. Since *tcpreplay* can read data via STDIN, you can decompress the file on the fly like this:
+<h2><a name="can-tcpreplay-read-gzipbzip2-compressed-files">Q:</a>tcpreplay は gzip/bzip2 圧縮されたファイルを読み込めますか？</h2>
+読み込めますが、直接的には読み込めません。
+*tcpreplay* は STDIN(標準入力) からファイルを読み込めるので、
+下記のような方法でオンザフライで展開できます:
 
 ```
 gzcat myfile.pcap.gz | tcpreplay -i eth0 -
 ```
 
-Note that decompressing on the fly will require additional CPU time and will likely reduce the overall 
-performance of *tcpreplay*.
+オンザフライでファイルを展開するには CPU 時間が消費されるので、
+*tcpreplay* のパフォーマンスが下がってしまいます。
 
+<h2><a name="how-fast-can-tcpreplay-send-packets">Q:</a>tcpreplay はどのくらいの速度でパケットを送出できますか？</h2>
+まず初めに、パフォーマンスが重要なのであれば、4.x にアップグレードする価値があります。
+3.x シリーズから最適化されています。
+次に、パフォーマンスや、
+あなたがどう測定するか(packet/sec や bytes/sec)について影響する変数はたくさんあります。
 
-<h2><a name="how-fast-can-tcpreplay-send-packets">Q:</a> How fast can tcpreplay send packets?</h2>
-First, if performance is important to you, then upgrading to tcpreplay 4.x is worthwhile since it is more optimized then
-3.x series. After that, there are a number of variables which effect performance, 
-including how you measure it (packets/sec or bytes/sec).
+パフォーマンスは、指定したオプション、再送信する pcap ファイル、
+ハードウェアなどに依存します。
+[netmap][nm] がサポートされている NIC を使うとパフォーマンスが大きく向上しますが、
+自分の首を絞めないように注意してください。
+`--netmap` オプションを使う間は、
+テストの期間中はネットワークドライバは使われなくなります(バイパスされます)。
 
-Performance will depend on options selected, pcap file and hardware. Adding [netmap][nm] patches to your network 
-adapters will dramatically
-increase performance, but be careful not to shoot yourself in the foot. When using the `--netmap` the network
-driver is bypassed for the duration of the test.
+*tcpreplay* を i7 processor/Intel 82599 10GbE NIC で動作させた例を出します。
+`--netmap` オプションを使うことで、
+ほぼワイヤーレートで 157K flows/sec を実現できます。
 
-Here is an example of *tcpreplay* on an i7 processor with an Intel 82599 
-10GigE NIC. With the `--netmap` option and this pcap file we achieve near wire 
-speed and 157K flows/sec.
 
 <div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="c1"># </span><span class="no">tcpreplay --preload-pcap -i eth0 --loop 500 -t --unique-ip <span class="ss">--netmap</span> smallFlows.pcap</span> 
 Switching network driver for eth0 to netmap bypass mode... done!
@@ -272,16 +296,20 @@ Statistics for network device: eth0
     Retried packets (EAGAIN): 0
 Switching network driver for eth0 to normal mode... done!</span></code></pre></div>
 
-**Note** that the above example is closer to wire speed than it first appears. Average packet size
-for this pcap file is (4608265500 ÷ 7130500) = 646 bytes. 10GigE Ethernet will add an 
-additional 17 bytes for IFG, preamble, SOF and FCS on the wire, which makes the average frame 
-size 663. On wire, speed is (663 ÷ 646) × 9582.85 = 9836 Mbps. Finally,
+**注意** 上記の例では、最初に出した例と比較して、ほぼワイヤーレートを実現しています。
+この pcap ファイルの平均的なパケットサイズは
+646 (4608265500 ÷ 7130500) バイトです。
+10GbE の Ethernet では 17 バイトの IFG(Inter Frame Gap) とプリアンブルと
+SOF(Start Of Frame) と FCS(Frame Check Sequence) が付与されるため、
+663 (646 + 17) バイトになります。
+そして Ethernet 上では (663 ÷ 646) × 9582.85 = 9836 Mbps となります。
+Finally,
 the manufacturer of this adapter does not claim 100% wire rate because it is front-ended by 
 a hardware timestamp feature. You may achieve 100%.
 
-In some cases we have seen performance
-higher than the adverstised clock rate (e.g. 1048 Mbps on GigE). You may achieve 100%
-with your adapter and maybe even more.
+(例えば GigabitEthernet において 1048 Mbps などのように)
+最大値を超える値が表示されるかもしれません。
+You may achieve 100% with your adapter and maybe even more.
 
 The next example is the same except limited to 9500Mbps with the `-M` option. As of version
 4.0 there is little overhead in using this option.
@@ -323,7 +351,7 @@ Switching network driver for eth0 to normal mode... done!</span></code></pre></d
 If anyone achieves better results or has 40GigE results, please share.
 
 
-<h2><a name="how-can-i-make-tcpreplay-run-even-faster">Q:</a> How can I make tcpreplay run even faster?</h2>
+<h2><a name="how-can-i-make-tcpreplay-run-even-faster">Q:</a>どうやったらもっと速くパケットを送出できますか？</h2>
 Profiling tcpreplay has shown that a significant amount of time is spent writing packets to the network. Hence, your OS kernel 
 implementation of writing to raw sockets is one of the most important aspects since that is where tcpreplay spends most of it's time.
 
@@ -358,14 +386,14 @@ In no particular order:
  have [NAPI][napi] support, which has significantly enhanced I/O.
 
 
-<h2><a name="does-tcpreplay-support-endace-dag-cards">Q:</a> Does tcpreplay support Endace DAG cards?</h2>
+<h2><a name="does-tcpreplay-support-endace-dag-cards">Q:</a>tcpreplay は Endace DAG カードで使えますか？</h2>
 By default, *tcpreplay* does not support DAG cards. However, [Endace][endace] has released 
 a custom version of tcpreplay which does support their cards. 
 Please note that the Tcpreplay developers do not support this custom version of tcpreplay, 
 so if you have any questions, please contact Endace.
 
 
-<h2><a name="can-i-use-non-pcap-capture-files">Q:</a> Can I use non-pcap capture files?</h2>
+<h2><a name="can-i-use-non-pcap-capture-files">Q:</a>pcap ファイル以外のキャプチャファイルを使えますか？</h2>
 It turns out that there are quite a few capture file formats other then pcap.
 If you have a capture file created by a tool which uses one of these other formats (like Solaris snoop) 
 you can convert it to pcap format by using [Wireshark's][wireshark] tshark tool.
@@ -374,12 +402,12 @@ you can convert it to pcap format by using [Wireshark's][wireshark] tshark tool.
 tshark -r blah.snoop -w blah.pcap
 ```
 
-<h2><a name="does-tcpreplay-support-pcap-ngntar-files">Q:</a> Does Tcpreplay support Pcap-Ng/NTAR files?</h2>
+<h2><a name="does-tcpreplay-support-pcap-ngntar-files">Q:</a>Tcpreplay は Pcap-Ng/NTAR ファイルを読み込めますか？</h2>
 Yes. The Tcpreplay suite uses [libpcap][tcpdump] for reading and writing pcap files. 
 If you have libpcap 1.1.0 or higher, then *tcpreplay*, *tcprewrite*, etc can read pcap-ng files. If you have an older version of libpcap, you should upgrade to the latest version as earlier versions of libpcap have bugs with pcap-ng files.
 
 
-<h2><a name="can-tcpreplay-send-packets-over-wifi">Q:</a> Can tcpreplay send packets over WiFi?</h2>
+<h2><a name="can-tcpreplay-send-packets-over-wifi">Q:</a>tcpreplay は Wi-Fi からパケットを送出できますか？</h2>
 This turns out to be very OS/hardware dependent, but in many cases, the answer is yes. 
 In order for things to work, you generally must do the following:
 
@@ -388,7 +416,7 @@ In order for things to work, you generally must do the following:
 * The source MAC of the packets need to match the MAC of your WiFi card
 
 
-<h2><a name="why-doesnt-my-application-see-packets-replayed-over-loopback">Q:</a> Why doesn't my application see packets replayed over loopback?</h2>
+<h2><a name="why-doesnt-my-application-see-packets-replayed-over-loopback">Q:</a>loopback インターフェイスから送出したパケットが見えないのはなぜ？</h2>
 Most users are surprised, when they try replaying UDP traffic over loopback, that the listening daemon 
 never sees the traffic. This turns out to be a limitation of the loopback interface on many operating systems. 
 One contributing factor may be capturing traffic on an Ethernet port, rewriting the IP addresses but not the L2 header. 
@@ -396,7 +424,7 @@ Since the loopback interface doesn't use an Ethernet L2 header, the IP stack of 
 operating system is unable to parse the packet and deliver it to the listening daemon.
 
 
-<h2><a name="can-i-use-iptablestraffic-control-with-tcpreplay">Q:</a> Can I use IPTables/Traffic Control with tcpreplay?</h2>
+<h2><a name="can-i-use-iptablestraffic-control-with-tcpreplay">Q:</a>iptables などでトラフィックコントロールできますか？</h2>
 You cannot use iptables/tc on the same box as you run tcpreplay. 
 The only way to use IPTables or Traffic Control (tc) with tcpreplay is to run tcpreplay on a different 
 box and send the traffic *through* the system running iptables/tc. This limitation is due to how the Linux 
@@ -404,7 +432,7 @@ kernel injects frames vs. reading frames for iptables/tc which makes traffic sen
 invisible to iptables/tc.
 
 
-Compiling Tcpreplay
+Tcpreplay のコンパイル／Compiling Tcpreplay
 ===================
   
 <h2><a name="are-there-binaries-available-for-xxx-operating-system">Q:</a> Are there binaries available for XXX operating system?</h2>
