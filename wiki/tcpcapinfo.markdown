@@ -5,10 +5,10 @@ categories: tcpreplay wiki
 description: "tcpcapinfo - display information about a PCAP capture file"
 ---
 
-- [概要／Overview][Overview](#overview)
-- [一般的な使い方／Basic Usage][Basic Usage](#basic-usage)
-- [実行例／Example][Example](#example)
-- [man ページ／Man pages][Man pages](tcpcapinfo-man.html)
+- [概要／Overview](#overview)
+- [一般的な使い方／Basic Usage](#basic-usage)
+- [実行例／Example](#example)
+- [マニュアル／Man pages](tcpcapinfo-man.html)
 
 <h2><a name="overview"></a>概要／Overview</h2>
 *tcpcapinfo* は、

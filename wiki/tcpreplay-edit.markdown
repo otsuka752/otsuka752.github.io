@@ -5,8 +5,8 @@ categories: tcpreplay wiki
 description: "tcpreplay-edit - replay a PCAP packet capture file while actively modifying packets"
 ---
 
-- [概要／Overview][Overview](#overview)
-- [man ページ／Man pages][Man pages](tcpreplay-edit-man.html)
+- [概要／Overview](#overview)
+- [マニュアル／Man pages](tcpreplay-edit-man.html)
 
 <h2><a name="overview"></a>概要／Overview</h2>
 [tcpreplay] は長い年月をかけて開発されてきました。

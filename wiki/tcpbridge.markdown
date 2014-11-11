@@ -5,9 +5,9 @@ categories: tcpreplay wiki
 description: "tcpbridge - emulate a learing bridge"
 ---
 
-- [Overview](#overview)
-- [Notes](#notes)
-- [Man pages](tcpbridge-man.html)
+- [概要／Overview](#overview)
+- [注意事項／Notes](#notes)
+- [マニュアル／Man pages](tcpbridge-man.html)
 
 <h2><a name="overview"></a>概要／Overview</h2>
 *tcpbridge* を使うことで、2つのネットワークをブリッジ接続できます。
