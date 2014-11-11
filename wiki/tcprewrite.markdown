@@ -318,38 +318,47 @@ $ tcprewrite --fixcsum --infile=input.pcap --outfile=output.pcap
 ```
 
 <h2><a name="rewriting-layers-5-7"></a>Layer 5-7 の書き換え／Rewriting Layers 5-7</h2>
-Often pcap's are truncated so some of the application data in the packet is missing.
-Depending on the device type that will be processing the traffic, the application 
-data may or may not be important, but having a full packet may be. Routers and 
-firewalls for example don't usually fully process application data.
+パケットがトランケートされている(切り詰められている)ことはよくあるので、
+パケットの中のアプリケーションのデータは失われています。
+トラフィックを処理しているデバイスの種類によって、
+アプリケーションのデータは重要かもしれないですし、
+そうでないかもしれません。
+例えば、ルータやファイヤーウォールは、
+通常はパケットの中のアプリケーションデータ全体は処理しません。
 
-*tcprewrite* supports three methods to "fix" the missing data. You can either pad out the
-packet with 0x00 or alter the packet headers to indicate that the packet length is only as
-large as what was captured. In both cases, the packet data is most likely invalid,
-but at least the packet is valid. The third option is to remove the packet completely.
-Note that by removing the packet from the output pcap file, hence you should not re-use 
-a *tcpprep cache file* with the resulting file since it will no longer match the pcap file.
+*tcprewrite* には、失われたデータを "fix" する方法が 3つあります。
+(パケット長に合わせて)パケットに 0x00 のデータをパディングする
+(0x00 のデータを追加する)、または、
+キャプチャされたパケット長に合わせてパケットのヘッダを書き換える、
+という方法を選択できます。
+どちらの方法も、パケットのデータは invalid(無効)ですが、
+すくなくともパケットとしては valid(有効) です。
+3番目の方法は、パケットを完全に取り除いてしまいます。
+出力する pcap ファイルには、
+元の(サイズが異なる)パケットは含まれないことに注意してください。
+従って、再度 *tcpprep cache file* を適応すべきではありません。
+pcap ファイルの中に、もうマッチするパケットは存在しないからです。
 
-Pad the packets with 0x00:
+0x00 でパディングします:
 
 ```
 $ tcprewrite --fixlen=pad --infile=input.pcap --outfile=output.pcap
 ```
 
-Rewrite the packet header length fields to match the captured packet length:
+キャプチャしたパケットサイズに合わせて(pcap ファイルの)パケットヘッダ長を書き換えます:
 
 ```
 $ tcprewrite --fixlen=trunc --infile=input.pcap --outfile=output.pcap
 ```
 
-Delete the packet from the pcap file:
+pcap ファイルからパケットを取り除きます:
 
 ```
 $ tcprewrite --fixlen=del --infile=input.pcap --outfile=output.pcap
 ```
 
-When padding packets, their maximum size will be limited to the MTU value 
-(default is 1500 bytes) which can be over-ridden using the `--mtu` option.
+パケットにパディングする時、その最大サイズは(通常は 1500バイトの)
+MTU の値に制限されます。MTU の値は `--mtu` オプションで上書きできます。
 
 <h2><a name="dealing-with-mtu-problems"></a>MTU の問題の取り扱い／Dealing with MTU problems</h2>
 インターフェイスの最大送信サイズ(MTU)が、

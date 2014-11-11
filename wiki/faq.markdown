@@ -352,110 +352,144 @@ If anyone achieves better results or has 40GigE results, please share.
 
 
 <h2><a name="how-can-i-make-tcpreplay-run-even-faster">Q:</a>どうやったらもっと速くパケットを送出できますか？</h2>
+tcpreplay では、
+パケットをネットワークに書き出す時間がもっとも影響を与えています。
+tcpreplay はこれにほとんどの時間を取られているため、
+使っている OS のカーネルが raw sockets に書き込む実装方法は、
+最も重要事項になります。
+
 Profiling tcpreplay has shown that a significant amount of time is spent writing packets to the network. Hence, your OS kernel 
 implementation of writing to raw sockets is one of the most important aspects since that is where tcpreplay spends most of it's time.
 
-In no particular order:
+下記は順不同で:
 
-* Hardware:   
- 1. Use a fast enough hardware. *tcpreplay* your network card and CPU.
- 2. Ensure that your system has the fastest memory possible. This is almost as important as selecting a fast CPU.
- 3. Since tcpreplay is not multi-threaded, SMP or dual-core processors won't help very much.
- However, other processes can run on the other CPU(s).  
- 4. Turn off hyperthreading (HT) if your CPU supports it.
- 5. A good network card/driver is important. For 10GigE we have seen good results with Intel 82599 adapters.
- 6. Motherboard configuration is important. Sometimes if you see 4 or 6 network adapters on a motherboard, you can be assured
- that they are connected to the Southbridge. That's a shame because the Southbridge is reserved for slower devices such
- as USB, serial ports, etc. To optimize speed, plug your adapter into a PCI slot that is connected to the faster
- Northbridge.
- 7. Make sure that your PCI bus has enough lanes for your adapter. PCI Express lanes handle 200MB/s of traffic in each direction. For
- 10GigE you should plug into an eight lane (x8) PCI Express slot.
- 8. You may find this article from [Mark Wagner][mark_wagner] helpful. It is especially helpful in controlling CPU affinity for
- 10GigE interrupts. We have seen great performance boosts from recommendations in this paper.
+* ハードウェア／Hardware:   
+ 1. 十分に高速なハードウェアを使ってください。*tcpreplay* your network card and CPU.
+ 2. 高速なメモリを使ってください。高速な CPU を使うことと同じくらい重要なことです。
+ 3. tcpreplay はマルチスレッドには対応していないので、SMP や dual-core でもあまり高速になりません。
+ しかし、他のプロセス(アプリケーション)が(tcpreplay が使っている CPU とは)別の CPU を使えます。
+ 4. ハイパースレッド(hyperthreading (HT))対応の CPU の場合は HT を無効にしてください
+ 5. 良い NIC を使うことは重要です。10GbE の場合、Intel 82599 アダプタは良い結果を出しました。
+ 6. マザーボードの設定は重要です。マザーボード上に 4-6個の NIC がある場合もありますが、
+サウスブリッジ(Southbridge)に接続されているのは間違いありません。
+サウスブリッジは USB やシリアルポートなどの低速なデバイス用のものなので、
+これらのオンボード NIC を使うと残念な結果になります。
+速度を高速にするためには、高速なノースブリッジ(Northbridge)に接続されている
+PCI スロットに NIC を接続してください。
+ 7. NIC に十分な PCI バスのレーンがあることを確認してください。
+PCI Express のレーンは、各方向に 200MB/s の帯域が確保されています。
+10GbE の NIC は、x8 レーンの PCI Express スロットに接続してください。
+ 8. このセクションに記述された内容は [Mark Wagner(PDF)][mark_wagner]にも記載されています。
+特に，10GbE の割り込み(interrupts)のために
+CPU アフィニティ(affinity)を制御することについて参考になります。
+この資料に推奨される方法で、パフォーマンスは劇的に改善されました。
  
-* Configuration:
- 1. If you have enough RAM to store the pcap files in a RAM disk with the `--preload-pcap` option.
- 2. If you don't have enough RAM for a RAM disk, run *tcpreplay* against the file once in order to 
- load parts of your file in your OS's disk cache. That will help improve performance on the subsequent runs.
- 3. If your computer is busy running a bunch of other processes (running X, downloading mail, etc) 
- then it will impact *tcpreplay*'s performance and ability to time packets correctly.
- 4. Opening a bunch of small files repeatly will reduce performance. Consider using [mergecap][mergcap]
- to generate a single large file.
- 5. Like most network based I/O, it is faster to send the same amount of data in a few large packets then many small packets.
- 6. On Linux, use a newer kernel version. Usually you want a kernel version higher than 2.6.18, which will 
- have [NAPI][napi] support, which has significantly enhanced I/O.
-
+* 設定／Configuration:
+ 1. たくさんのメモリが搭載されているなら、pcap ファイルをメモリに展開する `--preload-pcap` を指定してください。
+ 2. 十分なメモリが搭載されていない場合は、
+ *tcpreplay* が OS のディスクキャッシュから読み出せる程度の pcap ファイルにしてください。
+ 2回目以降に実行した時のパフォーマンスが向上します。
+ 3. (X を実行していたり、メールをダウンロードするなどのように)
+ 他のプロセス群が実行されている場合、
+ *tcpreplay* のパフォーマンスやパケットの時間測定にもに影響します。
+ 4. 小さな (pcap) ファイル群を読み出すとパフォーマンスは下がります。
+ [mergecap][mergcap] ツールを使って、
+ 1つの大きな (pcap) ファイルにまとめることを検討してください。
+ 5. ネットワークの I/O と同様に、あるデータ量を送信する場合、
+ たくさんの小さなパケットを送信するのに比べ、
+ 少ない大きなパケットを送信する方が高速になります。
+ 6. Linux では新しいカーネルを使ってください。一般的には 2.6.18 以上が良いでしょう。
+I/O 性能が向上した [NAPI][napi] がサポートされています。
 
 <h2><a name="does-tcpreplay-support-endace-dag-cards">Q:</a>tcpreplay は Endace DAG カードで使えますか？</h2>
-By default, *tcpreplay* does not support DAG cards. However, [Endace][endace] has released 
-a custom version of tcpreplay which does support their cards. 
-Please note that the Tcpreplay developers do not support this custom version of tcpreplay, 
-so if you have any questions, please contact Endace.
+デフォルトでは *tcpreplay* は Endace DAG カードをサポートしません。
+しかし、[Endace 社][endace] は、
+Endance 社の DAG カードをサポートする特別な tcpreplay をリリースしました。
+Tcpreplay の開発者達は、この特別な tcpreplay はサポートできませんので注意してください。
+何か質問がある場合は、Endace 社に問い合わせてください。
 
 
 <h2><a name="can-i-use-non-pcap-capture-files">Q:</a>pcap ファイル以外のキャプチャファイルを使えますか？</h2>
-It turns out that there are quite a few capture file formats other then pcap.
-If you have a capture file created by a tool which uses one of these other formats (like Solaris snoop) 
-you can convert it to pcap format by using [Wireshark's][wireshark] tshark tool.
+pcap ファイルのフォーマット以外にも、非常にたくさんのフォーマットがあります。
+(Solaris snoop などのように) 別なツールで作られたキャプチャファイルを使う場合は、
+[Wireshark's][wireshark] の tshark ツールなどを使って pcap フォーマットに変換してください。
 
 ```
 tshark -r blah.snoop -w blah.pcap
 ```
 
 <h2><a name="does-tcpreplay-support-pcap-ngntar-files">Q:</a>Tcpreplay は Pcap-Ng/NTAR ファイルを読み込めますか？</h2>
-Yes. The Tcpreplay suite uses [libpcap][tcpdump] for reading and writing pcap files. 
-If you have libpcap 1.1.0 or higher, then *tcpreplay*, *tcprewrite*, etc can read pcap-ng files. If you have an older version of libpcap, you should upgrade to the latest version as earlier versions of libpcap have bugs with pcap-ng files.
+はい、読み込めます。Tcpreplay ツール群は、pcap ファイルの読み書きに
+[libpcap][tcpdump] を使っています。libpcap 1.1.0 以上を使っていれば、
+*tcpreplay* や *tcprewrite* などは pcap-ng ファイルを読み込めます。
+古い libpcap を使っている場合は、最新の libpcap にバージョンアップすべきです。
+初期の libpcap には pcap-ng ファイルに関する問題があります。
 
 
 <h2><a name="can-tcpreplay-send-packets-over-wifi">Q:</a>tcpreplay は Wi-Fi からパケットを送出できますか？</h2>
-This turns out to be very OS/hardware dependent, but in many cases, the answer is yes. 
-In order for things to work, you generally must do the following:
+送信できるかどうかは、OS やハードウェア依存の話題になります。
+しかし、たいていの場合は送信できます。
+送信するためには、通常は下記の手順になります:
 
-* Put the WiFi card in managed mode   
-* Your pcap files need to be DLT_EN10MB (Ethernet) and have a valid 803.2 header
-* The source MAC of the packets need to match the MAC of your WiFi card
+* Wi-Fi カードをマネージモード(managed mode)にします
+* pcap ファイルの DLT は DLT_EN10MB (Ethernet) で 803.2 として有効なヘッダを含めます
+* 送信元の MAC アドレスは Wi-Fi カードの MAC アドレスにします
 
 
 <h2><a name="why-doesnt-my-application-see-packets-replayed-over-loopback">Q:</a>loopback インターフェイスから送出したパケットが見えないのはなぜ？</h2>
-Most users are surprised, when they try replaying UDP traffic over loopback, that the listening daemon 
-never sees the traffic. This turns out to be a limitation of the loopback interface on many operating systems. 
-One contributing factor may be capturing traffic on an Ethernet port, rewriting the IP addresses but not the L2 header. 
-Since the loopback interface doesn't use an Ethernet L2 header, the IP stack of the
-operating system is unable to parse the packet and deliver it to the listening daemon.
+loopback インターフェイスを経由して UDP パケットを再送信しようとする時、
+loopback インターフェイスで待ち受けているデーモンにおいて、
+(tcpreplay が送信した)パケットを受信できないということに、
+たくさんのユーザが驚くようです。
+これは、多くの OS での loopback インターフェイスの制限事項です。
+1つの要因として、Ethernet インターフェイスでパケットをキャプチャして、
+IPアドレスを書き換えただけで Layer2 のヘッダを書き換えないことがあります。
+loopback インターフェイスは Ethernet の Layer2 ヘッダを使わないため、
+OS の IP(Internet Protocol)スタックはパケットを処理できず、
+待ち受けているデーモンにパケットを届けられないのです。
 
 
 <h2><a name="can-i-use-iptablestraffic-control-with-tcpreplay">Q:</a>iptables などでトラフィックコントロールできますか？</h2>
-You cannot use iptables/tc on the same box as you run tcpreplay. 
-The only way to use IPTables or Traffic Control (tc) with tcpreplay is to run tcpreplay on a different 
-box and send the traffic *through* the system running iptables/tc. This limitation is due to how the Linux 
-kernel injects frames vs. reading frames for iptables/tc which makes traffic sent via tcpreplay to be 
-invisible to iptables/tc.
+tcpreplay を実行しているのと同じサーバでは、iptables/tc は使えません(機能しません)。
+tcpreplay で送信したパケットに IPTables や Traffic Control (tc) を適用するには、
+tcpreplay を iptables/tc とは別のサーバで動作させ、
+tcpreplay で送信したパケットを iptables/tc のサーバを経由させる方法しかありません。
+この制限事項は、Linux カーネルがフレーム(パケット)を挿入する方法と、
+iptables/tc のためにフレーム(パケット)を読み出す方法の差異によるものです。
+この違いで、tcpreplay が送出するトラフィックは、
+iptables/tc からは参照できなくなります。
 
 
 Tcpreplay のコンパイル／Compiling Tcpreplay
 ===================
   
-<h2><a name="are-there-binaries-available-for-xxx-operating-system">Q:</a> Are there binaries available for XXX operating system?</h2>
-Maybe. We do not release binaries for ANY operating system. 
-Many operating systems like Linux, \*BSD, Solaris and OS X have teams which package open source applications 
-like *tcpreplay* and release them in their package format (RPM, BSD/Mac ports, SunFreeware, etc).  
+<h2><a name="are-there-binaries-available-for-xxx-operating-system">Q:</a>XXX 用のバイナリファイルはありますか？<h2>
+たぶんあると思います。
+私達は、いかなる OS 用にもバイナリファイルをリリースしません。
+Linux や \*BSD や Solaris や OS X などのたくさんの OS では、
+*tcpreplay* などのオープンソースなアプリケーションをパッケージにするチームがあり、
+それぞれのパッケージフォーマットで(RPM や BSD/Mac ports や SunFreeware などで)
+リリースしています。
 
 
-<h2><a name="what-if-i-ask-you-really-nicely-to-build-a-binary-for-me">Q:</a> What if I ask you really nicely to build a binary for me?</h2>
-You can always ask, but we will probably ignore you.
+<h2><a name="what-if-i-ask-you-really-nicely-to-build-a-binary-for-me">Q:</a>お願いしたらバイナリを作ってくれますか？</h2>
+いつでも依頼して良いのですが、きっとその依頼は無視されてしまいます。
 
 
-<h2><a name="unable-to-find-a-supported-method-to-send-packets--please-upgrade-your-libpcap-or-enable-libdnet">Q:</a> Unable to find a supported method to send packets.  Please upgrade your libpcap or enable libdnet</h2>
-Tcpreplay can use a variety of API's/libraries to send packets: BSD's BPF, Linux's PF\_PACKET, libpcap and libdnet.
-If you're not running on a platform which supports BPF or PF\_PACKET, you'll need either a recent version of 
-[libpcap][tcpdump] or [libdnet][libdnet]. If you are using libpcap we strongly suggest upgrading to the latest version
-since it tends to have fewer bugs and is actively developed. 
-Libdnet by contrast hasn't been updated in a few years but is more stable than older libnet libraries.
+<h2><a name="unable-to-find-a-supported-method-to-send-packets--please-upgrade-your-libpcap-or-enable-libdnet">Q:</a>パケットを送出するための方法が見つかりません。libpcap をバージョンアップするか libdnet を有効化してください</h2>
+Tcpreplay は、パケットを送信するために多くの API やライブラリを使えます。
+BSD の BPF や、Linux の PF\_PACKET や libpcap や libdnet です。
+もし BPF や PF\_PACKET がサポートされていないプラットフォームで使いたい場合は、
+最新バージョンの [libpcap][tcpdump] や [libdnet][libdnet] が必要になります。
+libpcap を使うのであれば、最新バージョンにアップグレードすることを強く勧めます。
+libpcap にはバグがあるし、頻繁にアップデートされているからです。
+それに対して、libdnet は数年間アップデートが無い状態ですが、
+古いバージョンの libnet ライブラリよりは新しいバージョンの方が安定しています。
 
-Right now there is one case where libdnet is necessary: 
-you're not running on Linux or \*BSD and you want to use *tcpbridge*. 
+ここで、libdnet が必要なケースを紹介します:
+Linux や \*BSD 以外で *tcpbridge* を使いたい場合です。
 
-Note: Tcpreplay no longer supports libnet!
+注意: Tcpreplay はもう libnet はサポートしません! (libdnet はサポートされます)
 
 
 <h2><a name="tcpedit_stubdef-command-not-found">Q:</a> tcpedit_stub.def: Command not found</h2>
@@ -471,27 +505,29 @@ make[1]: *** [all-recursive] Error 1
 make[1]: Leaving directory `/home/acferen/tcpreplay-trunk/src'
 make: *** [all] Error 2
 ```
-You should only get this error if you're trying to build from [GitHub][github]. 
-The problem is that you do not have [GNU Autogen][autogen] installed on your system.
-Either install autogen or download one of the source tarballs.
+
+[GitHub][github] のソースコードをビルドしようとしている時のみ、
+上記のエラーが発生するはずです。(普通の tarball では発生しません)
+この問題は [GNU Autogen][autogen] がインストールされていないことが原因です。
+autogen をインストールするか、tarball をダウンロードしてください。
 
 
 <h2><a name="tcpreplay_optsh723-error-#error-option-template-version-mismatches-autooptsoptionsh-header">Q:</a> tcpreplay_opts.h:72:3: error: #error option template version mismatches autoopts/options.h header</h2>
-You're building from [GitHub][github] and the version of Autogen/AutoOpts? installed on your system is
-different from the 
-version included in the libopts tearoff in the code. 
-The result is that the src/*_opts.[ch] files generated by the system Autogen have a
-version mismatch with the tearoff.
+[GitHub][github] のソースコードをビルドしていて、
+インストールされている Autogen/AutoOpts が libopts のバージョンと異なるためです。
+結果として、OS の Autogen が生成する src/*_opts.[ch] が、
+バージョンミスマッチとなってしまいます。
 
-The solution is to use: `./configure --disable-local-libopts --disable-libopts-install`
+この問題を解決するには: `./configure --disable-local-libopts --disable-libopts-install`
 
 
-<h2><a name="issues-with-autogenlibopts">Q:</a> Issues with autogen/libopts</h2>
-The Tcpreplay suite uses the GNU Autogen/libops library. 
-This makes development much easier, but not without some cost. Basically, Autogen/libopts 
-doesn't always provide good backwards compatibility, 
-so if you have a different version of Autogen/libopts than the author does, 
-you may have problems compiling tcpreplay. One example error would be:
+<h2><a name="issues-with-autogenlibopts">Q:</a>autogen や libopts に関する話題</h2>
+Tcpreplay のツール群は GNU の Autogen/libops ライブラリを使います。
+これによりとても便利に開発できるようになりますが、コストもかかります。
+一般に、Autogen/libopts ライブラリはあまり後方互換が良くないので、
+ソースコードを書いた人とは異なる Autogen/libopts を使っていると、
+tcpreplay のコンパイル時に問題となりえます。
+例えば、下記のようなエラーになります:
 
 ```
 make[3]: Entering directory
@@ -512,93 +548,125 @@ tcpedit.c:58: warning: type defaults to `int' in declaration of
 `tcpedit_tcpedit_optDesc_p'
 make[3]: *** [tcpedit.o] Error 1
 ```
-The good news is that there is an easy fix: `./configure --enable-local-libopts`
+良い方法があって、下記で簡単に解決できます: `./configure --enable-local-libopts`
 
 
-<h2><a name="problems-with-linking-under-recent-fedora-coreredhat">Q:</a> Problems with linking under recent Fedora Core/RedHat</h2>
-Newer versions of Fedora Core and Red Hat ES/WS do not ship static libraries at all and only 
-have dynamic libraries. If you wish to compile *tcpreplay* from source, you will need to pass the 
-`--enable-dynamic-link` to configure in order for *tcpreplay* to link to them.
+<h2><a name="problems-with-linking-under-recent-fedora-coreredhat">Q:</a>Fedora Core/RedHat で発生するリンクできない問題</h2>
+新しいバージョンの Fedora Core や Red Hat ES/WS では、
+static library は同梱されず dynamic library だけになります。
+もしソースコードから *tcpreplay* をコンパイルする場合は、
+*tcpreplay* が library をリンクできるよう、configure を実行する時に
+`--enable-dynamic-link` を指定する必要があります。
 
 
-Common Errors
+一般的なエラー／Common Errors
 =============
 
 <h2><a name="unable-to-send-packet-error-with-pcap_injectpacket-#10-send-message-too-long">Q:</a> Unable to send packet: Error with pcap_inject(packet #10): send: Message too long</h2>
-There is a bug in OS X (at least up to 10.4.9) which causes problems for 
-Ethernet frames > 1500 bytes from being sent when you spoof source MAC addresses (like tcpreplay/tcpbridge does).
-Apple fixed this in 10.5 (Leopard). Currently there is no work around.
+OS X (少なくとも 10.4.9 までの) バグです。
+(tcpreplay や tcpbridge が動作する時もそうですが)送信元の MAC アドレスを偽って、
+1500 バイト以上の Ethernet フレームを送信する時に発生します。
+アップル社は 10.5(Leopard) でこの問題を修正しました。
+現時点で、ワークアラウンド(回避方法)はありません。
 
 
 <h2><a name="can't-open-eth0-libnet_select_device-can't-find-interface-eth0">Q:</a> Can't open eth0: libnet_select_device(): Can't find interface eth0</h2>
-Generally this occurs when the interface (eth0 in this example) is not up or 
-doesn't have an IP address assigned to it.
-
+たいていの場合は、(例えば eth0 などの)インターフェイスが UP していなかったり、
+あるいは IPアドレスが設定されていない場合に発生します。
 
 <h2><a name="can't-open-eth0-uid-0">Q:</a> Can't open eth0: UID != 0</h2>
-Tcpreplay requires that you run it as root.
+Tcpreplay は root(管理者)権限で実行する必要があります。
 
 
 <h2><a name="100000-write-attempts-failed-from-full-buffers-and-were-repeated">Q:</a> 100000 write attempts failed from full buffers and were repeated</h2>
-When *tcpreplay* displays a message like "100000 write attempts failed from full buffers and were repeated", 
-this usually means the kernel buffers were full and it had to wait until memory was available. 
-This can occur when replaying files as fast as possible with the `-t` option. 
-See the tuning OS section in this document for suggestions on solving this problem.
+*tcpreplay* が
+"100000 write attempts failed from full buffers and were repeated"
+のようなメッセージを出力する時は、
+たいていカーネルバッファが一杯になっており、
+メモリに書き込めるようになるまで処理を停止する必要があります。
+`-t` オプションを指定して最大速度で送信している時に発生します。
+この文章の「OS のチューニング」のセクションを読めば問題を解決できます。
 
 
-<h2><a name="unable-to-process-testcache-cache-file-version-mismatch">Q:</a> Unable to process test.cache: cache file version mismatch</h2>
-Cache files generated by *tcpprep* and read by *tcpreplay* are versioned to 
-allow enhancements to the cache file format.
-Anytime the cache file format changes, the version is incremented. Since this occurs on a very rare basis, 
-this is generally not an issue; however anytime there is a change, it breaks compatibility 
-with previously created cache files. The solution for this problem is to use the same version of *tcpreplay*
-and *tcpprep* to read/write the cache files. Cache file versions match the following versions of tcpprep/tcpreplay:
+<h2><a name="unable-to-process-testcache-cache-file-version-mismatch">Q:</a>test.cache を処理できない／cache ファイルのバージョンミスマッチ</h2>
+*tcpprep* で生成され *tcpreplay* で利用される cache ファイルのフォーマットは、
+機能拡張のためにいくつかのバージョンがあります。
+(Tcpreplay の)バージョンアップの際に、
+cache ファイルのフォーマットは変更されるかもしれません。
+フォーマットは滅多に変更されませんが、いつでも変更されうるものです。
+この場合、以前の別のバージョンで生成された cache ファイルと互換性が無くなります。
+同じバージョンの *tcpreplay* と *tcpprep* であれば、
+cache ファイルを読み書きできます。
+cache ファイルの各バージョンと、tcpprep/tcpreplay のバージョンの対応表は下記です:
 
-* Version 1:
- * Prior to 1.3.beta1
-* Version 2: 1.3.beta2 to 1.3.1/1.4.beta1
-* Version 3: 1.3.2/1.4.beta2 to 2.0.3
-* Version 4: 2.1.0 and above. Note that prior to version 2.3.0, tcpprep had a 
-bug which broke cache file compatibility between big and little endian systems.
+* バージョン 1／Version 1:
+ * 1.3.beta1 以前／Prior to 1.3.beta1
+* バージョン 2／Version 2:
+ * 1.3.beta2 から 1.3.1/1.4.beta1
+* バージョン 3／Version 3:
+ *1.3.2/1.4.beta2 から 2.0.3
+* バージョン 4／Version 4:
+ * 2.1.0 以降
 
-
-<h2><a name="skipping-sll-loopback-packet">Q:</a> Skipping SLL loopback packet</h2>
-Your capture file was created on Linux with the 'any' parameter which then captured a packet on the 
-loopback interface. However, tcpreplay doesn't have enough information to actually send the packet,
-so it skips it. Specifying a destination and source MAC address (-D and -S) will allow tcpreplay to send these packets.
-
-
-<h2><a name="packet-length-8892-is-greater-then-mtu-skipping-packet">Q:</a> Packet length (8892) is greater then MTU; skipping packet</h2>
-The packet length (in this case 8892 bytes) is greater then the maximum transmition unit (MTU) on the outgoing interface. 
-Tcpreplay must skip the packet. Alternatively, you can specify the *tcpreplay-edit* `--mtu-trunc`
-option - packets will be truncated to the MTU size, the checksums will be fixed and then sent. Note that this
-may impact performance.
+2.3.0 以前のバージョンの tcpprep には、
+big endian と little endian のシステム間で互換性が無い問題があるので注意してください。
 
 
-<h2><a name="tcpreplay-doesn't-send-entire-packettcprewrite-truncates-packets">Q:</a> tcpreplay doesn't send entire packet/tcprewrite truncates packets</h2>
-You won't see any error from *tcpreplay*, but sometimes you'll open a pcap file in 
-Ethereal/Wireshark? and notice that a packet is something like 400 bytes but tcpreplay says it only sent 100 bytes. 
-We've seen this 2 or 3 times and in each case the reason was the same: the pcap file was broken. 
-Apparently certain older versions of libpcap which shipped with Red Hat Linux had a bug.
+<h2><a name="skipping-sll-loopback-packet">Q:</a>SLL loopback パケットがスキップされる</h2>
+Linux でパケットをキャプチャし、インターフェイスを 'any' 指定するなどしたため、
+loopback のインターフェイスでもキャプチャされました。
+(これらのパケットは) tcpreplay が実際にパケットを送信するだけの十分な情報が無いので、
+パケットはスキップされるのです。
+宛先または送信元の MAC アドレスを (-D や -S で) 指定すれば、
+この問題は解決します。
 
-If you suspect a corrupt pcap file, run *tcpcapinfo* to detect errors.
 
-First a little background on the pcap file format. At the beginning of each file there is a file header which
-contains, among other things, the *snaplen*. 
-The snaplen is the maximum amount of data that is stored in file per packet; 
-if a packet is larger than this value, the packet is truncated. 
-Each packet is also prefixed with a packet header which contains two values: the *len* and *caplen*. 
-The *len* is the original packet size and the *caplen* is the amount of actual data which was stored.
+<h2><a name="packet-length-8892-is-greater-then-mtu-skipping-packet">Q:</a>8892 バイトのパケットが MTU より大きいくてスキップされる</h2>
+(下記の例では 8892 バイトの) パケット長が、
+送信するインターフェイスの MTU(Maximum Transmition Unit)よりも大きいです。
+Tcpreplay は、このパケットは破棄せざるをえません。
+代わりに、*tcpreplay-edit* で パケットサイズを MTU に切り詰める
+`--mtu-trunc` オプションを指定することで、
+フレームのチェックサムも再計算され送信できるようになります。
+ただし、パフォーマンスに影響するので注意してください。
 
-A properly formatted pcap file will never have a caplen > snaplen. Some tools and applications unfortunately
-do not seem to enforce this. So when the libpcap library reads these files, it returns the snaplen as the actual
-data available. The reason Ethereal/Wireshark? show the entire packet is because they do not use libpcap to 
-read pcap files.
 
-To fix the problem, locate the 2 bytes at offset 16 (0x10) and change them to read 0xFFFF. 
-This will repair the file so libpcap/tcprewrite/tcpreplay/etc can process it correctly.
+<h2><a name="tcpreplay-doesn't-send-entire-packettcprewrite-truncates-packets">Q:</a>tcpreplay がパケットの一部しか送信しない／tcprewrite がパケットをトランケートする</h2>
+*tcpreplay* ではエラーが発生していないように見えると思います。
+pcap ファイルを Ethereal/Wireshark で見てみると 400バイトのパケットなのに、
+tcpreplay では 100バイトしか送信していないことに気付くかもしれません。
 
-example of broken file:
+このようなエラーはこれまでに 2-3回遭遇したことがありますが全て同じ原因で、
+pcap ファイルが破損していました。
+どうやら、Red Hat に同梱された古い libpcap のバグが原因のようです。
+
+pcap ファイルの破損が疑われるような場合は、
+エラーを検出するために *tcpcapinfo* を実行してみてください。
+
+まず初めに、pcap ファイルのフォーマットの背景から記述します。
+それぞれの pcap ファイルの先頭には、
+(色々な情報がありますが)とりわけ *snaplen* のファイルヘッダがあります。
+snaplen の情報は、パケットごとの最大データサイズです。
+もしパケットがこの値よりも大きい場合には、
+そのパケットはトランケートされます。
+それぞれのパケットには、*len* と *caplen* を含むパケットヘッダを含んでいます。
+*len* はもとのパケットサイズで、*caplen* は実際に記録されているデータサイズです。
+
+正しいフォーマットで記録された pcap ファイルでは、
+caplen > snaplen になるようなことはありえません。
+残念なことにいくつかのツールやアプリケーションでは、
+このような問題が発生してしまいます。
+従って libpcap ライブラリがこのようなファイルを読み込んだ場合に、
+実際のデータ長として snaplen の値を使用してしまいます。
+Ethereal/Wireshark は pcap ファイルの読み込みに libpcap ライブラリを使わないため、
+もとのパケットサイズを表示することになるのです。
+
+この問題を解決するためには、
+16 バイト(0x10)オフセットした先の 2バイトを 0xFFFF に変更します。
+これにより pcap ファイルが修正され、
+libpcap や tcprewrite や tcpreplay などで正しく読み込めるようになります。
+
+破損した pcap ファイルの例:
 
 ```
 xxd broken.pcap | head -3
@@ -607,7 +675,7 @@ xxd broken.pcap | head -3
 0000020: 4a00 0000 4a00 0000 0000 5e00 0101 0015  J...J.....^.....
 ```
 
-example of fixed file:
+正しく修正された pcap ファイルの例:
 
 ```
 xxd fixed.pcap | head -3
@@ -617,22 +685,26 @@ xxd fixed.pcap | head -3
 ```
 
 
-<h2><a name="tcpreplay-is-sending-packets-out-of-order">Q:</a> tcpreplay is sending packets out of order</h2>
-This isn't a problem with tcpreplay, but rather with the receiving network card/driver. 
-We've seen an example of Broadcom 10G network cards using "multi\_mode" preventing tcpdump/Wireshark 
-from seeing the packets in the correct order. The solution is to configure the bnx2x driver with multi\_mode=0. 
-Apparently this was turned on by default as of Linux kernel v2.6.24.
+<h2><a name="tcpreplay-is-sending-packets-out-of-order">Q:</a>tcpreplay が順番通りにパケットを送信しない</h2>
+これは tcpreplay の問題ではありません。
+受信したネットワークカードやドライバの問題です。
+この問題が発生した 1つの例として、
+Broadcom の 10GbE の NIC で "multi\_mode" を有効にする場合が挙げられます。
+bnx2x のドライバで "multi\_mode=0" を設定すれば問題が解決します。
+Linux カーネルの v2.6.24 で、このデフォルト値が ON になったようです。
 
-As stated earlier, this can also be caused by hardware timestamping network adapters.
+以前は、NIC がハードウェアで時刻情報を付与したような時に、
+この問題が発生していました。
 
-Use Cases for Tcpreplay
+
+Tcpreplay のユースケース／Use Cases for Tcpreplay
 ======================= 
 
-<h2><a name="external-use-cases">Q:</a> External Use Cases</h2>
-* Renaud Bidou's paper [How to Test an IDS][howtoids] talks about using *tcpreplay*
+<h2><a name="external-use-cases">Q:</a>ユースケース(外部サイト)</h2>
+* Renaud Bidou の文章 [How to Test an IDS][howtoids] に *tcpreplay* が登場します
 
-<h2><a name="other-documents">Q:</a> Other Documents</h2>
-* [RFC 2544][rfc2544] - Benchmarking Methodology for Network Interconnect Devices
+<h2><a name="other-documents">Q:</a>他のドキュメント</h2>
+* [RFC 2544][rfc2544] - ネットワークデバイスのベンチマーク方法論／Benchmarking Methodology for Network Interconnect Devices
 
 
 [gplv3]:                http://www.gnu.org/licenses/gpl-3.0.html

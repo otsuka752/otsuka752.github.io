@@ -28,17 +28,17 @@ description: "tcpreplay-edit のマニュアル／tcpreplay-edit manual"
 
 <h1 align="center">tcpreplay-edit</h1>
 
-<a href="#NAME">NAME</a><br>
-<a href="#SYNOPSIS">SYNOPSIS</a><br>
-<a href="#DESCRIPTION">DESCRIPTION</a><br>
-<a href="#OPTIONS">OPTIONS</a><br>
-<a href="#OPTION PRESETS">OPTION PRESETS</a><br>
-<a href="#FILES">FILES</a><br>
-<a href="#EXIT STATUS">EXIT STATUS</a><br>
-<a href="#AUTHORS">AUTHORS</a><br>
-<a href="#COPYRIGHT">COPYRIGHT</a><br>
-<a href="#BUGS">BUGS</a><br>
-<a href="#NOTES">NOTES</a><br>
+<a href="#NAME">名前／NAME</a><br>
+<a href="#SYNOPSIS">書式／SYNOPSIS</a><br>
+<a href="#DESCRIPTION">概要／DESCRIPTION</a><br>
+<a href="#OPTIONS">オプション／OPTIONS</a><br>
+<a href="#OPTION PRESETS">オプションの事前設定／OPTION PRESETS</a><br>
+<a href="#FILES">ファイル／FILES</a><br>
+<a href="#EXIT STATUS">exit コード／EXIT STATUS</a><br>
+<a href="#AUTHORS">AUTHORS／AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT／COPYRIGHT</a><br>
+<a href="#BUGS">バグ／BUGS</a><br>
+<a href="#NOTES">注意／NOTES</a><br>
 
 <hr>
 
@@ -100,7 +100,7 @@ TCP/UDP ポート番号を編集する。
 コロン(:) 区切りのポートのマッピングを、
 カンマ(,) 区切りのリストを指定します。
 コロン(:) で区切られたポートのペアが、書き換えのペアになります。
-例えば:<br>
+実行例:<br>
 
 &minus;-portmap=80:8000 &minus;-portmap=8080:80
 # 80 は 8000 に、8080 は 80 になります<br>
@@ -321,54 +321,48 @@ IPv4 のパケットは何も処理しません。</p>
 
 <p style="margin-left:22%; margin-top: 1em">
 snaplen がパケットのサイズよりも小さかった場合、
-パケットは truncate されます(切り詰められます)。
-
-
-Packets may be
-truncated during capture if the snaplen is smaller then the
-packet. This option allows you to modify the packet to pad
-the packet back out to the size stored in the IPv4/v6 header
-or rewrite the IP header total length to reflect the stored
-packet length.</p>
+パケットは truncate されてしまいます(切り詰められてしまいます)。
+このオプションを指定することで、
+IPv4/v6 ヘッダのパケット長フィールドの値にパディングしたり、
+あるいは、pcap ファイルに保存されたパケットサイズに合わせて
+IPv4/v6 ヘッダ内のパケット長フィールドを書き換えます。</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>pad</b>
-Truncated packets will be padded out so that the packet
-length matches the IPv4 total length</p>
+IPv4 ヘッダ内のパケット長フィールドの値に合致するように
+(0x00 のデータが)パディングされます</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>trunc</b>
-Truncated packets will have their IPv4 total length field
-rewritten to match the actual packet length</p>
+実際のパケット長に合わせて、
+IPv4 ヘッダ内のパケット長フィールドを書き換えます。</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>del</b>
-Delete the packet</p>
+パケットを削除します。</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;skipl2broadcast</b></p>
 
-<p style="margin-left:22%;">Skip rewriting
-broadcast/multicast Layer 2 addresses.</p>
+<p style="margin-left:22%;">
+Layer 2 アドレス(MAC アドレス)が broadcast/multicast のパケットを書き換えません。</p>
 
-<p style="margin-left:22%; margin-top: 1em">By default,
-editing Layer 2 addresses will rewrite broadcast and
-multicast MAC addresses. Setting this flag will keep
-broadcast/multicast MAC addresses from being rewritten.</p>
-
+<p style="margin-left:22%; margin-top: 1em">
+デフォルトの挙動では、broadcast や multicast 宛ての MAC アドレスも書き換えます。
+このフラグを指定することで、broadcast/multicast 宛ての MAC アドレスを書き換えません。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;dlt</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Override output DLT
-encapsulation. This option may appear up to 1 times.</p>
+<p style="margin-left:22%;">
+出力する DLT のタイプを指定します。
+このオプションは 1回だけ指定できます。</p>
 
-<p style="margin-left:22%; margin-top: 1em">By default, no
-DLT (data link type) conversion will be made. To change the
-DLT type of the output pcap, select one of the following
-values:</p>
+<p style="margin-left:22%; margin-top: 1em">
+デフォルトの挙動では、DLT (data link type) を変換しません。
+出力する pcap ファイルの DLT を変換するには下記の値を指定します:</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>enet</b>
-Ethernet aka DLT_EN10MB</p>
+Ethernet つまり DLT_EN10MB</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>hdlc</b>
-Cisco HDLC aka DLT_C_HDLC</p>
+Cisco HDLC つまり DLT_C_HDLC</p>
 
 
 <p style="margin-left:22%; margin-top: 1em"><b>jnpr_ether</b>
@@ -376,199 +370,206 @@ Juniper Ethernet DLT_C_JNPR_ETHER</p>
 
 
 <p style="margin-left:22%; margin-top: 1em"><b>pppserial</b>
-PPP Serial aka DLT_PPP_SERIAL</p>
+PPP Serial つまり DLT_PPP_SERIAL</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>user</b>
-User specified Layer 2 header and DLT type</p>
+ユーザ指定の Layer 2 ヘッダと DLT タイプ</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;dmac</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Override destination ethernet
-MAC addresses. This option may appear up to 1 times.</p>
+<p style="margin-left:22%;">
+宛先の Ethernet MAC アドレスを上書きします。
+このオプションは 1回だけ指定できます。</p>
 
-<p style="margin-left:22%; margin-top: 1em">Takes a pair of
-comma deliminated ethernet MAC addresses which will replace
-the destination MAC address of outbound packets. The first
-MAC address will be used for the server to client traffic
-and the optional second MAC address will be used for the
-client to server traffic. Example: <br>
+<p style="margin-left:22%; margin-top: 1em">
+',' (カンマ)で区切られた 2つの MAC アドレスのペアを指定することで、
+出力するパケットの宛先 MAC アドレスを書き換えます。
+1つ目の MAC アドレスは、サーバからクライアントへのトラフィックを書き換えます。
+2つ目の MAC アドレスの指定はオプションで、
+クライアントからサーバへのトラフィックを書き換えます。
+実行例:<br>
 &minus;-enet-dmac=00:12:13:14:15:16,00:22:33:44:55:66</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;smac</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Override source ethernet MAC
-addresses. This option may appear up to 1 times.</p>
+<p style="margin-left:22%;">
+Ethernet の送信元 MAC アドレスを書き換えます。
+このオプションは 1回だけ指定できます。</p>
 
-<p style="margin-left:22%; margin-top: 1em">Takes a pair of
-comma deliminated ethernet MAC addresses which will replace
-the source MAC address of outbound packets. The first MAC
-address will be used for the server to client traffic and
-the optional second MAC address will be used for the client
-to server traffic. Example: <br>
+<p style="margin-left:22%; margin-top: 1em">
+',' (カンマ)で区切られた 2つの MAC アドレスのペアを指定することで、
+出力するパケットの送信元 MAC アドレスを書き換えます。
+1つ目の MAC アドレスは、サーバからクライアントへのトラフィックを書き換えます。
+2つ目の MAC アドレスの指定はオプションで、
+クライアントからサーバへのトラフィックを書き換えます。
+実行例:<br>
 &minus;-enet-smac=00:12:13:14:15:16,00:22:33:44:55:66</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;vlan</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Specify ethernet 802.1q VLAN
-tag mode. This option may appear up to 1 times.</p>
+<p style="margin-left:22%;">
+IEEE802.1q の VLAN tag を指定します。
+このオプションは 1回だけ指定できます。</p>
 
-<p style="margin-left:22%; margin-top: 1em">Allows you to
-rewrite ethernet frames to add a 802.1q header to standard
-802.3 ethernet headers or remove the 802.1q VLAN tag
-information.</p>
+<p style="margin-left:22%; margin-top: 1em">
+標準的な IEEE802.3 のフレームに IEEE802.1q の VLAN tag の情報を
+追加したり削除します。</p>
+
 
 <p style="margin-left:22%; margin-top: 1em"><b>add</b>
-Rewrites the existing 802.3 ethernet header as an 802.1q
-VLAN header</p>
+IEEE802.3 の Ethernet ヘッダを IEEE802.1q の VLAN ヘッダに書き換えます。</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>del</b>
-Rewrites the existing 802.1q VLAN header as an 802.3
-ethernet header</p>
-
+IEEE802.1q の VLAN ヘッダを IEEE802.3 の標準的なヘッダに書き換えます。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;vlan&minus;tag</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Specify the new ethernet 802.1q
-VLAN tag value. This option may appear up to 1 times. This
-option must appear in combination with the following
-options: enet-vlan. This option takes an integer number as
-its argument. The value of <i>number</i> is constrained to
-being:</p>
+<p style="margin-left:22%;">
+IEEE802.1q の VLAN tag の値を指定します。
+このオプションは 1回だけ指定できます。
+このオプションは下記のオプションと一緒に指定する必要があります: enet-vlan
+このオプションは整数の値を指定します。
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">in the range 0 through 4095</p>
+<p style="margin-left:28%;">0 ～ 4095</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;vlan&minus;cfi</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Specify the ethernet 802.1q
-VLAN CFI value. This option may appear up to 1 times. This
-option must appear in combination with the following
-options: enet-vlan. This option takes an integer number as
-its argument. The value of <i>number</i> is constrained to
-being:</p>
+<p style="margin-left:22%;">
+IEEE802.1q の VLAN CFI の値を指定します。
+このオプションは 1回だけ指定できます。
+このオプションは下記のオプションと一緒に指定する必要があります: enet-vlan
+このオプションは整数の値を指定します。
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">in the range 0 through 1</p>
+<p style="margin-left:28%;">0 ～ 1</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;enet&minus;vlan&minus;pri</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Specify the ethernet 802.1q
-VLAN priority. This option may appear up to 1 times. This
-option must appear in combination with the following
-options: enet-vlan. This option takes an integer number as
-its argument. The value of <i>number</i> is constrained to
-being:</p>
+<p style="margin-left:22%;">
+IEEE802.1q の VLAN priority を指定します。
+このオプションは 1回だけ指定できます。</p>
+このオプションは下記のオプションと一緒に指定する必要があります: enet-vlan
+このオプションは整数の値を指定します。
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">in the range 0 through 7</p>
+<p style="margin-left:28%;">0 ～ 7</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;hdlc&minus;control</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Specify HDLC control value.
-This option may appear up to 1 times. This option takes an
-integer number as its argument.</p>
+<p style="margin-left:22%;">
+HDLC の control value を指定します。
+このオプションは 1回だけ指定できます。
+このオプションは整数の値を指定します。</p>
 
-<p style="margin-left:22%; margin-top: 1em">The Cisco HDLC
-header has a 1 byte &quot;control&quot; field. Apparently
-this should always be 0, but if you can use any 1 byte
-value.</p>
+<p style="margin-left:22%; margin-top: 1em">
 
+Cisco HDLC のヘッダは 1バイトの &quot;control&quot; フィールドがあります。
+この値は常に 0 のようですが、任意の 1バイトの値を指定できます。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;hdlc&minus;address</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Specify HDLC address. This
-option may appear up to 1 times. This option takes an
-integer number as its argument.</p>
+<p style="margin-left:22%;">
+HDLC のアドレスを指定します。
+このオプションは 1回だけ指定できます。
+このオプションは整数の値を指定します。</p>
 
-<p style="margin-left:22%; margin-top: 1em">The Cisco HDLC
-header has a 1 byte &quot;address&quot; field which has two
-valid values:</p>
+<p style="margin-left:22%; margin-top: 1em">
+
+Cisco HDLC のヘッダは 1バイトの &quot;address&quot; フィールドを持ち、
+下記の 2つの値が有効な値になります:</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>0x0F</b>
-Unicast</p>
+ユニキャスト／Unicast</p>
 
 <p style="margin-left:22%; margin-top: 1em"><b>0xBF</b>
-Broadcast <br>
-You can however specify any single byte value.</p>
+ブロードキャスト／Broadcast <br>
+上記の 2つが有効な値ですが、任意の 1バイトの値を指定できます。</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;user&minus;dlt</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Set output file DLT type. This
-option may appear up to 1 times. This option takes an
-integer number as its argument.</p>
+<p style="margin-left:22%;">
+出力する DLT タイプを指定します。
+このオプションは 1回だけ指定できます。
+このオプションは整数の値を指定します。</p>
 
-<p style="margin-left:22%; margin-top: 1em">Set the DLT
-value of the output pcap file.</p>
-
+<p style="margin-left:22%; margin-top: 1em">
+出力する pcap ファイルの DLT タイプを指定します。</p>
 
 <p style="margin-left:11%;"><b>&minus;&minus;user&minus;dlink</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Rewrite Data-Link layer with
-user specified data. This option may appear up to 2
-times.</p>
+<p style="margin-left:22%;">
+ユーザ指定の (DLT タイプの)データリンク層を書き換えます。
+このオプションは 2回まで指定できます。</p>
 
-<p style="margin-left:22%; margin-top: 1em">Provide a
-series of comma deliminated hex values which will be used to
-rewrite or create the Layer 2 header of the packets. The
-first instance of this argument will rewrite both server and
-client traffic, but if this argument is specified a second
-time, it will be used for the client traffic. Example: <br>
+<p style="margin-left:22%; margin-top: 1em">
+カンマ(,) で区切られた 16進数の値を並べて指定し、
+パケットの Layer 2ヘッダを書き換えたり、ヘッダを追加したりします。
+最初の文字列でサーバのトラフィックもクライアントのトラフィックも書き換えますが、
+2つ目の文字列が指定されている場合は(2つ目の文字列で)
+クライアントのトラフィックが書き換えられます。
+実行例:<br>
 
 &minus;-user-dlink=01,02,03,04,05,06,00,1A,2B,3C,4D,5E,6F,08,00</p>
 
 <p style="margin-left:11%;"><b>&minus;d</b> <i>number</i>,
 <b>&minus;&minus;dbug</b>=<i>number</i></p>
 
-<p style="margin-left:22%;">Enable debugging output. This
-option may appear up to 1 times. This option takes an
-integer number as its argument. The value of <i>number</i>
-is constrained to being:</p>
+<p style="margin-left:22%;">
+デバッグ出力を有効にします。
+このオプションは 1回だけ指定できます。
+このオプションは整数の値を指定します。
+<i>number</i> の値は下記が想定されています:</p>
 
-<p style="margin-left:28%;">in the range 0 through 5</p>
+<p style="margin-left:28%;">0 ～ 5</p>
 
-<p style="margin-left:22%;">The default <i>number</i> for
-this option is: <br>
+<p style="margin-left:22%;">
+<i>number</i> のデフォルト値は:<br>
 0</p>
 
-<p style="margin-left:22%; margin-top: 1em">If configured
-with &minus;-enable-debug, then you can specify a verbosity
-level for debugging output. Higher numbers increase
-verbosity.</p>
+<p style="margin-left:22%; margin-top: 1em">
+&minus;-enable-debug を指定して configure が実行されている場合は、
+デバッグレベルを指定できます。
+大きな値を指定すると、たくさんのデバッグ情報が出力されます。</p>
 
 <p style="margin-left:11%;"><b>&minus;q</b>,
 <b>-&minus;quiet</b></p>
 
-<p style="margin-left:22%;">Quiet mode.</p>
+<p style="margin-left:22%;">出力抑制モード</p>
 
-<p style="margin-left:22%; margin-top: 1em">Print nothing
-except the statistics at the end of the run</p>
+<p style="margin-left:22%; margin-top: 1em">
+実行完了後の統計情報以外を出力しません。</p>
 
 <p style="margin-left:11%;"><b>&minus;T</b> <i>string</i>,
 <b>&minus;&minus;timer</b>=<i>string</i></p>
 
-<p style="margin-left:22%;">Select packet timing mode:
-select, ioport, gtod, nano. This option may appear up to 1
-times. The default <i>string</i> for this option is: <br>
+<p style="margin-left:22%;">
+パケットのタイミングモードを指定します: select/ioport/gtod/nano
+このオプションは 1回だけ指定できます。
+<i>string</i> のデフォルト値は:<br>
 gtod</p>
 
-<p style="margin-left:22%; margin-top: 1em">Allows you to
-select the packet timing method to use:</p>
+<p style="margin-left:22%; margin-top: 1em">
+パケットのタイミングモードを指定します:</p>
 
 <p style="margin-left:22%; margin-top: 1em"><i>nano</i> -
-Use nanosleep() API</p>
+nanosleep() API を使用します</p>
 
 <p style="margin-left:22%; margin-top: 1em"><i>select</i> -
-Use select() API</p>
+select() API を使用します</p>
 
 <p style="margin-left:22%; margin-top: 1em"><i>ioport</i> -
-Write to the i386 IO Port 0x80</p>
+i386 IO Port 0x80 に出力します</p>
 
 <p style="margin-left:22%; margin-top: 1em"><i>gtod
-[default]</i> - Use a gettimeofday() loop</p>
+[デフォルト]</i> - gettimeofday() loop を使用します</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;maxsleep</b>=<i>number</i></p>
