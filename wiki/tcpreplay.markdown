@@ -5,12 +5,12 @@ categories: tcpreplay wiki
 description: "tcpreplay - replay a PCAP packet capture file"
 ---
 
-- [概要／Overview][Overview](#overview)
-- [基本的な使い方／Basic usage][Basic usage](#basic-usage)
-- [実行例／Examples][Examples](#examples)
-- [高度な使い方／Advanced Usage][Advanced Usage](#advanced-usage)
-	- [ルータやスイッチのテスト／Testing Routers or Switches][Testing Routers or Switches](#testing-routers-or-switches)
-- [Man pages][Man pages](tcpreplay-man.html)
+- [概要／Overview](#overview)
+- [基本的な使い方／Basic usage](#basic-usage)
+- [実行例／Examples](#examples)
+- [高度な使い方／Advanced Usage](#advanced-usage)
+	- [ルータやスイッチのテスト／Testing Routers or Switches](#testing-routers-or-switches)
+- [マニュアル／Man pages](tcpreplay-man.html)
 
 <h2><a name="overview"></a>概要／Overview</h2>
 *tcpreplay* は長い年月をかけて開発されてきました。
