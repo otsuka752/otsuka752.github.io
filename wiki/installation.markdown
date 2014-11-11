@@ -5,17 +5,17 @@ categories: tcpreplay wiki
 description: "Tcpreplay のダウンロードとインストール／Tcpreplay download and installation information"
 ---
 
-- [ダウンロード／Downloads][Downloads](#downloads)
-    - [一般ユーザ向け／Download Releases for Users][Download Releases for Users](#download-releases)
-    - [開発者向け／Download Source for Developers][Download Source for Developers](#download-source)
-- [インストール／Installation][Installation](#installation)
-	- [Unix ユーザ向けの簡単な手順／Simple directions for Unix users][Simple directions for Unix users](#simple-directions-for-unix-users)
-    - [インストールビデオ／Installation Video][Installation Video](#installation-video)
-	- [Netmap のビルド／Build netmap feature][Build netmap feature](#build-netmap-feature)
-    - [Netmap のインストールビデオ／Netmap Installation Video][Netmap Installation Video](#netmap-installation-video)
-- [オプション／Advanced Options][Advanced Options](#advanced-options)
+- [ダウンロード／Downloads](#downloads)
+    - [一般ユーザ向け／Download Releases for Users](#download-releases)
+    - [開発者向け／Download Source for Developers](#download-source)
+- [インストール／Installation](#installation)
+	- [Unix ユーザ向けの簡単な手順／Simple directions for Unix users](#simple-directions-for-unix-users)
+    - [インストールビデオ／Installation Video](#installation-video)
+	- [Netmap のビルド／Build netmap feature](#build-netmap-feature)
+    - [Netmap のインストールビデオ／Netmap Installation Video](#netmap-installation-video)
+- [オプション／Advanced Options](#advanced-options)
 - [Windows 向けの説明／Special Instructions for Windows](#special-instructions-for-windows)
-- [ヘルプが必要ですか？／Need Help?][Need Help?](#need-help)
+- [ヘルプが必要ですか？／Need Help?](#need-help)
 
 
 <h2 id="Downloads"><a name="downloads"></a>ダウンロード／Downloads</h2>
