@@ -27,17 +27,17 @@ description: "tcpbridge manual"
 
 <h1 align="center">tcpbridge</h1>
 
-<a href="#NAME">–¼‘O^NAME</a><br>
-<a href="#SYNOPSIS">‘Ž®^SYNOPSIS</a><br>
-<a href="#DESCRIPTION">ŠT—v^DESCRIPTION</a><br>
-<a href="#OPTIONS">ƒIƒvƒVƒ‡ƒ“^OPTIONS</a><br>
+<a href="#NAME">åå‰ï¼NAME</a><br>
+<a href="#SYNOPSIS">æ›¸å¼ï¼SYNOPSIS</a><br>
+<a href="#DESCRIPTION">æ¦‚è¦ï¼DESCRIPTION</a><br>
+<a href="#OPTIONS">ã‚ªãƒ—ã‚·ãƒ§ãƒ³ï¼OPTIONS</a><br>
 <a href="#OPTION PRESETS">OPTION PRESETS</a><br>
-<a href="#FILES">ƒtƒ@ƒCƒ‹^FILES</a><br>
-<a href="#EXIT STATUS">exit ƒR[ƒh^EXIT STATUS</a><br>
-<a href="#AUTHORS">AUTHORS^AUTHORS</a><br>
-<a href="#COPYRIGHT">COPYRIGHT^COPYRIGHT</a><br>
-<a href="#BUGS">ƒoƒO^BUGS</a><br>
-<a href="#NOTES">’ˆÓ^NOTES</a><br>
+<a href="#FILES">ãƒ•ã‚¡ã‚¤ãƒ«ï¼FILES</a><br>
+<a href="#EXIT STATUS">exit ã‚³ãƒ¼ãƒ‰ï¼EXIT STATUS</a><br>
+<a href="#AUTHORS">AUTHORSï¼AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHTï¼COPYRIGHT</a><br>
+<a href="#BUGS">ãƒã‚°ï¼BUGS</a><br>
+<a href="#NOTES">æ³¨æ„ï¼NOTES</a><br>
 
 <hr>
 
