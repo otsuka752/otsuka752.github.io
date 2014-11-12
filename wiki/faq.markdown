@@ -463,7 +463,7 @@ iptables/tc からは参照できなくなります。
 Tcpreplay のコンパイル／Compiling Tcpreplay
 ===================
   
-<h2><a name="are-there-binaries-available-for-xxx-operating-system">Q:</a>XXX 用のバイナリファイルはありますか？<h2>
+<h2><a name="are-there-binaries-available-for-xxx-operating-system">Q:</a>XXX 用のバイナリファイルはありますか？</h2>
 たぶんあると思います。
 私達は、いかなる OS 用にもバイナリファイルをリリースしません。
 Linux や \*BSD や Solaris や OS X などのたくさんの OS では、
