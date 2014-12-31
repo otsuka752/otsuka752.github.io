@@ -282,6 +282,20 @@ tcpprep コマンドで &rsquo;secondary&rsquo; とマークされたトラフ�
 1</p>
 
 
+<p style="margin-left:11%;"><b>&minus;&minus;loopdelay&minus;ms</b>=<i>number</i></p>
+
+<p style="margin-left:22%;">
+ループとループの間のディレイ時間をミリ秒(milliseconds)で指定します。
+このオプションは下記のオプションと一緒に指定する必要があります: loop
+オプションには整数を指定します。
+<i>number</i> の指定には下記の制限があります:</p>
+
+<p style="margin-left:28%;">0 以上</p>
+
+<p style="margin-left:22%;"><i>number</i> のデフォルト値は:<br>
+0</p>
+
+
 <p style="margin-left:11%;"><b>&minus;&minus;pktlen</b></p>
 
 <p style="margin-left:22%;">
@@ -426,6 +440,26 @@ netmap を使うことで、市販されている一般的な NIC でも、
 その NIC を使ったほかのアプリケーションは通信できなくなります。
 詳細情報は(付属の) INSTALL を確認してください。</p>
 
+information. This feature can also be enabled by specifying
+an interface as &rsquo;netmap:&lt;intf&gt;&rsquo; or
+&rsquo;vale:&lt;intf&gt;. For example
+&rsquo;netmap:eth0&rsquo; specifies netmap over interface
+eth0.</p>
+
+<p style="margin-left:11%;"><b>&minus;&minus;nm&minus;delay</b>=<i>number</i></p>
+
+<p style="margin-left:22%;">Netmap startup delay. This
+option must appear in combination with the following
+options: netmap. This option takes an integer number as its
+argument. The default <i>number</i> for this option is: <br>
+4</p>
+
+<p style="margin-left:22%; margin-top: 1em">Number of
+seconds to delay after netmap is loaded. Required to ensure
+interfaces are fully up before netmap transmit. Requires
+netmap option. Default is 4 seconds.</p>
+
+
 <p style="margin-left:11%;"><b>&minus;&minus;no&minus;flow&minus;stats</b></p>
 
 <p style="margin-left:22%;">
@@ -481,6 +515,32 @@ flow や fps の数をつり上げることになるので注意してくださ�
 <b>-&minus;pid</b></p>
 
 <p style="margin-left:22%;">tcpreplay を実行した時のプロセス番号(PID)を表示します。</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;quick&minus;tx</b></p>
+
+<p style="margin-left:22%;">
+Quick_TX モジュールを利用してパケットを直接インターフェイスに書き込みます。</p>
+
+<p style="margin-left:22%; margin-top: 1em">
+この機能は、Linux 氏捨てうに Quick TX モジュールが存在するかどうかを検出します。
+もし検出された場合、tcpreplay はネットワークスタックをバイパスさせ、
+Quick TX モジュールを利用してネットワークドライバに書き込まれます。
+これにより、一般的なネットワークカードでも、
+商用のネットワークトラフィックジェネレータと同様に
+フルレートの速度が得られます。
+netmap とは異なり、Quick TX はネットワークドライバはバイパスしないので、
+それほどは混乱しないかもしれません。
+(netmap はネットワークドライバもバイパスします)
+それにも関わらず、netmap と同等の送信速度を実現しています。
+Quick TX は Tcpreplay と一緒に配布されているので、
+インストールするためにカーネルソースを必要としません。
+詳細は INSTALL を参照してください。
+この機能は &rsquo;qtx:&lt;intf&gt;&rsquo; で
+特定のインターフェイスを指定できます。
+例えば、&rsquo;qtx:eth0&rsquo; と指定すると、
+eth0 インターフェイスで Quick TX が有効になります。</p>
+
 
 <p style="margin-left:11%;"><b>&minus;&minus;stats</b>=<i>number</i></p>
 

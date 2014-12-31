@@ -704,6 +704,20 @@ takes an integer number as its argument. The value of
 this option is: <br>
 1</p>
 
+<p style="margin-left:11%;"><b>&minus;&minus;loopdelay&minus;ms</b>=<i>number</i></p>
+
+<p style="margin-left:22%;">Delay between loops in
+milliseconds. This option must appear in combination with
+the following options: loop. This option takes an integer
+number as its argument. The value of <i>number</i> is
+constrained to being:</p>
+
+<p style="margin-left:28%;">greater than or equal to 0</p>
+
+<p style="margin-left:22%;">The default <i>number</i> for
+this option is: <br>
+0</p>
+
 
 <p style="margin-left:11%;"><b>&minus;&minus;pktlen</b></p>
 
@@ -845,7 +859,25 @@ commodity network adapters, similar to rates achieved by
 commercial network traffic generators. Note that bypassing
 the network driver will disrupt other applications connected
 through the test interface. See INSTALL for more
-information.</p>
+information. This feature can also be enabled by specifying
+an interface as &rsquo;netmap:&lt;intf&gt;&rsquo; or
+&rsquo;vale:&lt;intf&gt;. For example
+&rsquo;netmap:eth0&rsquo; specifies netmap over interface
+eth0.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;nm&minus;delay</b>=<i>number</i></p>
+
+<p style="margin-left:22%;">Netmap startup delay. This
+option must appear in combination with the following
+options: netmap. This option takes an integer number as its
+argument. The default <i>number</i> for this option is: <br>
+4</p>
+
+<p style="margin-left:22%; margin-top: 1em">Number of
+seconds to delay after netmap is loaded. Required to ensure
+interfaces are fully up before netmap transmit. Requires
+netmap option. Default is 4 seconds.</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;no&minus;flow&minus;stats</b></p>
@@ -904,6 +936,29 @@ speeds can lead to inflated flows and fps counts. Default is
 
 <p style="margin-left:22%;">Print the PID of tcpreplay at
 startup.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;quick&minus;tx</b></p>
+
+<p style="margin-left:22%;">Write packets directly to an
+interface via Quick_TX module.</p>
+
+<p style="margin-left:22%; margin-top: 1em">This feature
+will detect detect the presence of the Quick TX module on
+Linux systems. If detected, tcpreplay packets will bypass
+the network stack and will be written to the network driver
+via the Quick TX module. This will allow you to achieve full
+line rates on commodity network adapters, similar to rates
+achieved by commercial network traffic generators. Note that
+unlike netmap, Quick TX does not bypass the network driver
+and therefore is less disruptive. Yet it can achieve TX
+rates comparble netmap. Quick TX is distributed with
+Tcpreplay and does not require full kernel source in order
+to be installed. See INSTALL for more information. This
+feature can also be enabled by specifying an interface as
+&rsquo;qtx:&lt;intf&gt;&rsquo;. For example
+&rsquo;qtx:eth0&rsquo; specifies Quick TX over interface
+eth0.</p>
 
 
 <p style="margin-left:11%;"><b>&minus;&minus;stats</b>=<i>number</i></p>

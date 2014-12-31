@@ -23,16 +23,15 @@ description: "Tcpreplay のダウンロードとインストール／Tcpreplay d
 ### <a name="download-releases"></a>一般ユーザ向け／Download Releases for Users
 
 * 最新のステーブル版／Latest stable release:
- - [tcpreplay-4.0.5.tar.gz][tcpreplay-4.0.5]
- - [PGP signature][tcpreplay-4.0.5.asc]
- - [Release notes][4.0.5-release]
- - [Version 4.0.5 announcement][4.0.5-announce]
+ - [tcpreplay-4.1.0.tar.gz][tcpreplay-4.1.0]
+ - [PGP signature][tcpreplay-4.1.0.asc]
+ - [Release notes][4.1.0-release]
+ - [Version 4.1.0 announcement][4.1.0-announce]
 
-* 以前のリリース／Previous release:
- - [tcpreplay-4.0.4.tar.gz][tcpreplay-4.0.4]
- - [PGP signature][tcpreplay-4.0.4.asc]
- - [Release notes][4.0.4-release]
- - [Version 4.0.4 announcement][4.0.4-announce]
+* 最新のベータ版／Latest beta release:
+ - [tcpreplay-4.1.0beta2.tar.gz][tcpreplay-4.1.0beta2]
+ - [PGP signature][tcpreplay-4.1.0beta2.asc]
+ - [Version 4.1.0 Beta 2 announcement][4.1.0beta2-announce]
 
 * [古い Win32 向け／Old Win32 release][win32]
  - メンテナは Windows 版をサポートしていません
@@ -190,57 +189,66 @@ Cygwin のパッケージが壊れているという情報があります。
 [tcpreplay-users メーリングリスト][maillist] に質問してみてください。
 あるいは、[サポート／Support][Support] のセクションを見てください。
 
-[maillist]: maillist.html
-[Support]:  support.html
-[nm]:       http://info.iet.unipi.it/~luigi/netmap/
-[Cygwin]:   http://www.cygwin.com/
-[Winpcap]:  http://www.winpcap.org
-[dll]:      http://www.winpcap.org/install/default.htm
-[devpack]:  http://www.winpcap.org/devel.htm
-[tcpreplay-3.4.4]:           http://prdownloads.sourceforge.net/tcpreplay/tcpreplay-3.4.4.tar.gz?download
-[tcpreplay-3.4.4.asc]:       http://tcpreplay.synfin.net/raw-attachment/wiki/Download/tcpreplay-3.4.4.tar.gz.asc
-[tcpreplay-3.4.4.changelog]: http://tcpreplay.synfin.net/browser/tags/3.4.4/docs/CHANGELOG
-[tcpreplay-4.0.0beta2]:      https://drive.google.com/folderview?id=0Bwy1iN_ElthJWi14Mnh5YUJTUWs&usp=docslist_api#
-[tcpreplay-4.0.0beta2.asc]:  https://drive.google.com/file/d/0Bwy1iN_ElthJeXdmT05jME4yc3M/edit?usp=sharing
-[tcpreplay-4.0.0]:           http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.0/
-[tcpreplay-4.0.0.asc]:       https://drive.google.com/file/d/0Bwy1iN_ElthJZk1IVUNCUzEzVEU/edit?usp=sharing
-[4.0.0-release]:             https://github.com/appneta/tcpreplay/releases/tag/v4.0.0
-[4.0.0beta1_announce]:       {{ site.url }}/tcpreplay/news/2013/12/20/4-0-beta1.html
-[4.0.0beta2_announce]:       {{ site.url }}/tcpreplay/news/2013/12/22/4-0-beta2.html
-[4.0.0-announce]:            {{ site.url }}/tcpreplay/news/2014/01/05/4-0-0.html
-[win32]:                     http://sourceforge.net/projects/tcpreplay/files/tcpreplay-win32/
-[old_stuff]:                 http://sourceforge.net/projects/tcpreplay/files/
-[stats]:                     http://sourceforge.net/projects/tcpreplay/files/stats/timeline
-[tarball]:                   https://github.com/appneta/tcpreplay/tarball/master
-[network]:                   https://github.com/appneta/tcpreplay/network
-[fork]:                      https://help.github.com/articles/fork-a-repo
-[repo]:                      https://github.com/appneta/tcpreplay
-[pullreq]:                   https://help.github.com/articles/fork-a-repo#pull-requests
-[autogen]:                   http://autogen.sourceforge.net/
-[autogen-download]:          http://ftp.gnu.org/gnu/autogen/rel5.16.2/
-[dev-wiki]:                  https://github.com/appneta/tcpreplay/wiki
-[Win32Readme.txt]:           https://github.com/appneta/tcpreplay/blob/master/docs/Win32Readme.txt
-[tcpreplay-4.0.1]:           http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.1/
-[tcpreplay-4.0.1.asc]:       https://drive.google.com/file/d/0Bwy1iN_ElthJQlRkWmRWWmtzYUk/edit?usp=sharing
-[4.0.1-release]:             https://github.com/appneta/tcpreplay/releases/tag/v4.0.1
-[4.0.1-announce]:            {{ site.url }}/tcpreplay/news/2014/01/16/4-0-1.html
-[tcpreplay-4.0.2]:           http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.2/
-[tcpreplay-4.0.2.asc]:       https://drive.google.com/file/d/0Bwy1iN_ElthJM3JCTXRtUXBadVU/edit?usp=sharing
-[4.0.2-release]:             https://github.com/appneta/tcpreplay/releases/tag/v4.0.2
-[4.0.2-announce]:            {{ site.url }}/tcpreplay/news/2014/01/17/4-0-2.html
-[tcpreplay-4.0.3]:           http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.3/
-[tcpreplay-4.0.3.asc]:       https://drive.google.com/file/d/0Bwy1iN_ElthJaUZJS3lONjY0dEU/edit?usp=sharing
-[4.0.3-release]:             https://github.com/appneta/tcpreplay/releases/tag/v4.0.3
-[4.0.3-announce]:            {{ site.url }}/tcpreplay/news/2014/02/04/4-0-3.html
-[tcpreplay-4.0.4]:           http://sourceforge.net/projects/tcpreplay
-[tcpreplay-4.0.4.asc]:       https://drive.google.com/file/d/0Bwy1iN_ElthJbzRrbl9rczFyaG8/edit?usp=sharing
-[4.0.4-release]:             https://github.com/appneta/tcpreplay/releases/tag/v4.0.4
-[4.0.4-announce]:            {{ site.url }}/tcpreplay/news/2014/03/22/4-0-4.html
-[tcpreplay-4.0.5beta1]:      https://github.com/appneta/tcpreplay/releases/download/v4.0.5beta1/tcpreplay-4.0.5-beta1.tar.gz
-[tcpreplay-4.0.5beta1.asc]:  https://github.com/appneta/tcpreplay/releases/download/v4.0.5beta1/tcpreplay-4.0.5-beta1.tar.gz.asc
-[4.0.5beta1-release]:        https://github.com/appneta/tcpreplay/releases/tag/v4.0.5beta1
-[4.0.5beta1-announce]:       {{ site.url }}/tcpreplay/news/2014/07/27/4-0-5beta1.html
-[tcpreplay-4.0.5]:      https://github.com/appneta/tcpreplay/releases/download/v4.0.5/tcpreplay-4.0.5.tar.gz
-[tcpreplay-4.0.5.asc]:  https://github.com/appneta/tcpreplay/releases/download/v4.0.5/tcpreplay-4.0.5.tar.gz.asc
-[4.0.5-release]:        https://github.com/appneta/tcpreplay/releases/tag/v4.0.5
-[4.0.5-announce]:       {{ site.url }}/tcpreplay/news/2014/09/05/4-0-5.html
+[maillist]:			maillist.html
+[Support]:			support.html
+[nm]:				http://info.iet.unipi.it/~luigi/netmap/
+[Cygwin]:			http://www.cygwin.com/
+[Winpcap]:			http://www.winpcap.org
+[dll]:				http://www.winpcap.org/install/default.htm
+[devpack]:			http://www.winpcap.org/devel.htm
+[tcpreplay-3.4.4]:		http://prdownloads.sourceforge.net/tcpreplay/tcpreplay-3.4.4.tar.gz?download
+[tcpreplay-3.4.4.asc]:		http://tcpreplay.synfin.net/raw-attachment/wiki/Download/tcpreplay-3.4.4.tar.gz.asc
+[tcpreplay-3.4.4.changelog]:	http://tcpreplay.synfin.net/browser/tags/3.4.4/docs/CHANGELOG
+[tcpreplay-4.0.0beta2]:		https://drive.google.com/folderview?id=0Bwy1iN_ElthJWi14Mnh5YUJTUWs&usp=docslist_api#
+[tcpreplay-4.0.0beta2.asc]:	https://drive.google.com/file/d/0Bwy1iN_ElthJeXdmT05jME4yc3M/edit?usp=sharing
+[tcpreplay-4.0.0]:		http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.0/
+[tcpreplay-4.0.0.asc]:		https://drive.google.com/file/d/0Bwy1iN_ElthJZk1IVUNCUzEzVEU/edit?usp=sharing
+[4.0.0-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.0
+[4.0.0beta1_announce]:		{{ site.url }}/tcpreplay/news/2013/12/20/4-0-beta1.html
+[4.0.0beta2_announce]:		{{ site.url }}/tcpreplay/news/2013/12/22/4-0-beta2.html
+[4.0.0-announce]:		{{ site.url }}/tcpreplay/news/2014/01/05/4-0-0.html
+[win32]:			http://sourceforge.net/projects/tcpreplay/files/tcpreplay-win32/
+[old_stuff]:			http://sourceforge.net/projects/tcpreplay/files/
+[stats]:			http://sourceforge.net/projects/tcpreplay/files/stats/timeline
+[tarball]:			https://github.com/appneta/tcpreplay/tarball/master
+[network]:			https://github.com/appneta/tcpreplay/network
+[fork]:				https://help.github.com/articles/fork-a-repo
+[repo]:				https://github.com/appneta/tcpreplay
+[pullreq]:			https://help.github.com/articles/fork-a-repo#pull-requests
+[autogen]:			http://autogen.sourceforge.net/
+[autogen-download]:		http://ftp.gnu.org/gnu/autogen/rel5.16.2/
+[dev-wiki]:			https://github.com/appneta/tcpreplay/wiki
+[Win32Readme.txt]:		https://github.com/appneta/tcpreplay/blob/master/docs/Win32Readme.txt
+[tcpreplay-4.0.1]:		http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.1/
+[tcpreplay-4.0.1.asc]:		https://drive.google.com/file/d/0Bwy1iN_ElthJQlRkWmRWWmtzYUk/edit?usp=sharing
+[4.0.1-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.1
+[4.0.1-announce]:		{{ site.url }}/tcpreplay/news/2014/01/16/4-0-1.html
+[tcpreplay-4.0.2]:		http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.2/
+[tcpreplay-4.0.2.asc]:		https://drive.google.com/file/d/0Bwy1iN_ElthJM3JCTXRtUXBadVU/edit?usp=sharing
+[4.0.2-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.2
+[4.0.2-announce]:		{{ site.url }}/tcpreplay/news/2014/01/17/4-0-2.html
+[tcpreplay-4.0.3]:		http://sourceforge.net/projects/tcpreplay/files/tcpreplay/4.0.3/
+[tcpreplay-4.0.3.asc]:		https://drive.google.com/file/d/0Bwy1iN_ElthJaUZJS3lONjY0dEU/edit?usp=sharing
+[4.0.3-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.3
+[4.0.3-announce]:		{{ site.url }}/tcpreplay/news/2014/02/04/4-0-3.html
+[tcpreplay-4.0.4]:		http://sourceforge.net/projects/tcpreplay
+[tcpreplay-4.0.4.asc]:		https://drive.google.com/file/d/0Bwy1iN_ElthJbzRrbl9rczFyaG8/edit?usp=sharing
+[4.0.4-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.4
+[4.0.4-announce]:		{{ site.url }}/tcpreplay/news/2014/03/22/4-0-4.html
+[tcpreplay-4.0.5beta1]:		https://github.com/appneta/tcpreplay/releases/download/v4.0.5beta1/tcpreplay-4.0.5-beta1.tar.gz
+[tcpreplay-4.0.5beta1.asc]:	https://github.com/appneta/tcpreplay/releases/download/v4.0.5beta1/tcpreplay-4.0.5-beta1.tar.gz.asc
+[4.0.5beta1-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.5beta1
+[4.0.5beta1-announce]:		{{ site.url }}/tcpreplay/news/2014/07/27/4-0-5beta1.html
+[tcpreplay-4.0.5]:		https://github.com/appneta/tcpreplay/releases/download/v4.0.5/tcpreplay-4.0.5.tar.gz
+[tcpreplay-4.0.5.asc]:		https://github.com/appneta/tcpreplay/releases/download/v4.0.5/tcpreplay-4.0.5.tar.gz.asc
+[4.0.5-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.0.5
+[4.0.5-announce]:		{{ site.url }}/tcpreplay/news/2014/09/05/4-0-5.html
+[tcpreplay-4.1.0beta2]:		https://github.com/appneta/tcpreplay/releases/download/v4.1.0beta2/tcpreplay-4.1.0beta2.tar.gz
+[tcpreplay-4.1.0beta2.asc]:	https://github.com/appneta/tcpreplay/releases/download/v4.1.0beta2/tcpreplay-4.1.0beta2.tar.gz.asc
+[4.1.0beta2-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.1.0beta2
+[4.1.0beta2-announce]:		{{ site.url }}/tcpreplay/news/2014/10/17/4-1-0beta2.html
+[tcpreplay-4.1.0]:		https://github.com/appneta/tcpreplay/releases/download/v4.1.0/tcpreplay-4.1.0.tar.gz
+[tcpreplay-4.1.0.asc]:		https://github.com/appneta/tcpreplay/releases/download/v4.1.0/tcpreplay-4.1.0.tar.gz.asc
+[4.1.0-release]:		https://github.com/appneta/tcpreplay/releases/tag/v4.1.0
+[4.1.0-announce]:		{{ site.url }}/tcpreplay/news/2014/12/17/4-1-0.html
+
