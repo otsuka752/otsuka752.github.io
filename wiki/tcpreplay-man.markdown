@@ -438,9 +438,8 @@ netmap を使うことで、市販されている一般的な NIC でも、
 商用のネットワークジェネレータと同程度の速度を実現できます。
 通常のネットワークドライバはバイパスされてしまうので、
 その NIC を使ったほかのアプリケーションは通信できなくなります。
-詳細情報は(付属の) INSTALL を確認してください。</p>
-
-information. This feature can also be enabled by specifying
+詳細情報は(付属の) INSTALL を確認してください。
+This feature can also be enabled by specifying
 an interface as &rsquo;netmap:&lt;intf&gt;&rsquo; or
 &rsquo;vale:&lt;intf&gt;. For example
 &rsquo;netmap:eth0&rsquo; specifies netmap over interface
